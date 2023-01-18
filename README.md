@@ -50,7 +50,7 @@ Click below to watch a tutorial video.
 The application is freely available at https://divenn.tch.harvard.edu/  (see Figure 1). 
 
  
-![Home Page](./image/tutorial/homepage2.0.PNG)
+![Home Page](./tutorial/homepage2.0.PNG)
  _**Figure 1.** Homepage of DiVenn_
 
 
@@ -66,12 +66,12 @@ DiVenn currently accepts two types of input data (see Figure 2):
 
 Please use the following sample data to test our tool: https://divenn.tch.harvard.edu/data.html ##### UPDATE THIS
 
-![Visualization Example](./image/tutorial/flowchart.png)
+![Visualization Example](./tutorial/flowchart.png)
 
 _**Figure 2** Flow chart of DiVenn_
 
 ### 2.   Visualization
-![Visualization Example](./image/tutorial/force-directed-graph.png)
+![Visualization Example](./tutorial/force-directed-graph.png)
 
  _**Figure 3** Force-directed graph in DiVenn_
 
@@ -91,12 +91,12 @@ Right-clicking nodes can show the gene IDs of interest (see Figure 4).
 If users need to check the KEGG pathway or GO terms of interested gene node, they can choose the ‘Gene details’ option after right clicking the node (see Figure 5).
 
  
-![Right-Click Example](./image/tutorial/clickGraph.PNG)
+![Right-Click Example](./tutorial/clickGraph.PNG)
 
 _**Figure 4** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button._
 
 
-![Gene Detail Example](./image/tutorial/geneDetail.PNG)
+![Gene Detail Example](./tutorial/geneDetail.PNG)
 
 _**Figure 5** Gene details. KEGG pathway and GO terms will be displayed._
 
@@ -118,13 +118,13 @@ The column headers on the informative table are sortable; the table is also sear
  
 
  
-![Pathway Example](./image/tutorial/pathwayTable.PNG)
+![Pathway Example](./tutorial/pathwayTable.PNG)
 _**Figure 6** Pathway details of all associated genes in the force-directed graph._
 
-![Gene Highlight](./image/tutorial/highlight.PNG)
+![Gene Highlight](./tutorial/highlight.PNG)
 _**Figure 7** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
 
-![Gene Subset](./image/tutorial/subset.PNG)
+![Gene Subset](./tutorial/subset.PNG)
 _**Figure 8** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
 
 #### Show Gene Ontology Detail
@@ -132,7 +132,7 @@ You can show all gene-associated gene ontologies by clicking this button to get 
 
 The column headers on the informative table are sortable; the table is also searchable with key words of interest. If you need to sort the gene list based on the gene ontology name, click on the “GO term” column header. If you need to select multiple genes from the same GO terms after sorting the genes based on GO terms, click the first checkbox and press shift before clicking the last checkbox. You can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button.
 
-![Gene Ontology Details](./image/tutorial/GO_table.PNG)
+![Gene Ontology Details](./tutorial/GO_table.PNG)
 _**Figure 9** Gene ontology details of all associated genes in the force-directed graph._
 
 # Open Source
