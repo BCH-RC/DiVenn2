@@ -75,6 +75,11 @@ _**Figure 2** Flow chart of DiVenn_
 
  _**Figure 3** Force-directed graph in DiVenn_
 
+![Shape Font Example](./new_tutorial_imgs/shape_font.PNG)
+_**Figure 4** Change shapes and font size_
+
+![Summarize Node and Color Example](./new_tutorial_imgs/summarize_color.PNG)
+_**Figure 5** Change color scheme and summarize groups_
 
 ### 3.	Click on the Graph
 Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
@@ -93,12 +98,12 @@ If users need to check the KEGG pathway or GO terms of interested gene node, the
  
 ![Right-Click Example](./new_tutorial_imgs/clickGraph.PNG)
 
-_**Figure 4** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button._
+_**Figure 6** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button._
 
 
 ![Gene Detail Example](./new_tutorial_imgs/geneDetail.PNG)
 
-_**Figure 5** Gene details. KEGG pathway and GO terms will be displayed._
+_**Figure 7** Gene details. KEGG pathway and GO terms will be displayed._
 
 ### 4.	GUI Function
 
@@ -119,13 +124,13 @@ The column headers on the informative table are sortable; the table is also sear
 
  
 ![Pathway Example](./new_tutorial_imgs/pathwayTable.PNG)
-_**Figure 6** Pathway details of all associated genes in the force-directed graph._
+_**Figure 8** Pathway details of all associated genes in the force-directed graph._
 
 ![Gene Highlight](./tutorial/highlight.PNG)
-_**Figure 7** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
+_**Figure 9** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
 
 ![Gene Subset](./tutorial/subset.PNG)
-_**Figure 8** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
+_**Figure 10** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
 
 #### Show Gene Ontology Detail
 You can show all gene-associated gene ontologies by clicking this button to get the gene ontology informative table (see Figure 9).
@@ -133,7 +138,7 @@ You can show all gene-associated gene ontologies by clicking this button to get 
 The column headers on the informative table are sortable; the table is also searchable with key words of interest. If you need to sort the gene list based on the gene ontology name, click on the “GO term” column header. If you need to select multiple genes from the same GO terms after sorting the genes based on GO terms, click the first checkbox and press shift before clicking the last checkbox. You can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button.
 
 ![Gene Ontology Details](./new_tutorial_imgs/GO_table.png)
-_**Figure 9** Gene ontology details of all associated genes in the force-directed graph._
+_**Figure 11** Gene ontology details of all associated genes in the force-directed graph._
 
 # Open Source
 Visualization tools [D3.js](https://github.com/d3/d3) and a lightweight graphical user interface 
