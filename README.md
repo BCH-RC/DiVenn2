@@ -132,7 +132,7 @@ You can show all gene-associated gene ontologies by clicking this button to get 
 
 The column headers on the informative table are sortable; the table is also searchable with key words of interest. If you need to sort the gene list based on the gene ontology name, click on the “GO term” column header. If you need to select multiple genes from the same GO terms after sorting the genes based on GO terms, click the first checkbox and press shift before clicking the last checkbox. You can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button.
 
-![Gene Ontology Details](./new_tutorial_imgs/GO_table.PNG)
+![Gene Ontology Details](./new_tutorial_imgs/GO_table.png)
 _**Figure 9** Gene ontology details of all associated genes in the force-directed graph._
 
 # Open Source
