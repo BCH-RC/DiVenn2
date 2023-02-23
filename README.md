@@ -21,12 +21,6 @@ _The current version is “2.0”._
 
 The application is freely available at https://divenn.tch.harvard.edu/ (see Figure 1).
 
-## Usage
-
-- Create `config.inc.php` based on `config.example.php`.
-- Start application using Docker Compose: `docker-compose up`
-- Database create & restore: `./restore-db.sh`
-
 # Citation
 Sun, Liang, et al. 
 ["DiVenn: An Interactive and Integrated Web-based Visualization Tool for Comparing Gene Lists."](https://www.frontiersin.org/articles/10.3389/fgene.2019.00421/abstract) Frontiers in Genetics (2019),doi: 10.3389/fgene.2019.00421 
@@ -143,10 +137,10 @@ _**Figure 11** Gene ontology details of all associated genes in the force-direct
 #### Show Gene Group Details
 
 
-#### Show ClusterProfiler GO Enrichment Analysis Table and Bar Plot Visualizations
+#### Show GO Enrichment Analysis Table and Bar Plot Visualizations
 
 
-#### Show ClusterProfiler KEGG Pathway Enrichment Analysis Table
+#### Show KEGG Pathway Enrichment Analysis Table
 
 
 
