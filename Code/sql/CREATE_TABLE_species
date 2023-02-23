@@ -1,0 +1,2 @@
+CREATE TABLE species(species_id SMALLINT NOT NULL AUTO_INCREMENT, short_name VARCHAR(255), full_name VARCHAR(255) NOT NULL, common_name VARCHAR(255), taxonomy VARCHAR(255), genes_count MEDIUMINT, PRIMARY KEY (species_id));
+

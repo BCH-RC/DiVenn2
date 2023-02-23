@@ -1,0 +1,659 @@
+AT5G05980	2	F4K2A1	830484	DFB; DHFS-FPGS homolog B	Folate biosynthesis - Arabidopsis thaliana (thale cress)	GO:0009570	chloroplast stroma	C
+-	-	-	-	-	Folate biosynthesis - Arabidopsis thaliana (thale cress)	GO:0006730	one-carbon metabolic process	P
+-	-	-	-	-	Folate biosynthesis - Arabidopsis thaliana (thale cress)	GO:0004326	tetrahydrofolylpolyglutamate synthase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009570	chloroplast stroma	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0006730	one-carbon metabolic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0004326	tetrahydrofolylpolyglutamate synthase activity	F
+AT3G13310	2	Q9LTT7	820531	Chaperone DnaJ-domain superfamily protein	-	GO:0031072	heat shock protein binding	F
+-	-	-	-	-	-	GO:0006457	protein folding	P
+-	-	-	-	-	-	GO:0051082	unfolded protein binding	F
+AT5G52830	2	Q0WKX3	835360	WRKY27; WRKY DNA-binding protein 27	-	GO:0042742	defense response to bacterium	P
+-	-	-	-	-	-	GO:0007263	nitric oxide mediated signal transduction	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009739	response to gibberellin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT4G35000	2	Q42564	829652	APX3; ascorbate peroxidase 3	Ascorbate and aldarate metabolism - Arabidopsis thaliana (thale cress)	GO:0016688	L-ascorbate peroxidase activity	F
+-	-	-	-	-	Ascorbate and aldarate metabolism - Arabidopsis thaliana (thale cress)	GO:0005778	peroxisomal membrane	C
+-	-	-	-	-	Ascorbate and aldarate metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0016688	L-ascorbate peroxidase activity	F
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0005778	peroxisomal membrane	C
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+AT1G72610	2	A0A178WCD6	843593	GER1; germin-like protein 1	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0031012	extracellular matrix	C
+-	-	-	-	-	-	GO:0050162	oxalate oxidase activity	F
+AT2G29130	2	O81081	817462	LAC2; laccase 2	-	GO:0008471	obsolete laccase activity	F
+-	-	-	-	-	-	GO:0009414	response to water deprivation	P
+AT1G04220	2	A0A178WF97	839578	KCS2; 3-ketoacyl-CoA synthase 2	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009922	fatty acid elongase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0006970	response to osmotic stress	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0010345	suberin biosynthetic process	P
+-	-	-	-	-	Fatty acid elongation - Arabidopsis thaliana (thale cress)	GO:0009922	fatty acid elongase activity	F
+-	-	-	-	-	Fatty acid elongation - Arabidopsis thaliana (thale cress)	GO:0006970	response to osmotic stress	P
+-	-	-	-	-	Fatty acid elongation - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Fatty acid elongation - Arabidopsis thaliana (thale cress)	GO:0010345	suberin biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009922	fatty acid elongase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0006970	response to osmotic stress	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0010345	suberin biosynthetic process	P
+AT1G21110	1	Q9LPU6	838707	IGMT3; O-methyltransferase family protein	-	GO:0005829	cytosol	C
+-	-	-	-	-	-	GO:0008171	O-methyltransferase activity	F
+-	-	-	-	-	-	GO:0046983	protein dimerization activity	F
+AT5G65300	1	Q9FKQ7	836655	hypothetical protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT5G54490	1	A0A178URF6	835537	PBP1; pinoid-binding protein 1	-	GO:0005509	calcium ion binding	F
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0009733	response to auxin	P
+AT3G46620	1	Q9SNB6	823815	RDUF1; zinc finger (C3HC4-type RING finger) family protein	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT1G78410	1	A0A178WJ54	844177	VQ motif-containing protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0006979	response to oxidative stress	P
+AT1G80820	1	Q9SAH9	844421	CCR2; cinnamoyl coa reductase	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0016621	cinnamoyl-CoA reductase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009809	lignin biosynthetic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009409	response to cold	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0016621	cinnamoyl-CoA reductase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009809	lignin biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009409	response to cold	P
+-	-	-	-	-	Phenylpropanoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	Phenylpropanoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0016621	cinnamoyl-CoA reductase activity	F
+-	-	-	-	-	Phenylpropanoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0009809	lignin biosynthetic process	P
+-	-	-	-	-	Phenylpropanoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0009409	response to cold	P
+AT2G37430	1	A0A178VNJ8	818319	ZAT11; C2H2 and C2HC zinc fingers superfamily protein	-	GO:0045449	-	-
+-	-	-	-	-	-	GO:0005622	intracellular	C
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT2G23320	1	A0A178VVT3	816864	WRKY15; WRKY DNA-binding protein 15	-	GO:0005516	calmodulin binding	F
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT2G23270	1	A0A178VZN1	816859	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G41640	1	F4IKY7	818762	Glycosyltransferase family 61 protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0016757	transferase activity, transferring glycosyl groups	F
+AT4G17500	1	O80337	827464	ERF-1; ethylene responsive element binding factor 1	-	GO:0005643	nuclear pore	C
+-	-	-	-	-	-	GO:0016563	obsolete transcription activator activity	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G56660	1	A0A178WNB5	842121	MAEBL domain protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G35210	1	A0A178WEY9	840410	hypothetical protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0009507	chloroplast	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G73540	1	A0A178W6P3	843688	NUDT21; nudix hydrolase homolog 21	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0016787	hydrolase activity	F
+AT4G36500	1	O23231	829802	hypothetical protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005739	mitochondrion	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT5G27420	1	Q8LGA5	832801	CNI1; carbon/nitrogen insensitive 1	-	GO:0043562	cellular response to nitrogen levels	P
+-	-	-	-	-	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0004842	ubiquitin-protein transferase activity	F
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT5G26920	1	F4K2R6	832750	CBP60G; Cam-binding protein 60-like G	-	GO:0005516	calmodulin binding	F
+-	-	-	-	-	-	GO:0009816	defense response to bacterium, incompatible interaction	P
+-	-	-	-	-	-	GO:0002237	response to molecule of bacterial origin	P
+-	-	-	-	-	-	GO:0009697	salicylic acid biosynthetic process	P
+AT5G64870	1	A0A178UKX1	836610	SPFH/Band 7/PHB domain-containing membrane-associated protein family	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0005773	vacuole	C
+AT5G59550	1	Q940T5	836074	RDUF2; zinc finger (C3HC4-type RING finger) family protein	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT5G57890	1	Q9FJM5	835900	Glutamine amidotransferase type 1 family protein	Biosynthesis of amino acids - Arabidopsis thaliana (thale cress)	GO:0004049	anthranilate synthase activity	F
+-	-	-	-	-	Biosynthesis of amino acids - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	Biosynthesis of amino acids - Arabidopsis thaliana (thale cress)	GO:0000162	tryptophan biosynthetic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0004049	anthranilate synthase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0000162	tryptophan biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0004049	anthranilate synthase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0000162	tryptophan biosynthetic process	P
+-	-	-	-	-	Phenylalanine, tyrosine and tryptophan biosynthesis - Arabidopsis thaliana (thale cress)	GO:0004049	anthranilate synthase activity	F
+-	-	-	-	-	Phenylalanine, tyrosine and tryptophan biosynthesis - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	Phenylalanine, tyrosine and tryptophan biosynthesis - Arabidopsis thaliana (thale cress)	GO:0000162	tryptophan biosynthetic process	P
+AT5G51190	1	Q8VY90	835193	Integrase-type DNA-binding superfamily protein	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT5G47960	1	A0A178UQI5	834847	RABA4C; RAB GTPase homolog A4C	Endocytosis - Arabidopsis thaliana (thale cress)	GO:0005525	GTP binding	F
+AT5G47220	1	A0A178UCP3	834768	ERF2; ethylene responsive element binding factor 2	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0045941	-	-
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0009873	ethylene-activated signaling pathway	P
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0009864	induced systemic resistance, jasmonic acid mediated signaling pathway	P
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0005634	nucleus	C
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0016563	obsolete transcription activator activity	F
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0010200	response to chitin	P
+-	-	-	-	-	Plant hormone signal transduction - Arabidopsis thaliana (thale cress)	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT5G42380	1	Q9FIH9	834244	CML37; calmodulin like 37	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005509	calcium ion binding	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0010193	response to ozone	P
+AT5G41740	1	F4JYI4	834177	Disease resistance protein (TIR-NBS-LRR class) family	-	GO:0006915	apoptotic process	P
+-	-	-	-	-	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0009507	chloroplast	C
+-	-	-	-	-	-	GO:0045087	innate immune response	P
+-	-	-	-	-	-	GO:0031224	intrinsic component of membrane	C
+-	-	-	-	-	-	GO:0017111	nucleoside-triphosphatase activity	F
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0007165	signal transduction	P
+-	-	-	-	-	-	GO:0004888	transmembrane signaling receptor activity	F
+AT5G18470	1	A0A178U7R3	831965	Curculin-like (mannose-binding) lectin family protein	-	GO:0005529	-	-
+-	-	-	-	-	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0009505	plant-type cell wall	C
+AT5G06320	1	A0A178UB58	830520	NHL3; NDR1/HIN1-like 3	-	GO:0042742	defense response to bacterium	P
+-	-	-	-	-	-	GO:0051607	defense response to virus	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+AT5G01540	1	Q9M021	831722	LECRKA4.1; lectin receptor kinase a4.1	-	GO:0009738	abscisic acid-activated signaling pathway	P
+-	-	-	-	-	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0009845	seed germination	P
+AT3G61640	1	A0A178V933	825337	AGP20; arabinogalactan protein 20	-	GO:0031225	anchored component of membrane	C
+-	-	-	-	-	-	GO:0008150	biological_process	P
+AT3G56400	1	Q9LY00	824807	WRKY70; WRKY DNA-binding protein 70	-	GO:0050832	defense response to fungus	P
+-	-	-	-	-	-	GO:0009864	induced systemic resistance, jasmonic acid mediated signaling pathway	P
+-	-	-	-	-	-	GO:0016564	obsolete transcription repressor activity	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009862	systemic acquired resistance, salicylic acid mediated signaling pathway	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT3G55950	1	Q9LY50	824761	CCR3; CRINKLY4 related 3	-	GO:0016301	kinase activity	F
+AT3G54150	1	A0A1I9LLF7	824582	S-adenosyl-L-methionine-dependent methyltransferases superfamily protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0008152	metabolic process	P
+-	-	-	-	-	-	GO:0008168	methyltransferase activity	F
+AT3G53810	1	Q9M345	824548	Concanavalin A-like lectin protein kinase family protein	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+AT3G50060	1	Q9SN12	824168	MYB77; myb domain protein 77	-	GO:0048527	lateral root development	P
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	-	GO:0046686	response to cadmium ion	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009723	response to ethylene	P
+-	-	-	-	-	-	GO:0009739	response to gibberellin	P
+-	-	-	-	-	-	GO:0009753	response to jasmonic acid	P
+-	-	-	-	-	-	GO:0009751	response to salicylic acid	P
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT3G45960	1	B9DH60	823739	EXLA3; expansin-like A3	-	GO:0009505	plant-type cell wall	C
+-	-	-	-	-	-	GO:0009828	plant-type cell wall loosening	P
+-	-	-	-	-	-	GO:0009826	unidimensional cell growth	P
+AT3G45640	1	A0A178VFQ7	823706	MPK3; mitogen-activated protein kinase 3	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0009738	abscisic acid-activated signaling pathway	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0000169	activation of MAPK activity involved in osmosensory signaling pathway	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0010120	camalexin biosynthetic process	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0004707	MAP kinase activity	F
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0048481	plant ovule development	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0080136	priming of cellular response to stress	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0005515	protein binding	F
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0010200	response to chitin	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0009409	response to cold	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0009738	abscisic acid-activated signaling pathway	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0000169	activation of MAPK activity involved in osmosensory signaling pathway	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0010120	camalexin biosynthetic process	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0004707	MAP kinase activity	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0048481	plant ovule development	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0080136	priming of cellular response to stress	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005515	protein binding	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0009617	response to bacterium	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0010200	response to chitin	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0009409	response to cold	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+AT3G44260	1	Q9LXM2	823551	CAF1a; Polynucleotidyl transferase, ribonuclease H-like superfamily protein	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0003676	nucleic acid binding	F
+-	-	-	-	-	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0005634	nucleus	C
+-	-	-	-	-	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0009607	response to biotic stimulus	P
+-	-	-	-	-	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0004540	ribonuclease activity	F
+-	-	-	-	-	RNA degradation - Arabidopsis thaliana (thale cress)	GO:0009451	RNA modification	P
+AT4G39640	1	A0A178UXW6	830118	GGT1; gamma-glutamyl transpeptidase 1	Arachidonic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0048046	apoplast	C
+-	-	-	-	-	Arachidonic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0003840	gamma-glutamyltransferase activity	F
+-	-	-	-	-	Arachidonic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006751	glutathione catabolic process	P
+-	-	-	-	-	Arachidonic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0016756	glutathione gamma-glutamylcysteinyltransferase activity	F
+-	-	-	-	-	Arachidonic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Cyanoamino acid metabolism - Arabidopsis thaliana (thale cress)	GO:0048046	apoplast	C
+-	-	-	-	-	Cyanoamino acid metabolism - Arabidopsis thaliana (thale cress)	GO:0003840	gamma-glutamyltransferase activity	F
+-	-	-	-	-	Cyanoamino acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006751	glutathione catabolic process	P
+-	-	-	-	-	Cyanoamino acid metabolism - Arabidopsis thaliana (thale cress)	GO:0016756	glutathione gamma-glutamylcysteinyltransferase activity	F
+-	-	-	-	-	Cyanoamino acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0048046	apoplast	C
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0003840	gamma-glutamyltransferase activity	F
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0006751	glutathione catabolic process	P
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0016756	glutathione gamma-glutamylcysteinyltransferase activity	F
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0048046	apoplast	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0003840	gamma-glutamyltransferase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0006751	glutathione catabolic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0016756	glutathione gamma-glutamylcysteinyltransferase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	Taurine and hypotaurine metabolism - Arabidopsis thaliana (thale cress)	GO:0048046	apoplast	C
+-	-	-	-	-	Taurine and hypotaurine metabolism - Arabidopsis thaliana (thale cress)	GO:0003840	gamma-glutamyltransferase activity	F
+-	-	-	-	-	Taurine and hypotaurine metabolism - Arabidopsis thaliana (thale cress)	GO:0006751	glutathione catabolic process	P
+-	-	-	-	-	Taurine and hypotaurine metabolism - Arabidopsis thaliana (thale cress)	GO:0016756	glutathione gamma-glutamylcysteinyltransferase activity	F
+-	-	-	-	-	Taurine and hypotaurine metabolism - Arabidopsis thaliana (thale cress)	GO:0006979	response to oxidative stress	P
+AT4G35480	1	A0A178UXS9	829700	RHA3B; RING-H2 finger A3B	-	GO:0010200	response to chitin	P
+AT4G34150	1	A0A178V2Z8	829563	Calcium-dependent lipid-binding (CaLB domain) family protein	-	GO:0009409	response to cold	P
+AT4G31800	1	Q0WTZ3	829308	WRKY18; WRKY DNA-binding protein 18	-	GO:0042742	defense response to bacterium	P
+-	-	-	-	-	-	GO:0050832	defense response to fungus	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0050691	regulation of defense response to virus by host	P
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009751	response to salicylic acid	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT4G27280	1	O81831	828836	Calcium-binding EF-hand family protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005509	calcium ion binding	F
+AT4G23610	1	A0A178UV22	828461	Late embryogenesis abundant (LEA) hydroxyproline-rich glycoprotein family	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G23810	1	A0A178UV74	828481	WRKY53; WRKY family transcription factor	-	GO:0045941	-	-
+-	-	-	-	-	-	GO:0009816	defense response to bacterium, incompatible interaction	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0016563	obsolete transcription activator activity	F
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0031347	regulation of defense response	P
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT4G23180	1	Q8GYA4	828417	CRK10; cysteine-rich RLK (RECEPTOR-like protein kinase) 10	-	GO:0016301	kinase activity	F
+AT4G09030	1	Q9M0S4	826482	AGP10; arabinogalactan protein 10	-	GO:0031225	anchored component of membrane	C
+AT1G25400	1	A0A178W6L4	839126	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G25560	1	A0A178W8G8	839143	TEM1; AP2/B3 transcription factor family protein	-	GO:0048573	photoperiodism, flowering	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G66500	1	Q9C710	842968	Pre-mRNA cleavage complex II	mRNA surveillance pathway - Arabidopsis thaliana (thale cress)	GO:0008150	biological_process	P
+-	-	-	-	-	mRNA surveillance pathway - Arabidopsis thaliana (thale cress)	GO:0005622	intracellular	C
+-	-	-	-	-	mRNA surveillance pathway - Arabidopsis thaliana (thale cress)	GO:0008270	zinc ion binding	F
+AT3G10930	1	Q84TK4	820264	hypothetical protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005739	mitochondrion	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT3G28340	1	Q9LHD2	822462	GATL10; galacturonosyltransferase-like 10	-	GO:0016051	carbohydrate biosynthetic process	P
+-	-	-	-	-	-	GO:0047262	polygalacturonate 4-alpha-galacturonosyltransferase activity	F
+AT3G16860	1	A0A178VBK2	820941	COBL8; COBRA-like protein 8 precursor	-	GO:0031225	anchored component of membrane	C
+-	-	-	-	-	-	GO:0008150	biological_process	P
+AT3G28580	1	Q9LJJ7	822488	P-loop containing nucleoside triphosphate hydrolases superfamily protein	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0016887	ATPase activity	F
+-	-	-	-	-	-	GO:0005783	endoplasmic reticulum	C
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+AT3G02800	1	Q681Z2	821239	PFA-DSP3; Tyrosine phosphatase family protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0016311	dephosphorylation	P
+-	-	-	-	-	-	GO:0004725	protein tyrosine phosphatase activity	F
+AT3G26970	1	-	-	-	-	-	-	-
+AT3G23250	1	A0A178V7L7	821904	MYB15; myb domain protein 15	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009733	response to auxin	P
+-	-	-	-	-	-	GO:0046686	response to cadmium ion	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009723	response to ethylene	P
+-	-	-	-	-	-	GO:0009753	response to jasmonic acid	P
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT3G16050	1	Q9ZNR6	820850	PDX1.2; pyridoxine biosynthesis 1.2	Vitamin B6 metabolism - Arabidopsis thaliana (thale cress)	GO:0005829	cytosol	C
+-	-	-	-	-	Vitamin B6 metabolism - Arabidopsis thaliana (thale cress)	GO:0046982	protein heterodimerization activity	F
+AT3G02550	1	Q9M886	821112	LBD41; LOB domain-containing protein 41	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+AT3G11820	1	A0A178VIM4	820355	SYP121; syntaxin of plants 121	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0006944	-	-
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0050832	defense response to fungus	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0009867	jasmonic acid mediated signaling pathway	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0051245	negative regulation of cellular defense response	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0043069	negative regulation of programmed cell death	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0005886	plasma membrane	C
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0043495	protein anchor	F
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0006612	protein targeting to membrane	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0010363	regulation of plant-type hypersensitive response	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0009863	salicylic acid mediated signaling pathway	P
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0005484	SNAP receptor activity	F
+-	-	-	-	-	SNARE interactions in vesicular transport - Arabidopsis thaliana (thale cress)	GO:0031201	SNARE complex	C
+AT1G01560	1	A0A178W1B0	839523	MPK11; MAP kinase 11	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0004707	MAP kinase activity	F
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	-	GO:0007165	signal transduction	P
+AT1G20510	1	Q84P21	838639	OPCL1; OPC-8:0 CoA ligase1	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0016207	4-coumarate-CoA ligase activity	F
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0005777	peroxisome	C
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009698	phenylpropanoid metabolic process	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0016207	4-coumarate-CoA ligase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0005777	peroxisome	C
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009698	phenylpropanoid metabolic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0016207	4-coumarate-CoA ligase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0005777	peroxisome	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009698	phenylpropanoid metabolic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+AT1G66400	1	Q9C8Y1	842958	CML23; calmodulin like 23	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0008150	biological_process	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005509	calcium ion binding	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+AT1G74590	1	A0A178W9T9	843799	GSTU10; glutathione S-transferase TAU 10	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0005737	cytoplasm	C
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0004364	glutathione transferase activity	F
+-	-	-	-	-	Glutathione metabolism - Arabidopsis thaliana (thale cress)	GO:0009407	toxin catabolic process	P
+AT1G72520	1	Q9FNX8	843584	LOX4; PLAT/LH2 domain-containing lipoxygenase family protein	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009507	chloroplast	C
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006952	defense response	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009055	electron carrier activity	F
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0040007	growth	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0005506	iron ion binding	F
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0016165	linoleate 13S-lipoxygenase activity	F
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009507	chloroplast	C
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0006952	defense response	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009055	electron carrier activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0040007	growth	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0005506	iron ion binding	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0016165	linoleate 13S-lipoxygenase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009507	chloroplast	C
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0006952	defense response	P
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009055	electron carrier activity	F
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0040007	growth	P
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0005506	iron ion binding	F
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0016165	linoleate 13S-lipoxygenase activity	F
+-	-	-	-	-	Linoleic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009507	chloroplast	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0006952	defense response	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009055	electron carrier activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0040007	growth	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0005506	iron ion binding	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0016165	linoleate 13S-lipoxygenase activity	F
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+AT1G19380	1	Q9LN60	838521	sugar, putative (DUF1195)	-	GO:0008150	biological_process	P
+AT1G21370	1	A0A178WB41	838736	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G79680	1	Q8VYA3	844307	WAKL10; WALL ASSOCIATED KINASE (WAK)-LIKE 10	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0016021	integral component of membrane	C
+-	-	-	-	-	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+AT1G14480	1	F4HW68	838010	Ankyrin repeat family protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+AT1G27730	1	A0A178WMS3	839666	STZ; salt tolerance zinc finger	-	GO:0035264	multicellular organism growth	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0016564	obsolete transcription repressor activity	F
+-	-	-	-	-	-	GO:0010117	photoprotection	P
+-	-	-	-	-	-	GO:0015979	photosynthesis	P
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009409	response to cold	P
+-	-	-	-	-	-	GO:0009644	response to high light intensity	P
+-	-	-	-	-	-	GO:0006979	response to oxidative stress	P
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+-	-	-	-	-	-	GO:0009414	response to water deprivation	P
+-	-	-	-	-	-	GO:0009611	response to wounding	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT1G22510	1	F4I1E4	838857	E3 ubiquitin-protein ligase RNF170-like protein (DUF 1232)	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT1G74930	1	A0A178W260	843832	ORA47; Integrase-type DNA-binding superfamily protein	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009607	response to biotic stimulus	P
+-	-	-	-	-	-	GO:0009611	response to wounding	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G72930	1	Q9SSN3	843624	TIR; toll/interleukin-1 receptor-like protein	-	GO:0006952	defense response	P
+AT1G72920	1	Q9SSN4	843623	Toll-Interleukin-Resistance (TIR) domain family protein	-	GO:0006952	defense response	P
+-	-	-	-	-	-	GO:0031224	intrinsic component of membrane	C
+-	-	-	-	-	-	GO:0009611	response to wounding	P
+-	-	-	-	-	-	GO:0004888	transmembrane signaling receptor activity	F
+AT1G05575	1	A0A178WCQ9	837061	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G15390	1	Q9SJP2	816031	FUT4; fucosyltransferase 4	-	GO:0008417	fucosyltransferase activity	F
+AT1G67470	1	O64798	843068	Protein kinase superfamily protein	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+-	-	-	-	-	-	GO:0004713	protein tyrosine kinase activity	F
+AT1G78820	1	Q9ZVA1	844219	D-mannose binding lectin protein with Apple-like carbohydrate-binding domain-containing protein	-	GO:0005529	-	-
+-	-	-	-	-	-	GO:0048046	apoplast	C
+AT1G61890	1	O80695	842485	MATE efflux family protein	-	GO:0015297	antiporter activity	F
+-	-	-	-	-	-	GO:0006855	drug transmembrane transport	P
+-	-	-	-	-	-	GO:0015238	drug transmembrane transporter activity	F
+-	-	-	-	-	-	GO:0016020	membrane	C
+AT1G08930	1	A0A178W9Q9	837414	ERD6; Major facilitator superfamily protein	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0005351	sugar:proton symporter activity	F
+AT1G03730	1	A0A178W7L0	839106	pyrroline-5-carboxylate reductase	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G55450	1	F4I0B5	841992	S-adenosyl-L-methionine-dependent methyltransferases superfamily protein	-	GO:0008168	methyltransferase activity	F
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+AT2G03540	1	-	-	-		GO:0003674	molecular_function	F
+-	-	-	-	-		GO:0005575	cellular_component	C
+-	-	-	-	-		GO:0008150	biological_process	P
+AT2G32030	1	A0A178VTR0	817763	Acyl-CoA N-acyltransferases (NAT) superfamily protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0008152	metabolic process	P
+-	-	-	-	-	-	GO:0008080	N-acetyltransferase activity	F
+AT2G01300	1	Q9ZU37	814658	mediator of RNA polymerase II transcription subunit	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G18680	1	F4IRF0	816383	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G27080	1	Q9ZVD2	817250	Late embryogenesis abundant (LEA) hydroxyproline-rich glycoprotein family	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G41010	1	O80683	818701	CAMBP25; calmodulin (CAM)-binding protein of 25 kDa	-	GO:0005516	calmodulin binding	F
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0010337	regulation of salicylic acid metabolic process	P
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+-	-	-	-	-	-	GO:0009414	response to water deprivation	P
+AT2G39660	1	A0A178VYW0	818549	BIK1; botrytis-induced kinase1	-	GO:0005737	cytoplasm	C
+-	-	-	-	-	-	GO:0050832	defense response to fungus	P
+-	-	-	-	-	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0005730	nucleolus	C
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0046777	protein autophosphorylation	P
+AT5G04340	1	O22533	830313	ZAT6; 6	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+-	-	-	-	-	-	GO:0008270	zinc ion binding	F
+AT1G33600	1	Q9FW48	840254	Leucine-rich repeat (LRR) family protein	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0009505	plant-type cell wall	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0007165	signal transduction	P
+AT1G33590	1	F4HR88	840253	Leucine-rich repeat (LRR) family protein	-	GO:0009507	chloroplast	C
+-	-	-	-	-	-	GO:0006952	defense response	P
+-	-	-	-	-	-	GO:0009505	plant-type cell wall	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0007165	signal transduction	P
+AT3G56710	1	A0A178VMX5	824838	SIB1; sigma factor binding protein 1	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0009507	chloroplast	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+AT5G25170	1	A0A1P8B9X3	832588	PPPDE putative thiol peptidase family protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+AT5G59450	1	A0A178UGG6	836064	GRAS family transcription factor	-	GO:0045449	-	-
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT5G58430	1	A0A178UIU4	835956	EXO70B1; exocyst subunit exo70 family protein B1	-	GO:0000145	exocyst	C
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0006904	vesicle docking involved in exocytosis	P
+AT5G52760	1	A0A178UID0	835353	Copper transport protein family	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0046872	metal ion binding	F
+-	-	-	-	-	-	GO:0030001	metal ion transport	P
+AT5G46710	1	A0A1P8BEP3	834714	PLATZ transcription factor family protein	-	GO:0005488	binding	F
+-	-	-	-	-	-	GO:0008150	biological_process	P
+AT5G05410	1	O82132	830424	DREB2A; DRE-binding protein 2A	-	GO:0010286	heat acclimation	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0016563	obsolete transcription activator activity	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0042542	response to hydrogen peroxide	P
+-	-	-	-	-	-	GO:0010224	response to UV-B	P
+-	-	-	-	-	-	GO:0009414	response to water deprivation	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT3G61190	1	F4JE67	825291	BAP1; BON association protein 1	-	GO:0019725	cellular homeostasis	P
+-	-	-	-	-	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0031348	negative regulation of defense response	P
+-	-	-	-	-	-	GO:0005543	phospholipid binding	F
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0009409	response to cold	P
+-	-	-	-	-	-	GO:0009408	response to heat	P
+-	-	-	-	-	-	GO:0009751	response to salicylic acid	P
+-	-	-	-	-	-	GO:0009611	response to wounding	P
+AT3G54000	1	F4JBQ5	824567	TIP41-like protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT3G50480	1	Q9SCS6	824212	HR4; homolog of RPW8 4	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0051707	response to other organism	P
+AT4G39030	1	Q945F0	830058	EDS5; MATE efflux family protein	-	GO:0015559	-	-
+-	-	-	-	-	-	GO:0015297	antiporter activity	F
+-	-	-	-	-	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0005739	mitochondrion	C
+-	-	-	-	-	-	GO:0031348	negative regulation of defense response	P
+-	-	-	-	-	-	GO:0009536	plastid	C
+-	-	-	-	-	-	GO:0009624	response to nematode	P
+-	-	-	-	-	-	GO:0009697	salicylic acid biosynthetic process	P
+AT4G38940	1	A0A178V265	830049	Galactose oxidase/kelch repeat superfamily protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G37290	1	A0A178V346	829883	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G25030	1	A0A178UXP8	828606	Serine/Threonine-kinase	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G23880	1	A0A178UY08	828487	hypothetical protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G22980	1	O82746	828397	molybdenum cofactor sulfurase-like protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0009507	chloroplast	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G22710	1	O49652	828367	CYP706A2; cytochrome P450, family 706, subfamily A, polypeptide 2	-	GO:0019825	oxygen binding	F
+AT4G11660	1	Q9T0D3	826771	AT-HSFB2B; winged-helix DNA-binding transcription factor family protein	-	GO:0016564	obsolete transcription repressor activity	F
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT4G01870	1	A0A1P8B8B4	828228	tolB protein-like protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT4G00970	1	O23081	827936	CRK41; cysteine-rich RLK (RECEPTOR-like protein kinase) 41	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+-	-	-	-	-	-	GO:0004674	protein serine/threonine kinase activity	F
+AT1G51700	1	A0A178WEX0	841595	DOF1; DOF zinc finger protein 1	-	GO:0045449	-	-
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G66180	1	Q9C8C9	842933	Eukaryotic aspartyl protease family protein	-	GO:0004190	aspartic-type endopeptidase activity	F
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0006508	proteolysis	P
+AT3G19130	1	A0A178VAC7	821447	RBP47B; RNA-binding protein 47B	-	GO:0003723	RNA binding	F
+AT3G15210	1	A0A178VDX3	820752	ERF4; ethylene responsive element binding factor 4	-	GO:0009864	induced systemic resistance, jasmonic acid mediated signaling pathway	P
+-	-	-	-	-	-	GO:0010105	negative regulation of ethylene-activated signaling pathway	P
+-	-	-	-	-	-	GO:0016604	nuclear body	C
+-	-	-	-	-	-	GO:0016564	obsolete transcription repressor activity	F
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009737	response to abscisic acid	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT3G04210	1	Q8H1N6	819576	Disease resistance protein (TIR-NBS class)	-	GO:0006915	apoptotic process	P
+-	-	-	-	-	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0045087	innate immune response	P
+-	-	-	-	-	-	GO:0031224	intrinsic component of membrane	C
+-	-	-	-	-	-	GO:0007165	signal transduction	P
+-	-	-	-	-	-	GO:0004888	transmembrane signaling receptor activity	F
+AT3G11840	1	Q9SF15	820357	PUB24; E3 ubiquitin-protein ligase PUB24-like protein	-	GO:0051865	protein autoubiquitination	P
+-	-	-	-	-	-	GO:0002679	respiratory burst involved in defense response	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+AT3G01830	1	Q9SGI8	820033	Calcium-binding EF-hand family protein	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0008150	biological_process	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005509	calcium ion binding	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+AT1G13260	1	Q9ZWM9	837886	RAV1; related to ABI3/VP1 1	-	GO:0048527	lateral root development	P
+-	-	-	-	-	-	GO:0048366	leaf development	P
+-	-	-	-	-	-	GO:0009910	negative regulation of flower development	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0016564	obsolete transcription repressor activity	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0009741	response to brassinosteroid	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G76690	1	A0A178W9S3	844002	OPR2; 12-oxophytodienoate reductase 2	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	alpha-Linolenic acid metabolism - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0005575	cellular_component	C
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009695	jasmonic acid biosynthetic process	P
+-	-	-	-	-	Metabolic pathways - Arabidopsis thaliana (thale cress)	GO:0009611	response to wounding	P
+AT1G67970	1	A0A178WF00	843125	HSFA8; heat shock transcription factor A8	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G11050	1	A0A178WDR9	837646	Protein kinase superfamily protein	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+AT1G53440	1	A0A178WLP5	841779	Leucine-rich repeat transmembrane protein kinase	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+AT1G07520	1	Q3EDH0	837266	GRAS family transcription factor	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G19770	1	A0A178WHV5	838565	PUP14; purine permease 14	-	GO:0016020	membrane	C
+-	-	-	-	-	-	GO:0005345	purine nucleobase transmembrane transporter activity	F
+-	-	-	-	-	-	GO:0006863	purine nucleobase transport	P
+AT1G21130	1	Q9LPU8	838709	IGMT4; O-methyltransferase family protein	-	GO:0005829	cytosol	C
+-	-	-	-	-	-	GO:0008171	O-methyltransferase activity	F
+-	-	-	-	-	-	GO:0046983	protein dimerization activity	F
+AT1G73080	1	Q9SSL9	843639	PEPR1; PEP1 receptor 1	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0045087	innate immune response	P
+-	-	-	-	-	-	GO:0005515	protein binding	F
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+-	-	-	-	-	-	GO:0004674	protein serine/threonine kinase activity	F
+-	-	-	-	-	-	GO:0007169	transmembrane receptor protein tyrosine kinase signaling pathway	P
+AT2G40140	1	Q9XEE6	818605	CZF1; zinc finger (CCCH-type) family protein	-	GO:0045449	-	-
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0050832	defense response to fungus	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0009409	response to cold	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT2G36450	1	Q9SJR0	818219	HRD; Integrase-type DNA-binding superfamily protein	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0016563	obsolete transcription activator activity	F
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G03220	1	A0A178W8S3	838517	Eukaryotic aspartyl protease family protein	-	GO:0004190	aspartic-type endopeptidase activity	F
+-	-	-	-	-	-	GO:0009505	plant-type cell wall	C
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+-	-	-	-	-	-	GO:0009651	response to salt stress	P
+AT1G09950	1	O04515	837529	RAS1; RESPONSE TO ABA AND SALT 1	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT2G17290	1	Q38872	816235	CPK6; Calcium-dependent protein kinase family protein	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0009738	abscisic acid-activated signaling pathway	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0004683	calmodulin-dependent protein kinase activity	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005829	cytosol	C
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0016020	membrane	C
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0006468	protein phosphorylation	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0010359	regulation of anion channel activity	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0010119	regulation of stomatal movement	P
+AT2G27500	1	A0A178VMX7	817295	Glycosyl hydrolase superfamily protein	-	GO:0046658	anchored component of plasma membrane	C
+-	-	-	-	-	-	GO:0005975	carbohydrate metabolic process	P
+-	-	-	-	-	-	GO:0043169	cation binding	F
+-	-	-	-	-	-	GO:0005737	cytoplasm	C
+-	-	-	-	-	-	GO:0004553	hydrolase activity, hydrolyzing O-glycosyl compounds	F
+-	-	-	-	-	-	GO:0005634	nucleus	C
+AT2G28080	1	Q9ZUV0	817352	UDP-Glycosyltransferase superfamily protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0008152	metabolic process	P
+-	-	-	-	-	-	GO:0016757	transferase activity, transferring glycosyl groups	F
+AT2G41410	1	A0A178VYJ0	818739	Calcium-binding EF-hand family protein	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005509	calcium ion binding	F
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005886	plasma membrane	C
+AT2G43290	1	A0A178VP84	818931	MSS3; Calcium-binding EF-hand family protein	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0008150	biological_process	P
+-	-	-	-	-	Plant-pathogen interaction - Arabidopsis thaliana (thale cress)	GO:0005509	calcium ion binding	F
+AT2G16900	1	A8MRF0	816192	phospholipase-like protein (PEARLI 4) family protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C
+AT2G23120	1	A0A178VRM3	816844	Late embryogenesis abundant protein, group 6	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0005886	plasma membrane	C

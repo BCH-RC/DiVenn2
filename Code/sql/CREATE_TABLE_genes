@@ -1,0 +1,2 @@
+CREATE TABLE genes(ensembl_id VARCHAR(255) NOT NULL, ncbi_id VARCHAR(255), uniprot_id VARCHAR(255), gene_desc VARCHAR(255), symbol VARCHAR(255), species_id SMALLINT NOT NULL, PRIMARY KEY (ensembl_id), FOREIGN KEY (species_id) REFERENCES species(species_id) ON UPDATE CASCADE ON DELETE RESTRICT);
+

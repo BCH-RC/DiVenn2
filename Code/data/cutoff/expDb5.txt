@@ -1,0 +1,46 @@
+AT1G01140	-2	A0A178W7T6	839349	CIPK9; CBL-interacting protein kinase 9	-	GO:0016301	kinase activity	F
+AT1G02400	-2	Q9FZ21	839508	GA2OX6; gibberellin 2-oxidase 6	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0045543	gibberellin 2-beta-dioxygenase activity	F
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0045487	gibberellin catabolic process	P
+-	-	-	-	-	Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress)	GO:0009639	response to red or far red light	P
+-	-	-	-	-	Diterpenoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0045543	gibberellin 2-beta-dioxygenase activity	F
+-	-	-	-	-	Diterpenoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0045487	gibberellin catabolic process	P
+-	-	-	-	-	Diterpenoid biosynthesis - Arabidopsis thaliana (thale cress)	GO:0009639	response to red or far red light	P
+AT1G02660	-1.5	F4HXL0	839544	alpha/beta-Hydrolases superfamily protein	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0006629	lipid metabolic process	P
+-	-	-	-	-	-	GO:0004806	triglyceride lipase activity	F
+AT1G03870	-1.5	A0A178WJQ8	839384	FLA9; FASCICLIN-like arabinoogalactan 9	-	GO:0031225	anchored component of membrane	C
+AT1G15010	-1.5	Q8LCU9	838066	mediator of RNA polymerase II transcription subunit	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G16130	-1	Q7X8C5	838182	WAKL2; wall associated kinase-like 2	-	GO:0016301	kinase activity	F
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+AT1G18740	-1	Q9M9U5	838456	ROH1, putative (DUF793)	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G29690	-0.5	Q9C7N2	839846	CAD1; MAC/Perforin domain-containing protein	-	GO:0008219	cell death	P
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0006955	immune response	P
+AT1G35140	0.5	Q9C6E4	840399	PHI-1; Phosphate-responsive 1 family protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+-	-	-	-	-	-	GO:0009505	plant-type cell wall	C
+AT1G42990	0.5	Q9C7S0	840897	BZIP60; basic region/leucine zipper motif 60	-	GO:0005789	endoplasmic reticulum membrane	C
+-	-	-	-	-	-	GO:0030968	endoplasmic reticulum unfolded protein response	P
+-	-	-	-	-	-	GO:0005634	nucleus	C
+-	-	-	-	-	-	GO:0006355	regulation of transcription, DNA-templated	P
+-	-	-	-	-	-	GO:0010200	response to chitin	P
+-	-	-	-	-	-	GO:0003700	transcription factor activity, sequence-specific DNA binding	F
+AT1G56510	1	Q9C7X0	842104	WRR4; Disease resistance protein (TIR-NBS-LRR class)	-	GO:0009817	defense response to fungus, incompatible interaction	P
+AT1G59590	1	Q9SLT9	842249	ZCF37; ZCF37	-	null	null	null
+AT1G63720	1	A0A178W4Y9	842676	hydroxyproline-rich glycoprotein family protein	-	null	null	null
+AT1G65490	1	A0A1P8ANJ1	842861	transmembrane protein	-	GO:0008150	biological_process	P
+-	-	-	-	-	-	GO:0012505	endomembrane system	C
+-	-	-	-	-	-	GO:0003674	molecular_function	F
+AT1G70740	2	F4I6W7	843411	Protein kinase superfamily protein	-	GO:0005524	ATP binding	F
+-	-	-	-	-	-	GO:0005575	cellular_component	C
+-	-	-	-	-	-	GO:0006468	protein phosphorylation	P
+-	-	-	-	-	-	GO:0004674	protein serine/threonine kinase activity	F
+AT1G70741	2	-	-	-	-	-	-	-
+AT1G70742	2	-	-	-	-	-	-	-
+AT1G70743	2	-	-	-	-	-	-	-
+AT1G70744	2	-	-	-	-	-	-	-
+AT1G70745	2	-	-	-	-	-	-	-
+AT1G70746	2	-	-	-	-	-	-	-
+AT1G70747	2	-	-	-	-	-	-	-

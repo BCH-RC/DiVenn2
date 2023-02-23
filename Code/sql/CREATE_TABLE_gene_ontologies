@@ -1,0 +1,1 @@
+CREATE TABLE gene_ontologies(go_id VARCHAR(255) UNIQUE NOT NULL, go_term VARCHAR(255), go_category VARCHAR(255), in_go MEDIUMINT, not_in_go MEDIUMINT, species_id SMALLINT NOT NULL, PRIMARY KEY (go_id), FOREIGN KEY (species_id) REFERENCES species(species_id) ON UPDATE CASCADE ON DELETE RESTRICT);
