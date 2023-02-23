@@ -60,7 +60,7 @@ DiVenn currently accepts two types of input data (see Figure 2):
 
 Please use the following sample data to test our tool: https://divenn.tch.harvard.edu/data.php ##### UPDATE THIS
 
-![Visualization Example](./tutorial/flowchart.png)
+![Divenn Flow Chart](./new_tutorial_imgs/Divenn_flow_chart.png)
 
 _**Figure 2.** Flow chart of DiVenn_
 
@@ -152,9 +152,12 @@ _**Figure 14.** GO enrichment bar plot visualizations created from GO enrichment
 ![KEGG Pathway Enrichment Table](./new_tutorial_imgs/KEGG_table.PNG)
 _**Figure 15.** KEGG pathway enrichment results table._
 
-![KEGG Pathway Enrichment Bar plot ](./new_tutorial_imgs/KEGG_bar.png)
+![KEGG Pathway Enrichment Bar plot](./new_tutorial_imgs/KEGG_bar.png)
 _**Figure 16.** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
 
+#### Divenn2 Information Mapping Flow
+![Divenn Information Mapping Flow Chart](./new_tutorial_imgs/Mapping_Flow.png)
+_**Figure 17.** ID mapping scheme/flow for user input data._
 
 # Open Source
 Visualization tools [D3.js](https://github.com/d3/d3) and a lightweight graphical user interface 
