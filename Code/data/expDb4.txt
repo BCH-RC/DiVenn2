@@ -1,0 +1,46 @@
+AT2G16900 1 A8MRF0 816192 phospholipase-like protein (PEARLI 4) family protein - GO:0003674 | molecular_function | F GO:0005886 | plasma membrane | C GO:0008150 | biological_process | P 
+AT2G17290 1 Q38872 816235 CPK6; Calcium-dependent protein kinase family protein Plant-pathogen interaction - Arabidopsis thaliana (thale cress) GO:0004683 | calmodulin-dependent protein kinase activity | F GO:0005829 | cytosol | C GO:0006468 | protein phosphorylation | P GO:0009738 | abscisic acid-activated signaling pathway | P GO:0010119 | regulation of stomatal movement | P GO:0010359 | regulation of anion channel activity | P GO:0016020 | membrane | C 
+AT2G23120 1 A0A178VRM3, Q8S8R1 816844 Late embryogenesis abundant protein, group 6 - GO:0003674 | molecular_function | F GO:0005886 | plasma membrane | C GO:0008150 | biological_process | P 
+AT2G27500 1 A0A178VMX7, Q9ZQG9 817295 Glycosyl hydrolase superfamily protein - GO:0004553 | hydrolase activity, hydrolyzing O-glycosyl compounds | F GO:0005634 | nucleus | C GO:0005737 | cytoplasm | C GO:0005975 | carbohydrate metabolic process | P GO:0043169 | cation binding | F GO:0046658 | anchored component of plasma membrane | C 
+AT2G28080 1 Q9ZUV0, W8Q3F0 817352 UDP-Glycosyltransferase superfamily protein - GO:0005575 | cellular_component | C GO:0008152 | metabolic process | P GO:0016757 | transferase activity, transferring glycosyl groups | F 
+AT2G36450 1 Q9SJR0 818219 HRD; Integrase-type DNA-binding superfamily protein - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0005634 | nucleus | C GO:0006355 | regulation of transcription, DNA-templated | P GO:0016563 | obsolete transcription activator activity | F 
+AT2G40140 1 Q9XEE6 818605 CZF1; zinc finger (CCCH-type) family protein - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0005575 | cellular_component | C GO:0009409 | response to cold | P GO:0010200 | response to chitin | P GO:0045449 | - | - GO:0050832 | defense response to fungus | P 
+AT2G41410 1 A0A178VYJ0, P30188 818739 Calcium-binding EF-hand family protein Plant-pathogen interaction - Arabidopsis thaliana (thale cress) GO:0005509 | calcium ion binding | F GO:0005886 | plasma membrane | C 
+AT2G43290 1 A0A178VP84, O22845 818931 MSS3; Calcium-binding EF-hand family protein Plant-pathogen interaction - Arabidopsis thaliana (thale cress) GO:0005509 | calcium ion binding | F GO:0008150 | biological_process | P 
+AT3G01830 1 Q9SGI8 820033 Calcium-binding EF-hand family protein Plant-pathogen interaction - Arabidopsis thaliana (thale cress) GO:0005509 | calcium ion binding | F GO:0005575 | cellular_component | C GO:0008150 | biological_process | P 
+AT3G04210 1 Q8H1N6 819576 Disease resistance protein (TIR-NBS class) - GO:0004888 | transmembrane signaling receptor activity | F GO:0005524 | ATP binding | F GO:0006915 | apoptotic process | P GO:0007165 | signal transduction | P GO:0012505 | endomembrane system | C GO:0031224 | intrinsic component of membrane | C GO:0045087 | innate immune response | P 
+AT3G11840 1 Q9SF15 820357 PUB24; E3 ubiquitin-protein ligase PUB24-like protein - GO:0002679 | respiratory burst involved in defense response | P GO:0010200 | response to chitin | P GO:0051865 | protein autoubiquitination | P 
+AT3G15210 1 A0A178VDX3, O80340 820752 ERF4; ethylene responsive element binding factor 4 - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0005515 | protein binding | F GO:0006355 | regulation of transcription, DNA-templated | P GO:0009737 | response to abscisic acid | P GO:0009864 | induced systemic resistance, jasmonic acid mediated signaling pathway | P GO:0010105 | negative regulation of ethylene-activated signaling pathway | P GO:0010200 | response to chitin | P GO:0016564 | obsolete transcription repressor activity | F GO:0016604 | nuclear body | C 
+AT3G19130 1 A0A178VAC7, Q0WW84 821447 RBP47B; RNA-binding protein 47B - GO:0003723 | RNA binding | F 
+AT3G50480 1 Q9SCS6 824212 HR4; homolog of RPW8 4 - GO:0003674 | molecular_function | F GO:0051707 | response to other organism | P 
+AT3G54000 2 F4JBQ5 824567 TIP41-like protein - GO:0003674 | molecular_function | F GO:0005575 | cellular_component | C GO:0008150 | biological_process | P 
+AT3G56710 2 A0A178VMX5, Q9LDH1 824838 SIB1; sigma factor binding protein 1 - GO:0005515 | protein binding | F GO:0008150 | biological_process | P GO:0009507 | chloroplast | C 
+AT3G61190 2 F4JE67, Q941L2 825291 BAP1; BON association protein 1 - GO:0005515 | protein binding | F GO:0005543 | phospholipid binding | F GO:0009408 | response to heat | P GO:0009409 | response to cold | P GO:0009611 | response to wounding | P GO:0009751 | response to salicylic acid | P GO:0016020 | membrane | C GO:0019725 | cellular homeostasis | P GO:0031348 | negative regulation of defense response | P 
+AT4G00970 2 O23081 827936 CRK41; cysteine-rich RLK (RECEPTOR-like protein kinase) 41 - GO:0004674 | protein serine/threonine kinase activity | F GO:0005524 | ATP binding | F GO:0006468 | protein phosphorylation | P GO:0012505 | endomembrane system | C 
+AT4G01870 2 A0A1P8B8B4 828228 tolB protein-like protein - GO:0003674 | molecular_function | F GO:0005575 | cellular_component | C 
+AT4G11660 2 Q9T0D3 826771 AT-HSFB2B; winged-helix DNA-binding transcription factor family protein - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0010200 | response to chitin | P GO:0016564 | obsolete transcription repressor activity | F 
+AT4G22710 2 O49652 828367 CYP706A2; cytochrome P450, family 706, subfamily A, polypeptide 2 - GO:0019825 | oxygen binding | F 
+AT4G22980 2 O82746 828397 molybdenum cofactor sulfurase-like protein - GO:0003674 | molecular_function | F GO:0008150 | biological_process | P GO:0009507 | chloroplast | C 
+AT4G23880 2 A0A178UY08, Q9T0A3 828487 hypothetical protein - GO:0003674 | molecular_function | F GO:0005575 | cellular_component | C GO:0008150 | biological_process | P 
+AT4G25030 2 A0A178UXP8, Q9SW23 828606 Serine/Threonine-kinase - GO:0003674 | molecular_function | F GO:0005575 | cellular_component | C GO:0008150 | biological_process | P 
+AT4G37290 2 A0A178V346, F4JRC5 829883 transmembrane protein - GO:0003674 | molecular_function | F GO:0008150 | biological_process | P GO:0012505 | endomembrane system | C 
+AT4G38940 2 A0A178V265, Q9SVJ9 830049 Galactose oxidase/kelch repeat superfamily protein - GO:0003674 | molecular_function | F GO:0005575 | cellular_component | C GO:0008150 | biological_process | P 
+AT4G39030 2 Q945F0 830058 EDS5; MATE efflux family protein - GO:0005739 | mitochondrion | C GO:0009536 | plastid | C GO:0009624 | response to nematode | P GO:0009697 | salicylic acid biosynthetic process | P GO:0015297 | antiporter activity | F GO:0015559 | - | - GO:0016020 | membrane | C GO:0031348 | negative regulation of defense response | P 
+AT5G04340 2 O22533 830313 ZAT6; 6 - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0008270 | zinc ion binding | F 
+AT5G05410 2 O82132 830424 DREB2A; DRE-binding protein 2A - GO:0003700 | transcription factor activity, sequence-specific DNA binding | F GO:0005634 | nucleus | C GO:0006355 | regulation of transcription, DNA-templated | P GO:0009414 | response to water deprivation | P GO:0010224 | response to UV-B | P GO:0010286 | heat acclimation | P GO:0016563 | obsolete transcription activator activity | F GO:0042542 | response to hydrogen peroxide | P 
+AT5G25170 2 A0A1P8B9X3 832588 PPPDE putative thiol peptidase family protein - GO:0003674 | molecular_function | F GO:0005886 | plasma membrane | C GO:0008150 | biological_process | P 
+AT5G25171 2 NA NA NA NA NA
+AT5G25172 2 NA NA NA NA NA
+AT5G25173 2 NA NA NA NA NA
+AT5G25174 1 NA NA NA NA NA
+AT5G25175 2 NA NA NA NA NA
+AT5G25176 2 NA NA NA NA NA
+AT5G25177 2 NA NA NA NA NA
+AT5G25178 2 NA NA NA NA NA
+AT5G25179 2 NA NA NA NA NA
+AT5G25180 1 P58051 832589 CYP71B14; cytochrome P450, family 71, subfamily B, polypeptide 14 - GO:0005575 | cellular_component | C GO:0008150 | biological_process | P GO:0019825 | oxygen binding | F 
+AT5G25181 2 NA NA NA NA NA
+AT5G25182 2 NA NA NA NA NA
+AT5G25183 2 NA NA NA NA NA
+AT5G25184 1 NA NA NA NA NA
+AT5G25185 2 NA NA NA NA NA
