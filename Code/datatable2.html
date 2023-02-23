@@ -1,0 +1,45 @@
+<html>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
+
+<table id="table_id" class="display">
+        
+    <thead>
+            
+    <tr>
+                    
+        <th>ID</th>
+                    
+        <th>Description</th>
+        <th>pathway</th>
+                
+    </tr>
+        
+    </thead>
+        
+    <tbody id="Gene_Info">
+
+        
+    </tbody>
+</table>
+</html>
+
+<script>
+
+    var tablecontainer = $('#Gene_Info');
+    var tabledata = '';
+    for (i = 0; i < 13; i++) {
+        tabledata += '<tr>';
+        tabledata += '<td>' + i + '</td>';
+        tabledata += '<td>' + i + 5 + '</td>';
+        tabledata += '<td>' + i * i + '</td>';
+        tabledata += '</tr>';
+    }
+    tablecontainer.append(tabledata);
+
+
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>

@@ -1,0 +1,55 @@
+
+    <div class="panel-body hidden" id="panelPathwayTable">   
+        <br>
+        <div class="row">
+                <button style="float:right; margin: 5px;" onclick="getGOenrichModal()" classname="btn btn-primary">GO enrichment</button>
+                <button style="float:right; margin: 5px;" onclick="getKEGGModal()" classname="btn btn-primary">KEGG pathway enrichment</button> 
+        </div>    
+        <table id="Gene_Pathway_Table" class="table table-striped ">
+            <thead id="Gene_PathWay_Header" tabindex="-1">
+            </thead>
+            <tbody id="Gene_Pathway_Info">
+            </tbody>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-sm-3  col-sm-offset-7">       
+                <div class="pull-right">
+                    <input type="checkbox" id="OnlyDrawSelectedPathway">
+                    <label for="OnlyDrawSelectedPathway" style="font-weight:normal;margin-left:5px">Only Redraw
+                        Selected</label></input>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group">
+                <button class="btn btn-primary form-control" id="Redraw_Pathway" onclick="Redraw_Pathway()">Redraw</button>
+            </div>
+           
+        </div>
+    </div>
+    <!-- Gene ontology table -->
+   <div class="panel-body hidden" id="panelGoTable">
+    <br>
+    <div class="row">
+            <button style="float:right; margin: 5px;" onclick="getGOenrichModal()" classname="btn btn-primary">GO enrichment</button>
+            <button style="float:right; margin: 5px;" onclick="getKEGGModal()" classname="btn btn-primary">KEGG pathway enrichment</button> 
+    </div>
+        <table id="Gene_Ontology_Table" class="table table-striped ">
+            <thead id="Gene_Ontology_Header" tabindex="-1">
+            </thead>
+            <tbody id="Gene_Go_Info">
+            </tbody>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-sm-3  col-sm-offset-7">
+                <div class="pull-right">
+                    <input type="checkbox" id="OnlyDrawSelectedOntology"><label for="OnlyDrawSelectedOntology"
+                                                                                style="font-weight:normal;margin-left:5px">Only
+                    Redraw Selected</label></input>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group">
+                <button class="btn btn-primary form-control" id="Redraw_Ontology" onclick="Redraw_Ontology()">Redraw</button>
+            </div>
+        </div>
+    </div> 
