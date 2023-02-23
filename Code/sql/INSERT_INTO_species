@@ -1,0 +1,36 @@
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('ath', 'Arabidopsis thaliana','thale cress', 27628);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('bdi', 'Brachypodium distachyon', 'purple false brome', 34310);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('cel', 'Caenorhabditis elegans', 'roundworm', 20191);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('clu', 'Canis lupus familiaris', 'dog',
+20500);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('cpo', 'Cavia porcellus', 'guinea pig', 18095);
+INSERT INTO species (short_name, full_name, genes_count) VALUES ('cre', 'Chlamydomonas reinhardtii', 17743);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('dre', 'Danio rerio', 'zebrafish', 30153);
+INSERT INTO species (short_name, full_name, genes_count) VALUES ('ddi', 'Dictyostelium discoideum', 13209);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('dme', 'Drosophila melanogaster', 'fruit fly', 13968);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('eco', 'Escherichia coli', 'E. Coli',
+4237);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('fsy', 'Felis sylvestris catus', 'cat',
+19564);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('gga', 'Gallus gallus', 'chicken', 16779);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('gmx', 'Glycine max', 'soybean', 55897);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('hsa', 'Homo sapiens', 'human', 22818);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('mml', 'Macaca mulatta', 'rhesus macaque',
+ 21591);
+INSERT INTO species (short_name, full_name, genes_count) VALUES ('mpo', 'Marchantia polymorpha', 19287);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('mtr', 'Medicago truncatula', 'barrel medic', 50444);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('mmu', 'Mus musculus', 'mouse', 21884);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('nta', 'Nicotiana attenuata', 'tobacco', 33320);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('osa', 'Oryza sativa japonica', 'Japanese
+rice', 35775);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('pvu', 'Phaseolus vulgaris', 'common bean', 28134);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('ppa', 'Physcomitrella patens', 'spreading earthmoss', 32234);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('ptr', 'Populus trichocarpa', 'balsam popular', 41335);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('rno', 'Rattus norvegicus', 'rat', 23096);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('sce', 'Saccharomyces cerevisiae', 'baker\'s yeast', 6600);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('spo', 'Schizosaccharomyces pombe', 'fission yeast', 5145);
+INSERT INTO species (short_name, full_name, genes_count) VALUES ('smo', 'Selaginella moellendorffii', 34799);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('ssc', 'Sus scrofa', 'pig', 21280);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('xtr', 'Xenopus tropicalis', 'western
+clawed frog', 19983);
+INSERT INTO species (short_name, full_name, common_name, genes_count) VALUES ('zma', 'Zea mays', 'maize', 39756);
