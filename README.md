@@ -62,18 +62,18 @@ Please use the following sample data to test our tool: https://divenn.tch.harvar
 
 ![Visualization Example](./tutorial/flowchart.png)
 
-_**Figure 2** Flow chart of DiVenn_
+_**Figure 2.** Flow chart of DiVenn_
 
 ### 2.   Visualization
 ![Visualization Example](./tutorial/force-directed-graph.png)
 
- _**Figure 3** Force-directed graph in DiVenn_
+ _**Figure 3.** Force-directed graph in DiVenn_
 
 ![Shape Font Example](./new_tutorial_imgs/shape_font.PNG)
-_**Figure 4** Change shapes and font size_
+_**Figure 4.** Change shapes and font size_
 
 ![Summarize Node and Color Example](./new_tutorial_imgs/summarize_color.PNG)
-_**Figure 5** Change color scheme and summarize groups_
+_**Figure 5.** Change color scheme and summarize groups_
 
 ### 3.	Click on the Graph
 Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
@@ -92,12 +92,12 @@ If users need to check the KEGG pathway or GO terms of interested gene node, the
  
 ![Right-Click Example](./new_tutorial_imgs/clickGraph.PNG)
 
-_**Figure 6** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button. A list of GO terms, pathways, and alternate IDs for each gene in a group of nodes can be displayed through the "Gene group details" button. Additionally, GO enrichment and KEGG pathway enrichment can be performed from the Gene group details table (see Figure #)._
+_**Figure 6.** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button. A list of GO terms, pathways, and alternate IDs for each gene in a group of nodes can be displayed through the "Gene group details" button. Additionally, GO enrichment and KEGG pathway enrichment can be performed from the Gene group details table (see Figure #)._
 
 
 ![Gene Detail Example](./new_tutorial_imgs/geneDetail.PNG)
 
-_**Figure 7** Gene details. KEGG pathway and GO terms will be displayed._
+_**Figure 7.** Gene details. KEGG pathway and GO terms will be displayed._
 
 ### 4.	GUI Function
 
@@ -118,13 +118,13 @@ The column headers on the informative table are sortable; the table is also sear
 
  
 ![Pathway Example](./new_tutorial_imgs/pathwayTable.PNG)
-_**Figure 8** Pathway details of all associated genes in the force-directed graph._
+_**Figure 8.** Pathway details of all associated genes in the force-directed graph._
 
 ![Gene Highlight](./tutorial/highlight.PNG)
-_**Figure 9** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
+_**Figure 9.** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
 
 ![Gene Subset](./tutorial/subset.PNG)
-_**Figure 10** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
+_**Figure 10.** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
 
 #### Show Gene Ontology Detail
 You can show all gene-associated gene ontologies by clicking this button to get the gene ontology informative table (see Figure 11).
@@ -132,28 +132,28 @@ You can show all gene-associated gene ontologies by clicking this button to get 
 The column headers on the informative table are sortable; the table is also searchable with key words of interest. If you need to sort the gene list based on the gene ontology name, click on the “GO term” column header. If you need to select multiple genes from the same GO terms after sorting the genes based on GO terms, click the first checkbox and press shift before clicking the last checkbox. You can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button.
 
 ![Gene Ontology Details](./new_tutorial_imgs/GO_table.png)
-_**Figure 11** Gene ontology details of all associated genes in the force-directed graph._
+_**Figure 11.** Gene ontology details of all associated genes in the force-directed graph._
 
 #### Show Gene Group Details
 
 ![Gene Group Details Table](./new_tutorial_imgs/gene_group_details.PNG)
-_**Figure 12** Table generated when clicking on a node -> show gene group details._
+_**Figure 12.** Table generated when clicking on a node -> show gene group details._
 
 #### Show GO Enrichment Analysis Table and Bar Plot Visualizations
 
 ![Gene Ontology Table](./new_tutorial_imgs/GO_enrich.PNG)
-_**Figure 13** GO enrichment results table with separate tabs for all, BP, CC, MF, and corresponding bar plot visualizations._
+_**Figure 13.** GO enrichment results table with separate tabs for all, BP, CC, MF, and corresponding bar plot visualizations._
 
 ![Gene Ontology Table Barplot](./new_tutorial_imgs/GO_barplot.PNG)
-_**Figure 14** GO enrichment bar plot visualizations created from GO enrichment results._
+_**Figure 14.** GO enrichment bar plot visualizations created from GO enrichment results._
 
 #### Show KEGG Pathway Enrichment Analysis Table
 
 ![KEGG Pathway Enrichment Table](./new_tutorial_imgs/KEGG_table.PNG)
-_**Figure 15** KEGG pathway enrichment results table._
+_**Figure 15.** KEGG pathway enrichment results table._
 
 ![KEGG Pathway Enrichment Bar plot ](./new_tutorial_imgs/KEGG_bar.png)
-_**Figure 15** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
+_**Figure 16.** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
 
 
 # Open Source
