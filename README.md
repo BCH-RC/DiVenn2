@@ -136,12 +136,24 @@ _**Figure 11** Gene ontology details of all associated genes in the force-direct
 
 #### Show Gene Group Details
 
+![Gene Group Details Table](./new_tutorial_imgs/gene_group_details.png)
+_**Figure 12** Table generated when clicking on a node -> show gene group details._
 
 #### Show GO Enrichment Analysis Table and Bar Plot Visualizations
 
+![Gene Ontology Table](./new_tutorial_imgs/GO_enrich.png)
+_**Figure 13** GO enrichment results table with separate tabs for all, BP, CC, MF, and corresponding bar plot visualizations._
+
+![Gene Ontology Table Barplot](./new_tutorial_imgs/GO_barplot.png)
+_**Figure 14** GO enrichment bar plot visualizations created from GO enrichment results._
 
 #### Show KEGG Pathway Enrichment Analysis Table
 
+![KEGG Pathway Enrichment Table](./new_tutorial_imgs/KEGG_table.png)
+_**Figure 15** KEGG pathway enrichment results table._
+
+![KEGG Pathway Enrichment Bar plot ](./new_tutorial_imgs/KEGG_bar.png)
+_**Figure 15** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
 
 
 # Open Source
