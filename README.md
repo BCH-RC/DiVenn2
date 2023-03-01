@@ -65,7 +65,7 @@ Please use the following sample data to test our tool: https://divenn.tch.harvar
 _**Figure 2.** Flow chart of DiVenn_
 
 ### 2.   Visualization
-![Visualization Example](./tutorial/force-directed-graph.png)
+![Visualization Example](./new_tutorial_images/force-directed-graph.png)
 
  _**Figure 3.** Force-directed graph in DiVenn_
 
