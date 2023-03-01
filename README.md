@@ -123,7 +123,7 @@ _**Figure 8.** Pathway details of all associated genes in the force-directed gra
 ![Gene Highlight](./tutorial/highlight.PNG)
 _**Figure 9.** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
 
-![Gene Subset](./tutorial/subset.PNG)
+![Gene Subset](./new_tutorial_imgs/subset.PNG)
 _**Figure 10.** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
 
 #### Show Gene Ontology Detail
