@@ -9,7 +9,19 @@
 
 ## Introduction
 
-Gene expression data generated from multiple biological states (mutant sample, double mutant sample and wild-type samples) are often compared via Venn diagram tools. It is of great interest to know the expression pattern between overlapping genes and their associated gene pathways or gene ontology terms. We developed DiVenn – a novel web-based tool that compares gene lists from multiple RNA-Seq experiments in a force directed graph, which shows the gene regulation levels for each gene and integrated KEGG pathway and gene ontology (GO) knowledge for the data visualization.
+Gene expression data generated from multiple biological states (mutant sample, double mutant sample and wild-type samples) are often compared via Venn diagram tools. It is of great interest to know the expression pattern between overlapping genes and their associated gene pathways or gene ontology terms. We developed DiVenn – a novel web-based tool that compares gene lists from multiple RNA-Seq experiments in a force directed graph, which shows the gene regulation levels for each gene and integrated KEGG pathway and gene ontology (GO) knowledge for the data visualization. Divenn2 includes exciting new features:
+ - Expanded the number of species that can now be supported for gene analysis (now 23 species in total), including less-model species.
+ - Support for a new ID type: Ensembl IDs. NCBI/Entrez, Uniprot, and Ensembl IDs are now supported depending on the target organism
+ - Increased number of experiments allowed for visualization to 10 total experiments
+ - More color and shape options for visualizations
+ - Font size options
+ - Pathway details and KEGG pathway enrichment details tables
+ - Gene ontology details and GO enrichment details tables
+ - Right-click options for each gene group to generate gene group details tables
+ - Single gene detail tables
+ - An updated database to include new species and provide mapping to other ID types if necessary/available (see Figure 17)
+ - Generation of tables and bar chart visualizations for GO enrichment and KEGG enrichment analysis (See Figures 13, 14, 15, & 16)
+ 
 
 ### DiVenn has three key features:
 
