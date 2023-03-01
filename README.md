@@ -44,7 +44,7 @@ Click below to watch a tutorial video.
 The application is freely available at https://divenn.tch.harvard.edu/  (see Figure 1). 
 
  
-![Home Page](./tutorial/homepage2.0.PNG)
+![Home Page](./new_tutorial_imgs/homepage2_0.PNG)
  _**Figure 1.** Homepage of DiVenn_
 
 
