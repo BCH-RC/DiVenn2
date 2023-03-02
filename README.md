@@ -179,6 +179,8 @@ _**Figure 16.** KEGG pathway enrichment bar plot visualization created from KEGG
 #### Divenn2 Information Mapping Flow
 ID mapping is necessary for GO enrichment analysis and KEGG pathway enrichment analysis in some cases. Mapping is performed depending on the input ID type and species. Some species do not have annotation data for gene ID mapping so custom annotation files were created to supplement our database. Figure 17 shows the flow for ID mapping. In general, NCBI/Entrez IDs are acceptable for all organisms, although a couple of organisms have limited NCBI/Entrez IDs available in our database so enrichment analysis may not yield sufficient results. There is no mapping from Ensembl and Uniprot IDs to the following organisms: ddi, mpo, ppa (Dictyostelium discoideum, Marchantia polymorpha, and Physcomitrella patens respectively).
 
+More information about species mapping and sample species IDs can be found in the "Sample Data" section of from the homepage. The ID table is viewable under Species ID Samples and Reference.
+
 ![Divenn Information Mapping Flow Chart](./new_tutorial_imgs/Mapping_Flow.png)
 _**Figure 17.** ID mapping scheme/flow for user input data._
 
