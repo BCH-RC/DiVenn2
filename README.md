@@ -147,11 +147,17 @@ The column headers on the informative table are sortable; the table is also sear
 _**Figure 11.** Gene ontology details of all associated genes in the force-directed graph._
 
 #### Show Gene Group Details
+Detailed information for a group of genes can be obtained by right-clicking a node within a group of nodes in the graph and selecting "Gene Group Details". 
+
+The resulting table includes rows for each gene in the group with information such as its ID and any other mapped IDs (if available), gene description, pathway(s) that each gene is involved in with KEGG URLs, and GO information in the format: GO ID, GO description, GO category. The gene group details table also includes a button to export a txt file of the current table, and buttons to perform GO and KEGG pathway enrichment analysis (Figures 13-16).
 
 ![Gene Group Details Table](./new_tutorial_imgs/gene_group_details.PNG)
 _**Figure 12.** Table generated when clicking on a node -> show gene group details._
 
 #### Show GO Enrichment Analysis Table and Bar Plot Visualizations
+You can perform GO enrichment analysis for all genes after generating the pathway or GO tables, or for groups of genes by generating the gene group detail table and pressing the corresponding buttons. 
+
+GO enrichment analysis is performed after mapping the list of genes to relevant IDs if necessary (see Figure 17). A table is generated providing detailed information for each enriched GO ID, including gene ratio, adjusted p val., q val., and more. All of the output of the GO enrichment analysis can be viewed via the "All" tab, or by category in each corresponding tab. Additionally, bar chart visualizations of the top 20 GO IDs are created for all and per category. You can also change the color of the visualizations using 4 color schemes in the drop down menu (Figure 13 and Figure 14).
 
 ![Gene Ontology Table](./new_tutorial_imgs/GO_enrich.PNG)
 _**Figure 13.** GO enrichment results table with separate tabs for all, BP, CC, MF, and corresponding bar plot visualizations._
@@ -160,6 +166,9 @@ _**Figure 13.** GO enrichment results table with separate tabs for all, BP, CC, 
 _**Figure 14.** GO enrichment bar plot visualizations created from GO enrichment results._
 
 #### Show KEGG Pathway Enrichment Analysis Table
+You can perform KEGG pathway enrichment analysis for all genes after generating the pathway or GO tables, or for groups of genes by generating the gene group detail table and pressing the corresponding buttons. 
+
+KEGG pathway enrichment analysis is performed after mapping the list of genes to relevant IDs if necessary (see Figure 17). A table is generated providing detailed information for each enriched pathway, including gene ratio, adjusted p val., q val., and more. All of the output of the KEGG pathway enrichment analysis can be viewed via the "KEGG Pathways" tab. Additionally, a bar chart visualization of the top 20 pathways is created. You can also change the color of the visualizations using 4 color schemes in the drop down menu (Figure 15 and Figure 16).
 
 ![KEGG Pathway Enrichment Table](./new_tutorial_imgs/KEGG_table.PNG)
 _**Figure 15.** KEGG pathway enrichment results table._
@@ -168,6 +177,8 @@ _**Figure 15.** KEGG pathway enrichment results table._
 _**Figure 16.** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
 
 #### Divenn2 Information Mapping Flow
+ID mapping is necessary for GO enrichment analysis and KEGG pathway enrichment analysis in some cases. Mapping is performed depending on the input ID type and species. Some species do not have annotation data for gene ID mapping so custom annotation files were created to supplement our database. Figure 17 shows the flow for ID mapping. In general, NCBI/Entrez IDs are acceptable for all organisms, although a couple of organisms have limited NCBI/Entrez IDs available in our database so enrichment analysis may not yield sufficient results. There is no mapping from Ensembl and Uniprot IDs to the following organisms: ddi, mpo, ppa (Dictyostelium discoideum, Marchantia polymorpha, and Physcomitrella patens respectively).
+
 ![Divenn Information Mapping Flow Chart](./new_tutorial_imgs/Mapping_Flow.png)
 _**Figure 17.** ID mapping scheme/flow for user input data._
 
