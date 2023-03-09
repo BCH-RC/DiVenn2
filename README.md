@@ -2,11 +2,6 @@
 
 **DiVenn** is an interactive and integrated web-based tool for comparing gene lists
 
-## Resources
-
-- [API Reference](https://github.com/BCH-RC/DiVenn2_Ardigen/blob/main/API.md)
-- [Client's README](https://github.com/BCH-RC/DiVenn/blob/master/README.md)
-
 ## Introduction
 
 Gene expression data generated from multiple biological states (mutant sample, double mutant sample and wild-type samples) are often compared via Venn diagram tools. It is of great interest to know the expression pattern between overlapping genes and their associated gene pathways or gene ontology terms. We developed DiVenn – a novel web-based tool that compares gene lists from multiple RNA-Seq experiments in a force directed graph, which shows the gene regulation levels for each gene and integrated KEGG pathway and gene ontology (GO) knowledge for the data visualization. Divenn2 includes exciting new features:
