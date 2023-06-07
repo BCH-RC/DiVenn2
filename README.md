@@ -46,7 +46,7 @@ If you have any questions, please contact Liang Sun: sunliang@udel.edu
 
 Click below to watch a tutorial video.
 
-[![Watch the video](https://img.youtube.com/watch?v=OypczjArKoo.jpg)](https://www.youtube.com/watch?v=OypczjArKoo)
+[![Watch the video](https://img.youtube.com/vi/OypczjArKoo/0.jpg)](https://www.youtube.com/watch?v=OypczjArKoo)
 
 The application is freely available at https://divenn.tch.harvard.edu/  (see Figure 1). 
 
