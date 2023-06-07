@@ -42,11 +42,12 @@ Sun, Liang, et al.
 # Contact Us
 If you have any questions, please contact Liang Sun: sunliang@udel.edu
 # Tutorial
-> **[Version 1.0](http://divenn.noble.org/v1/)**
+> **[Version 1.2](https://divenn.tch.harvard.edu/)**
+> **[Version 2.0](https://divenn.tch.harvard.edu/v2/)**
 
 Click below to watch a tutorial video.
 
-[![Watch the video](https://img.youtube.com/vi/A7Ldx24e9UU/0.jpg)](https://youtu.be/A7Ldx24e9UU)
+[![Watch the video](https://img.youtube.com/vi/OypczjArKoo/0.jpg)](https://www.youtube.com/watch?v=OypczjArKoo)
 
 The application is freely available at https://divenn.tch.harvard.edu/  (see Figure 1). 
 
