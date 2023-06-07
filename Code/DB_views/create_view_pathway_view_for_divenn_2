@@ -1,2 +1,0 @@
-create view pathway_view_for_divenn_2 as select distinct(p.kegg_id), p.gene_desc, p.pathway, p.path_url, in_path, not_in_path from pathway p 
-left join ncbi2kegg n on p.kegg_id = n.kegg_id left join uniprot2kegg u on p.kegg_id=u.kegg_id;
