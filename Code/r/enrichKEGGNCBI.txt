@@ -1,2 +1,0 @@
-"ID" "Description" "GeneRatio" "BgRatio" "pvalue" "p_adjust" "qvalue" "geneID" "Count"
-"bdi03013" "bdi03013" "Nucleocytoplasmic transport" "1/1" "114/4841" 0.0235488535426565 0.0235488535426565 NA "100842991" 1
