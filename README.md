@@ -43,6 +43,7 @@ Sun, Liang, et al.
 If you have any questions, please contact Liang Sun: sunliang@udel.edu
 # Tutorial
 > **[Version 1.2](https://divenn.tch.harvard.edu/)**
+> **[Version 2.0](https://divenn.tch.harvard.edu/v2/)**
 
 Click below to watch a tutorial video.
 
