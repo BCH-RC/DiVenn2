@@ -37,7 +37,6 @@ Sun, Liang, et al.
 - Liang Sun: sunliang@udel.edu
 - Dane Zeeb: dane.zeeb@childrens.harvard.edu
 - Yinbing Ge: yinge@noble.org
-- Zach Robinson: ztrobinson@noble.org
 - Xueqiong Li: xli@noble.org
 # Contact Us
 If you have any questions, please contact Liang Sun: sunliang@udel.edu
