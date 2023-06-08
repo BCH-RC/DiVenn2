@@ -1,1 +1,0 @@
-CREATE TABLE pathways_genes_mappings(ensembl_id VARCHAR(255) NOT NULL, pathway_id VARCHAR(255), FOREIGN KEY (ensembl_id) REFERENCES genes(ensembl_id) ON UPDATE CASCADE ON DELETE RESTRICT, FOREIGN KEY (pathway_id) REFERENCES pathways(pathway_id) ON UPDATE CASCADE ON DELETE RESTRICT);

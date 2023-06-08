@@ -1,1 +1,0 @@
-CREATE TABLE pathways(pathway_id VARCHAR(255) NOT NULL, path_url VARCHAR(255), path_desc VARCHAR(255), in_path MEDIUMINT, not_in_path MEDIUMINT, PRIMARY KEY (pathway_id));
