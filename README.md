@@ -26,7 +26,7 @@ Gene expression data generated from multiple biological states (mutant sample, d
 
 _The current version is “2.0”._
 
-The application is freely available at https://divenn.tch.harvard.edu/ (see Figure 1).
+The application is freely available at https://divenn.tch.harvard.edu/v2 (see Figure 1).
 
 # Citation
 Sun, Liang, et al. 
@@ -43,7 +43,7 @@ Sun, Liang, et al.
 If you have any questions, please contact Liang Sun: sunliang@udel.edu
 # Tutorial
 > **[Version 1.2](https://divenn.tch.harvard.edu/)**
-> **[Version 2.0](https://divenn.tch.harvard.edu/v2/)**
+**[Version 2.0](https://divenn.tch.harvard.edu/v2/)**
 
 Click below to watch a tutorial video.
 
