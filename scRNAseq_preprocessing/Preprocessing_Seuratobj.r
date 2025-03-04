@@ -1,3 +1,6 @@
+snapshot <- "/lab-share/RC-Data-Science-e2/Public/DST_software/pipeline_R_snapshot/r4.2.3-20240909-bch-dst"
+.libPaths(snapshot)
+
 # Load the required libraries
 if (!requireNamespace("optparse", quietly = TRUE)) {
   install.packages("optparse", repos = "http://cran.us.r-project.org")
@@ -11,7 +14,7 @@ library(Seurat)
 ##### Change the following for your own data
 # Define the list of options
 option_list <- list(
-  make_option(c("-wd", "--workdir"), type = "character", default = NULL,
+  make_option(c("-w", "--workdir"), type = "character", default = NULL,
               help = "Working Directory", metavar = "character"),
   make_option(c("-i", "--input"), type = "character", default = 10,
               help = "Seurat Object Input File", metavar = "character"),
@@ -20,7 +23,7 @@ option_list <- list(
   make_option(c("-g", "--group"), type = "character", default = 10,
               help = "Cell Group (cell type)", metavar = "character"),
   make_option(c("-o", "--output"), type = "character", default = 10,
-              help = "Preprocessed DEG output File", metavar = "character"),
+              help = "Preprocessed DEG output File", metavar = "character")
 )
 
 # Parse the command-line arguments
@@ -31,7 +34,7 @@ opt <- parse_args(opt_parser)
 setwd(opt$workdir)
 
 # Load your You data data
-seurat_obj <- readRDS(opt$file_input)
+seurat_obj <- readRDS(opt$input)
 
 # Condition column in the meta data such as the disease conditions
 condition_col <- opt$condition
@@ -40,13 +43,13 @@ condition_col <- opt$condition
 group_col <- opt$group
 
 # Output file name
-out_fname <- opt$file_output
+out_fname <- opt$output
 
-cat("Working directory:", opt$workdir, "\n")
+cat("Working directory:", getwd(), "\n")
 cat("Input seurat object file:", opt$input, "\n")
 cat("Seurat object meta data column for sample condition (disease/normal):", opt$condition, "\n")
 cat("Seurat object meta data column for cell group (cell types):", opt$group, "\n")
-cat("Preprocessed DEG preprocessed file:", opt$ouput, "\n")
+cat("Preprocessed DEG preprocessed file:", opt$output, "\n")
 
 # Function to create the preprocessed DEG csv file for DiVenn2
 DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, min.pct_thd = 0.1, logfc_thd = 0.2, pval_adj_thd = 0.05) {
