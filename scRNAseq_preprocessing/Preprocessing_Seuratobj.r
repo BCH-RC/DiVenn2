@@ -1,5 +1,52 @@
 # Load the required libraries
+if (!requireNamespace("optparse", quietly = TRUE)) {
+  install.packages("optparse", repos = "http://cran.us.r-project.org")
+}
+library(optparse)
+if (!requireNamespace("Seurat", quietly = TRUE)) {
+  install.packages("Seurat", repos = "http://cran.us.r-project.org")
+}
 library(Seurat)
+
+##### Change the following for your own data
+# Define the list of options
+option_list <- list(
+  make_option(c("-wd", "--workdir"), type = "character", default = NULL,
+              help = "Working Directory", metavar = "character"),
+  make_option(c("-i", "--input"), type = "character", default = 10,
+              help = "Seurat Object Input File", metavar = "character"),
+  make_option(c("-c", "--condition"), type = "character", default = 10,
+              help = "Sample Condition (disease/normal condition)", metavar = "character"),
+  make_option(c("-g", "--group"), type = "character", default = 10,
+              help = "Cell Group (cell type)", metavar = "character"),
+  make_option(c("-o", "--output"), type = "character", default = 10,
+              help = "Preprocessed DEG output File", metavar = "character"),
+)
+
+# Parse the command-line arguments
+opt_parser <- OptionParser(option_list = option_list)
+opt <- parse_args(opt_parser)
+
+# Set your working directory
+setwd(opt$workdir)
+
+# Load your You data data
+seurat_obj <- readRDS(opt$file_input)
+
+# Condition column in the meta data such as the disease conditions
+condition_col <- opt$condition
+
+# Cell group column in the meta data such as cell types
+group_col <- opt$group
+
+# Output file name
+out_fname <- opt$file_output
+
+cat("Working directory:", opt$workdir, "\n")
+cat("Input seurat object file:", opt$input, "\n")
+cat("Seurat object meta data column for sample condition (disease/normal):", opt$condition, "\n")
+cat("Seurat object meta data column for cell group (cell types):", opt$group, "\n")
+cat("Preprocessed DEG preprocessed file:", opt$ouput, "\n")
 
 # Function to create the preprocessed DEG csv file for DiVenn2
 DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, min.pct_thd = 0.1, logfc_thd = 0.2, pval_adj_thd = 0.05) {
@@ -54,24 +101,8 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, min
   }
   
   # Save the results as .csv file
-  write.csv(output, file = paste0(fname, "_preprocessed_DEGlist.csv"), quote = F, row.names = F)
+  write.csv(output, file = paste0(fname, ".csv"), quote = F, row.names = F)
 }
-
-##### Change the following for your own data
-# Set your working directory
-setwd(".")
-
-# Load your You data data
-seurat_obj <- readRDS("Input/P235_dim30_r0.5.rds")
-
-# Condition column in the meta data such as the disease conditions
-condition_col <- "group"
-
-# Cell group column in the meta data such as cell types
-group_col <- "celltype"
-
-# Output file name
-out_fname <- "p235"
 
 # Create the preprocessed DEG csv file for DiVenn2
 DiVenn2_preprocess_seuratobj(seuratobj = seurat_obj, cond_col = condition_col, gp_col = group_col, fname = out_fname)
