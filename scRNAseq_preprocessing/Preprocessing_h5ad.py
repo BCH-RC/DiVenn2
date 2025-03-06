@@ -89,7 +89,7 @@ def main():
     parser.add_argument("-g", "--group", type=str, required=True, help="Column name for cell group (cell type)")
     parser.add_argument("-o", "--output", type=str, default="DiVenn_input.csv", help="Preprocessed DEG output File")
     parser.add_argument("-fc","--logfc_threshold", type=float, default=0.2, help="Log fold change threshold (default: 0.2)")
-    parser.add_argument("-pct","--min_pct", type=float, default=0.01, help="Minimum cell percent in each condtion threshold (default: 0.01)")
+    parser.add_argument("-pct","--min_pct", type=float, default=0.01, help="Minimum cell percent in each condition threshold (default: 0.01)")
     parser.add_argument("-p","--p_val_adj_thd", type=float, default=0.05, help="Adjusted p-value threshold (default: 0.05)")
     
     args = parser.parse_args()
