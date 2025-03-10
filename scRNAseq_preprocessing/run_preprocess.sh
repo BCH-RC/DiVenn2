@@ -12,3 +12,13 @@ python3 preprocess_h5ad.py -i ${file_path} \
                           -pct 0.01 \
                           -p 0.05 \
                           -w ${output_dir}
+
+python Preprocessing_h5ad_v2.py -i ${file_path} \
+                          -c "group" \
+                          -g "celltype" \
+                          -o "p238_divenne_withCondition.csv" \
+                          -fc 0.2 \
+                          -pct 0.01 \
+                          -p 0.05 \
+                          -comp "[('CNV', 'ASD'), ('CNV', 'CON')]" \
+                          -w ${output_dir}
