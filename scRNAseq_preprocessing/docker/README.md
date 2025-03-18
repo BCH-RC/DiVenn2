@@ -1,6 +1,6 @@
 # **DiVenn2 DEG Preprocessing Pipeline**
 
-This repository contains scripts and a Docker environment for preprocessing **h5ad** and **Seurat** files to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The provided Docker image ensures a standardized runtime environment for reproducibility.
+This directory contains scripts and a Docker environment for preprocessing **h5ad** and **rds (Seurat obj)** files to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The provided Docker image ensures a standardized runtime environment for reproducibility.
 
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a Docker image available on Docker Hub:
@@ -9,16 +9,16 @@ The preprocessing pipeline is encapsulated in a Docker image available on Docker
 
 ---
 
-## **Repository Contents**
+## **Folder Contents**
 
 | File | Description |
 |------|------------|
 | **Dockerfile** | The script used to build the Docker image. |
 | **Preprocessing_h5ad.py** | Python script for processing **h5ad** files to generate DEG files as input for DiVenn2. |
-| **Preprocessing_Seuratobj.r** | R script for processing **Seurat** files to generate DEG files as input for DiVenn2. |
+| **Preprocessing_Seuratobj.r** | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn2. |
 | **run_preprocessing.sh** | Wrapper script that allows users to run either `Preprocessing_h5ad.py` or `Preprocessing_Seuratobj.r` based on file type. |
 | **runtime_code_python.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **h5ad** format. |
-| **runtime_code_r.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **Seurat** format. |
+| **runtime_code_r.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **rds (Seurat obj)** format. |
 | **README.md** | This documentation file. |
 
 ---
@@ -41,8 +41,9 @@ CONTAINER_ID=$(docker run -d \
   -p 0.05 \
   -x "CNV:ASD,CNV:CON"
 )
+```
 
-
+```bash
 CONTAINER_ID=$(docker run -d \
   -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
   chunhuic/divenn2_degpreprocessing:latest seurat \
@@ -56,6 +57,7 @@ CONTAINER_ID=$(docker run -d \
   -v 0.05 \
   -x CNV:CON,ASD:CON,CNV:ASD
 )
+```
 
 ## **Parameter Descriptions**
 | **Parameter** | **Description** |
