@@ -31,18 +31,34 @@ The following examples show how to run the Docker container for processing **h5a
 CONTAINER_ID=$(docker run -d \
   -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
   chunhuic/divenn2_degpreprocessing:latest h5ad \
-  -w "/data" \
-  -i "/data/p238_seuratobj_downsize.h5ad" \
-  -c "group" \
-  -g "celltype" \
-  -o "/data/p238_python.csv" \
+  -w /data \
+  -i /data/p238_seuratobj_downsize.h5ad \
+  -c group \
+  -g celltype \
+  -o /data/p238_python.csv \
   -fc 0.2 \
   -pct 0.01 \
   -p 0.05 \
-  -x "CNV:ASD,CNV:CON"
+  -x CNV:ASD,CNV:CON
 )
 ```
 
+#### **Parameter Descriptions**
+| **Parameter** | **Description** |
+|--------------|----------------|
+| `-w, --workdir` | The working directory where files will be processed and stored. |
+| `-i, --input` | Input file path (**h5ad** or **Seurat** format). |
+| `-c, --condition` | Column name representing the sample condition (e.g., disease vs. normal). |
+| `-g, --group` | Column name representing the cell type or other grouping variable. |
+| `-o, --output` | Output file path for the processed DEG results (CSV format). |
+| `-fc, --logfc_threshold` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
+| `-pct, --min_pct` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
+| `-p, --p_val_adj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
+| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"CNV:ASD,CNV:CON"`). Use `"all"` for all possible comparisons. |
+
+---
+
+### **Example: Running the Pipeline for a rds File (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
@@ -59,7 +75,7 @@ CONTAINER_ID=$(docker run -d \
 )
 ```
 
-## **Parameter Descriptions**
+#### **Parameter Descriptions**
 | **Parameter** | **Description** |
 |--------------|----------------|
 | `-w, --workdir` | The working directory where files will be processed and stored. |
@@ -67,9 +83,6 @@ CONTAINER_ID=$(docker run -d \
 | `-c, --condition` | Column name representing the sample condition (e.g., disease vs. normal). |
 | `-g, --group` | Column name representing the cell type or other grouping variable. |
 | `-o, --output` | Output file path for the processed DEG results (CSV format). |
-| `-fc, --logfc_threshold` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
-| `-pct, --min_pct` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
-| `-p, --p_val_adj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
 | `-f` | Log fold-change filtering threshold for Seurat data (default: `0.2`). |
 | `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
 | `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
