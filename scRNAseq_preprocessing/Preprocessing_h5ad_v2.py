@@ -27,7 +27,26 @@ def load_h5ad(h5ad_file):
         print(f"Error loading the file: {e}")
         return None
 
-def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_threshold, min_pct, p_val_adj_thd, output_file, comparison_pairs):
+def parse_comparison_pairs(comparison_str, conditions):
+    """ Parse comparison string into a list of tuples """
+    if comparison_str.lower() == "all":
+        return list(permutations(conditions, 2))  # All possible pairwise comparisons
+    else:
+        try:
+            pairs = [tuple(pair.split(":")) for pair in comparison_str.split(",")]
+            # Validate that the specified conditions exist
+            valid_pairs = [(c1, c2) for c1, c2 in pairs if c1 in conditions and c2 in conditions]
+            invalid_pairs = [pair for pair in pairs if pair not in valid_pairs]
+
+            if invalid_pairs:
+                print(f"Warning: Some specified condition pairs do not exist in the dataset: {invalid_pairs}")
+
+            return valid_pairs
+        except Exception as e:
+            print(f"Error parsing comparison pairs: {e}")
+            return []
+
+def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_threshold, min_pct, p_val_adj_thd, output_file, comparison_str):
     """ Perform differential expression analysis per cell type for DiVenn2 """
     if cell_type_col not in adata.obs.columns or condition_col not in adata.obs.columns:
         print("Error: Invalid column names provided.")
@@ -35,18 +54,15 @@ def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_thre
 
     cell_types = adata.obs[cell_type_col].unique()
     conditions = adata.obs[condition_col].unique()
+
+    comparison_pairs = parse_comparison_pairs(comparison_str, conditions)
+
     all_degs = pd.DataFrame()
     adata = adata.raw.to_adata()
 
-    # Determine condition pairs to use
-    if comparison_pairs:
-        condition_pairs = comparison_pairs
-    else:
-        condition_pairs = list(permutations(conditions, 2))
-
     for cell_type in cell_types:
         adata_subset = adata[adata.obs[cell_type_col] == cell_type].copy()
-        for cond1, cond2 in condition_pairs:
+        for cond1, cond2 in comparison_pairs:
             adata_cond1 = adata_subset[adata_subset.obs[condition_col] == cond1]
             adata_cond2 = adata_subset[adata_subset.obs[condition_col] == cond2]
             
@@ -95,21 +111,19 @@ def main():
     parser.add_argument("-fc", "--logfc_threshold", type=float, default=0.2, help="Log fold change threshold (default: 0.2)")
     parser.add_argument("-pct", "--min_pct", type=float, default=0.01, help="Minimum cell percent in each condition threshold (default: 0.01)")
     parser.add_argument("-p", "--p_val_adj_thd", type=float, default=0.05, help="Adjusted p-value threshold (default: 0.05)")
-    parser.add_argument("-comp", "--comparison", type=str, default=None, help="Specific condition pairs for DEG analysis (e.g., ""[(\'A\', \'B\'), (\'A\', \'C\')]""")
-    
+    parser.add_argument("-x", "--comparisons", type=str, default="All", help="Condition comparisons list (format: A:B,A:C,B:C)")
+
     args = parser.parse_args()
 
     if args.workdir:
         os.makedirs(args.workdir, exist_ok=True)
         os.chdir(args.workdir)
-    
-    comparison_pairs = ast.literal_eval(args.comparison) if args.comparison else None
-    
+
     adata = load_h5ad(args.input)
     if adata is None:
         exit(1)
-    
-    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_threshold, args.min_pct, args.p_val_adj_thd, args.output, comparison_pairs)
-    
+
+    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_threshold, args.min_pct, args.p_val_adj_thd, args.output, args.comparisons)
+
 if __name__ == "__main__":
     main()
