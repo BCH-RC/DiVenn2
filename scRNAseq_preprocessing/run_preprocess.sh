@@ -20,5 +20,5 @@ python Preprocessing_h5ad_v2.py -i ${file_path} \
                           -fc 0.2 \
                           -pct 0.01 \
                           -p 0.05 \
-                          -comp "[('CNV', 'ASD'), ('CNV', 'CON')]" \
+                          -x "CNV:ASD,CNV:CON" \
                           -w ${output_dir}
