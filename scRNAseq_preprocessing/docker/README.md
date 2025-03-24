@@ -5,7 +5,7 @@ This directory contains scripts and a Docker environment for preprocessing **h5a
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a Docker image available on Docker Hub:
 
-🛠 **Docker Image:** `chunhuic/divenn2_degpreprocessing:latest`
+🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:latest`
 
 ---
 
