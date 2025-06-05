@@ -7,7 +7,26 @@ The preprocessing pipeline is encapsulated in a Docker image available on Docker
 
 🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:latest`
 
----
+## **Installing Docker**
+To use the DEG preprocessing pipeline, Docker must be installed and running on your system. Docker allows you to run applications in isolated environments called containers, ensuring consistency and reproducibility.
+
+### 🔧 Installation Instructions
+
+#### macOS
+Download and Install Docker Desktop on Mac:  
+👉 [https://docs.docker.com/desktop/setup/install/mac-install/](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+#### Windows
+Download and Install Docker Desktop on Windows:  
+👉 [https://docs.docker.com/desktop/setup/install/windows-install/](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+#### Linux (Ubuntu)
+Download and Install Docker Desktop on Linux:  
+👉 [https://docs.docker.com/desktop/setup/install/linux/](https://docs.docker.com/desktop/setup/install/linux/)
+
+### Get Started
+Explore Docker Desktop:
+👉 [https://docs.docker.com/desktop/use-desktop/](https://docs.docker.com/desktop/use-desktop/)
 
 ## **Folder Contents**
 
