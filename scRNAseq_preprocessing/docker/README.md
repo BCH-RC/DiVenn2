@@ -30,7 +30,7 @@ The following examples show how to run the Docker container for processing **h5a
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
-  chunhuic/divenn2_degpreprocessing:latest h5ad \
+  rcbioinfo/divenn2_degpreprocessing:latest h5ad \
   -w /data \
   -i /data/p238_seuratobj_downsize.h5ad \
   -c group \
@@ -62,7 +62,7 @@ CONTAINER_ID=$(docker run -d \
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
-  chunhuic/divenn2_degpreprocessing:latest seurat \
+  rcbioinfo/divenn2_degpreprocessing:latest seurat \
   -w /data \
   -i /data/p238_seuratobj_downsize.rds \
   -c group \

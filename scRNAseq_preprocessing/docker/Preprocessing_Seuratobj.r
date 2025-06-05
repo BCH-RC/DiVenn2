@@ -54,7 +54,7 @@ minpct_thd <- opt$minpct_thd
 padj_thd <- opt$padj_thd
 
 # Condition comparisons
-if (opt$comparisons == "All") {
+if (tolower(opt$comparisons) == "all") {
   condition_comparisons_table = "All"
 } else {
   condition_comparisons <- strsplit(opt$comparisons, ",")[[1]]
@@ -85,7 +85,7 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, log
   cat("Sample conditions:\n", conditions, "\n")
   
   # Generate all condition comparison combinations
-  if (opt$comparisons == "All") {
+  if (tolower(opt$comparisons) == "all") {
     # Default
     cat("Perform all pairwise sample condition comparisons by default!\n")
     combinations <- as.matrix(expand.grid(conditions, conditions))
