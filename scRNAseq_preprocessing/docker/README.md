@@ -29,17 +29,17 @@ The following examples show how to run the Docker container for processing **h5a
 ### **Example: Running the Pipeline for an h5ad File (Python)**
 ```bash
 CONTAINER_ID=$(docker run -d \
-  -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
+  -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   rcbioinfo/divenn2_degpreprocessing:latest h5ad \
   -w /data \
-  -i /data/p238_seuratobj_downsize.h5ad \
+  -i /data/TestInput.h5ad \
   -c group \
   -g celltype \
-  -o /data/p238_python.csv \
+  -o /data/TestOutput_h5ad.csv \
   -fc 0.2 \
   -pct 0.01 \
   -p 0.05 \
-  -x CNV:ASD,CNV:CON
+  -x all
 )
 ```
 
@@ -61,17 +61,17 @@ CONTAINER_ID=$(docker run -d \
 ### **Example: Running the Pipeline for a rds File (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
-  -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVenn2/scRNAseq_preprocessing/Data:/data \
+  -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   rcbioinfo/divenn2_degpreprocessing:latest seurat \
   -w /data \
-  -i /data/p238_seuratobj_downsize.rds \
+  -i /data/TestInput.rds \
   -c group \
   -g celltype \
-  -o /data/p238_seurat.csv \
+  -o /data/TestOutput_seurat.csv \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
-  -x CNV:CON,ASD:CON,CNV:ASD
+  -x all
 )
 ```
 
@@ -96,4 +96,3 @@ CONTAINER_ID=$(docker run -d \
 - The container runs in **detached mode (`-d`)**, so you may use the following command to monitor progress:
   ```bash
   docker logs -f $CONTAINER_ID
-  
