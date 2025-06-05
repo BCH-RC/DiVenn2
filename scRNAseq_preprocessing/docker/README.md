@@ -54,7 +54,7 @@ CONTAINER_ID=$(docker run -d \
 | `-fc, --logfc_threshold` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
 | `-pct, --min_pct` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
 | `-p, --p_val_adj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
-| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"CNV:ASD,CNV:CON"`). Use `"all"` for all possible comparisons. |
+| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
 
 ---
 
@@ -86,7 +86,7 @@ CONTAINER_ID=$(docker run -d \
 | `-f` | Log fold-change filtering threshold for Seurat data (default: `0.2`). |
 | `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
 | `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
-| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"CNV:ASD,CNV:CON"`). Use `"all"` for all possible comparisons. |
+| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
 
 ---
 
