@@ -96,5 +96,4 @@ CONTAINER_ID=$(docker run -d \
 - The container runs in **detached mode (`-d`)**, so you may use the following command to monitor progress:
   ```bash
   docker logs -f $CONTAINER_ID
-
-
+  

@@ -79,9 +79,17 @@ cat("Condition comparisons (User input):\n")
 print(condition_comparisons_table)
 
 # Function to create the preprocessed DEG csv file for DiVenn2
-DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, logfc_thd, min.pct_thd, pval_adj_thd, condition_comparisons) {
+DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, logfc_thd, min.pct_thd, pval_adj_thd, condition_comparisons) {
+  
+  # Subseting the seurat object to optimize the memory usage
+  seurat_obj@meta.data <- seurat_obj@meta.data[, c(cond_col, gp_col)]
+  seurat_obj@assays <- seurat_obj@assays["RNA"]
+  cat("Set the default assay to RNA!\n")
+  DefaultAssay(seurat_obj) <- "RNA"
+  gc()
+
   # Unique conditions
-  conditions <- unique(seurat_obj@meta.data[, cond_col])
+  conditions <- unique(as.vector(seurat_obj@meta.data[, cond_col]))
   cat("Sample conditions:\n", conditions, "\n")
   
   # Generate all condition comparison combinations
@@ -104,7 +112,7 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, log
   print(combinations)
   
   # Unique groups
-  gps <- unique(seurat_obj@meta.data[, gp_col])
+  gps <- unique(as.vector(seurat_obj@meta.data[, gp_col]))
   cat("Cell groups:\n", gps, "\n")
   
   # Extract the DEG list per cell group
@@ -113,25 +121,33 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, log
     # Identify marker genes for cell type by comparing smoking vs nonsmoking
     cat("Cell group:", gp, "\n")
     seurat_obj_gp <- seurat_obj[, seurat_obj@meta.data[, gp_col] %in% gp]
-    Idents(seurat_obj_gp) <- seurat_obj_gp@meta.data[, condition_col]
-    head(seurat_obj_gp)
+    Idents(seurat_obj_gp) <- seurat_obj_gp@meta.data[, cond_col]
+    cat("Normalization...\n")
+    seurat_obj_gp <- NormalizeData(seurat_obj_gp)
 
     for (i in 1:nrow(combinations)) {
       cond_1 <- combinations[i, 1]
       cond_2 <- combinations[i, 2]
       cat("Treatment/Disease:", cond_1, "Control:", cond_2, "\n")
-      # cat(combinations[i, ], "\n")
 
       # Get the number of cells in each condition
-      cells.1 <- WhichCells(seurat_obj_gp, ident = cond_1)
-      cells.2 <- WhichCells(seurat_obj_gp, ident = cond_2)
+      if (cond_1 %in% levels(Idents(seurat_obj_gp))) {
+        cells.1 <- WhichCells(seurat_obj_gp, ident = cond_1)
+      } else {
+        cells.1 <- NULL
+      }
+      if (cond_2 %in% levels(Idents(seurat_obj_gp))) {
+        cells.2 <- WhichCells(seurat_obj_gp, ident = cond_2)      
+      } else {
+        cells.2 <- NULL
+      }
 
       # Check if both conditions have at least 3 cells
       if (length(cells.1) < 3 || length(cells.2) < 3) {
           warning(paste("Skipping comparison:", gp, cond_1, "vs", cond_2, "- One or both groups have fewer than 3 cells."))
           next
       } else {
-          marker_gene_gp <- FindMarkers(seurat_obj_gp, ident.1 = cond_1, ident.2 = cond_2, min.pct = min.pct_thd, logfc.threshold = logfc_thd)
+          marker_gene_gp <- FindMarkers(seurat_obj_gp, ident.1 = cond_1, ident.2 = cond_2, slot = "data", min.pct = min.pct_thd, logfc.threshold = logfc_thd)
           marker_gene_gp <- marker_gene_gp[as.numeric(marker_gene_gp$p_val_adj)<pval_adj_thd, ]
       }
 
@@ -158,6 +174,9 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, log
       # Update marker_genes
       output <- rbind(output, output_gp)
     }
+
+    rm(seurat_obj_gp)
+    gc()
   }
   
   # Save the results as .csv file
@@ -165,5 +184,5 @@ DiVenn2_preprocess_seuratobj <- function(seuratobj, cond_col, gp_col, fname, log
 }
 
 # Create the preprocessed DEG csv file for DiVenn2
-DiVenn2_preprocess_seuratobj(seuratobj = seurat_obj, cond_col = condition_col, gp_col = group_col, fname = out_fname, logfc_thd = logfc_thd, min.pct_thd = minpct_thd, pval_adj_thd = padj_thd, condition_comparisons = condition_comparisons_table)
+DiVenn2_preprocess_seuratobj(seurat_obj = seurat_obj, cond_col = condition_col, gp_col = group_col, fname = out_fname, logfc_thd = logfc_thd, min.pct_thd = minpct_thd, pval_adj_thd = padj_thd, condition_comparisons = condition_comparisons_table)
 
