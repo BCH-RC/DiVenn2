@@ -123,7 +123,8 @@ def main():
     if adata is None:
         exit(1)
 
-    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_threshold, args.min_pct, args.p_val_adj_thd, args.output, args.comparisons)
+    #DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_threshold, args.min_pct, args.p_val_adj_thd, args.output, args.comparisons)
+    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_thd, args.minpct_thd, args.padj_thd, args.output, args.comparisons)
 
 if __name__ == "__main__":
     main()
