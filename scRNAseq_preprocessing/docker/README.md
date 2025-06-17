@@ -55,9 +55,9 @@ CONTAINER_ID=$(docker run -d \
   -c group \
   -g celltype \
   -o /data/TestOutput_h5ad.csv \
-  -fc 0.2 \
-  -pct 0.01 \
-  -p 0.05 \
+  -f 0.2 \
+  -r 0.01 \
+  -v 0.05 \
   -x all
 )
 ```
@@ -70,9 +70,9 @@ CONTAINER_ID=$(docker run -d \
 | `-c, --condition` | Column name representing the sample condition (e.g., disease vs. normal). |
 | `-g, --group` | Column name representing the cell type or other grouping variable. |
 | `-o, --output` | Output file path for the processed DEG results (CSV format). |
-| `-fc, --logfc_threshold` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
-| `-pct, --min_pct` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
-| `-p, --p_val_adj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
+| `-f, --logfc_thd` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
+| `-r, --minpct_thd` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
+| `-v, --padj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
 | `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
 
 ---
