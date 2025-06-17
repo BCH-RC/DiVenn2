@@ -9,9 +9,9 @@ CONTAINER_ID=$(docker run -d -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVe
   -c "group" \
   -g "celltype" \
   -o "/data/p238_python.csv" \
-  -fc 0.2 \
-  -pct 0.01 \
-  -p 0.05 \
+  -f 0.2 \
+  -r 0.01 \
+  -v 0.05 \
   -x "CNV:ASD,CNV:CON")
 
 # Show the container output
