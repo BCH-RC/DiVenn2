@@ -62,21 +62,6 @@ CONTAINER_ID=$(docker run -d \
 )
 ```
 
-#### **Parameter Descriptions**
-| **Parameter** | **Description** |
-|--------------|----------------|
-| `-w, --workdir` | The working directory where files will be processed and stored. |
-| `-i, --input` | Input file path (**h5ad** or **Seurat** format). |
-| `-c, --condition` | Column name representing the sample condition (e.g., disease vs. normal). |
-| `-g, --group` | Column name representing the cell type or other grouping variable. |
-| `-o, --output` | Output file path for the processed DEG results (CSV format). |
-| `-f, --logfc_thd` | Minimum log-fold change (LFC) threshold for DEG filtering (default: `0.2`). |
-| `-r, --minpct_thd` | Minimum percentage of cells expressing a gene in either condition for DEG inclusion (default: `0.01`). |
-| `-v, --padj_thd` | Adjusted p-value threshold for significance (default: `0.05`). |
-| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
-
----
-
 ### **Example: Running the Pipeline for a rds File (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
