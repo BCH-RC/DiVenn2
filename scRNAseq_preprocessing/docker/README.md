@@ -91,6 +91,38 @@ CONTAINER_ID=$(docker run -d \
   -x all
 )
 ```
+## **Running the Singularity Image on HPC Server**
+The following examples show how to run the Singularity image for processing **h5ad** and **Seurat** files on HPC server. Just make sure to load Singularity Module on HPC.
+
+### **Example: Running the Pipeline for an h5ad File (Python)**
+```bash
+singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  divenn2_degpreprocessing.sif h5ad \
+  -w /data \
+  -i /data/TestInput.h5ad \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_h5ad.csv \
+  -f 0.2 \
+  -r 0.01 \
+  -v 0.05 \
+  -x all
+```
+
+### **Example: Running the Pipeline for a rds File (R)**
+```bash
+singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  divenn2_degpreprocessing.sif seurat \
+  -w /data \
+  -i /data/TestInput.rds \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_seurat.csv \
+  -f 0.2 \
+  -r 0.1 \
+  -v 0.05 \
+  -x all
+```
 
 #### **Parameter Descriptions**
 | **Parameter** | **Description** |
