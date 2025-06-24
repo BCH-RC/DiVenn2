@@ -103,6 +103,11 @@ The preprocessing step print out results in simple textual table.
 | X	| Z	| D	| AC092691.1 | 1 |
 | X | Z | D | TNRC6B | 1 |
 
+where each row represent the expression direction of the each Gene in CellType for Condition_1 versus Condition_2. If the gene is upregulated in Condition_1 in compare to Condition_2 in celltype the Reg_direct is one and if it is downregulated the value is 2.  
+- Condition_1 and Condition_2: are comparesion condition
+- CellType: is the cell type group for the comparision condition
+- Gene: is the gene name
+- Reg_direct: is the expression direction of the  w.r.t to compa
 ---
 
 ## **Notes**
