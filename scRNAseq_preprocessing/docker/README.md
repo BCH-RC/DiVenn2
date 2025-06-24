@@ -109,7 +109,7 @@ where
 - Condition_2: Second condition in the comparison pair (e.g., control)
 - CellType: Cell type or group in which the comparison is performed
 - Gene: Gene symbol
-- Reg_direct: Expression direction: 1 = upregulated in Condition_1, 2 = downregulated
+- Reg_direct: Expression direction: 1 = upregulated in Condition_1, 2 = downregulated in Condition_1
 
 This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
 
