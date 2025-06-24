@@ -14,7 +14,7 @@ You can build and use Docker image locally:
 docker build -t divenn2_degpreprocessing:latest .
 ```
 
-## **Installing Docker**
+## **Installing Using Docker**
 To use the DEG preprocessing pipeline, Docker must be installed and running on your system. Docker allows you to run applications in isolated environments called containers, ensuring consistency and reproducibility.
 
 ### 🔧 Installation Instructions
@@ -34,6 +34,12 @@ Download and Install Docker Desktop on Linux:
 ### Get Started
 Explore Docker Desktop:
 👉 [https://docs.docker.com/desktop/use-desktop/](https://docs.docker.com/desktop/use-desktop/)
+
+## **Installing Using Singularity**
+Pull Docker image into Singularity
+```bash
+singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:latest
+```
 
 ## **Folder Contents**
 
