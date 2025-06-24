@@ -7,6 +7,12 @@ The preprocessing pipeline is encapsulated in a Docker image available on Docker
 
 🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:latest`
 
+#### 🐳 Docker Image (Local)
+You can build and use Docker image locally:
+
+```bash
+docker build -t divenn2_degpreprocessing:latest .
+
 ## **Installing Docker**
 To use the DEG preprocessing pipeline, Docker must be installed and running on your system. Docker allows you to run applications in isolated environments called containers, ensuring consistency and reproducibility.
 
