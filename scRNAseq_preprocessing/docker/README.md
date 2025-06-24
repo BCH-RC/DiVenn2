@@ -106,7 +106,7 @@ The DEG preprocessing pipeline produces a standardized output file in CSV format
 
 where 
 - Condition_1: First condition in the comparison pair (e.g., disease)
-- Condition_1: Second condition in the comparison pair (e.g., control)
+- Condition_2: Second condition in the comparison pair (e.g., control)
 - CellType: Cell type or group in which the comparison is performed
 - Gene: Gene symbol
 - Reg_direct: Expression direction: 1 = upregulated in Condition_1, 2 = downregulated
