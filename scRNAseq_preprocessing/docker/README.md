@@ -95,6 +95,13 @@ CONTAINER_ID=$(docker run -d \
 ---
 
 ## **Output file**
+The preprocessing step print out results in simple textual table.
+| **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
+|--------------|----------------|--------------|----------------|----------------|
+| X | Z | D | RNF220 | 1 |
+| X	| Z	| D	| FRMD5	| 1 |
+| X	| Z	| D	| AC092691.1 | 1 |
+| X | Z | D | TNRC6B | 1 |
 
 ---
 
