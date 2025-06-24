@@ -94,6 +94,10 @@ CONTAINER_ID=$(docker run -d \
 
 ---
 
+## **Output file**
+
+---
+
 ## **Notes**
 - Ensure **Docker** is installed and running before executing the commands.
 - The **volume mount (`-v /path/to/data:/data`)** should be updated to reflect your actual file locations.
