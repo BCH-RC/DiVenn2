@@ -95,7 +95,8 @@ CONTAINER_ID=$(docker run -d \
 ---
 
 ## **Output file**
-The preprocessing step print out results in simple textual table.
+The DEG preprocessing pipeline produces a standardized output file in CSV format, where each row represents the differential expression status of a gene between two user-defined conditions within a specific cell type.
+
 | **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
 |--------------|----------------|--------------|----------------|----------------|
 | X | Z | D | RNF220 | 1 |
@@ -103,11 +104,15 @@ The preprocessing step print out results in simple textual table.
 | X	| Z	| D	| AC092691.1 | 1 |
 | X | Z | D | TNRC6B | 1 |
 
-where each row represent the expression direction of the each Gene in CellType for Condition_1 versus Condition_2. If the gene is upregulated in Condition_1 in compare to Condition_2 in celltype the Reg_direct is one and if it is downregulated the value is 2.  
-- Condition_1 and Condition_2: are comparesion condition
-- CellType: is the cell type group for the comparision condition
-- Gene: is the gene name
-- Reg_direct: is the expression direction of the  w.r.t to compa
+where 
+- Condition_1: First condition in the comparison pair (e.g., disease)
+- Condition_1: Second condition in the comparison pair (e.g., control)
+- CellType: Cell type or group in which the comparison is performed
+- Gene: Gene symbol
+- Reg_direct: Expression direction: 1 = upregulated in Condition_1, 2 = downregulated
+
+This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
+
 ---
 
 ## **Notes**
