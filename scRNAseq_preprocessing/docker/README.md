@@ -5,13 +5,13 @@ This directory contains scripts and a Docker environment for preprocessing **h5a
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a Docker image available on Docker Hub:
 
-🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:latest`
+🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:v2`
 
 #### 🐳 Docker Image (Local)
 You can build and use Docker image locally:
 
 ```bash
-docker build -t divenn2_degpreprocessing:latest .
+docker build -t divenn2_degpreprocessing:v2 .
 ```
 
 ## **Installing Using Docker**
