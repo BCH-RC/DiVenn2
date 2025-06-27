@@ -157,7 +157,7 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 
 ### **Enrichment Analysis**
 
-#### GO Enrichment
+#### 1. GO Enrichment
 - Uses `enrichGO` from `clusterProfiler`
 - Separate tabs for:
   - All
@@ -168,7 +168,7 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 ![GO Table](./new_tutorial_imgs/GO_enrich.PNG)  
 ![GO Barplot](./new_tutorial_imgs/GO_barplot.PNG)
 
-#### KEGG Enrichment
+#### 2. KEGG Enrichment
 - Uses `enrichKEGG`
 - Interactive table and bar plots
 - Change color scheme (4 presets)
@@ -208,7 +208,6 @@ Please cite the original DiVenn publication if you use this tool:
 > **Sun et al.** *DiVenn: An Interactive and Integrated Web-Based Visualization Tool for Comparing Gene Lists*. Front. Genet. 2019.  
 > [https://doi.org/10.3389/fgene.2019.00421](https://doi.org/10.3389/fgene.2019.00421)
 
----
 
 ## **Contact & Contributions**
 
