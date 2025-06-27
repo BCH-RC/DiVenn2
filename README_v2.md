@@ -209,7 +209,7 @@ Please cite the original DiVenn publication if you use this tool:
 > [https://doi.org/10.3389/fgene.2019.00421](https://doi.org/10.3389/fgene.2019.00421)
 
 
-## **Contact & Contributions**
+### **Contact & Contributions**
 
 DiVenn is developed and maintained by the **Bioinformatics Core at Boston Children's Hospital**.  
 For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
