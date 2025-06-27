@@ -1,4 +1,4 @@
-## **DiVenn 2.0**
+# **DiVenn 2.0**
 
 **An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
 
@@ -8,14 +8,12 @@
 
 🎥 **Tutorial video**: [Watch on YouTube](https://www.youtube.com/watch?v=OypczjArKoo)
 
----
-
 ![DiVenn 2.0 Web Interface](./new_tutorial_imgs/homepage3_0.PNG)  
 *Figure1: DiVenn 2.0 home page interface. Users can upload DEG files and select between classic bulk RNA-seq or scRNA-seq modes for visualization and enrichment.*
 
 ---
 
-### Table of Contents
+## **Table of Contents**
 - [Overview](#Overview)
 - [Introduction](#Introduction)
 - [Key Features](#Key Features)
@@ -28,12 +26,12 @@
 - [Export Options](#Export Options)
 - [Citation](#Citation)
 
-### Overview
+### **Overview**
 DiVenn 2.0 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
 developed to support comprehensive and customizable comparison of gene lists from **bulk** and **single-cell RNA-seq (scRNA-seq)** datasets.
 This release brings enhanced visualization, expanded species and ID support, and built-in GO/KEGG enrichment tools, all through a simple, interactive web interface.
 
-### Introduction
+### **Introduction**
 Gene expression data from different biological states—such as mutant,double mutant, and wild-type samples—are commonly compared using Venn diagram tools. These comparisons help identify shared and unique genes
 between conditions and gain insights into their biological roles, especially through associated pathways and gene ontology (GO) terms.
 
@@ -43,7 +41,7 @@ The platform was widely adopted for its ability to provide expression context an
 
 Building on that foundation, **DiVenn 2.0** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
 
-#### Key Features:
+#### ⭐ Key Features
   
 -   Compare up to **15 gene sets** simultaneously;
 -   Supports **bulk** and **scRNA-seq** inputs;
@@ -58,7 +56,7 @@ The application is freely available at <https://divenn-dev.tch.harvard.edu/v3_yl
 
 ---
 
-### Input & Data Preparation
+### **Input & Data Preparation**
 
 #### 1. Bulk RNA-seq Input
 DiVenn currently accepts two types of input data: 
@@ -75,7 +73,7 @@ on their own cut-off value of fold change. If users need to link their genes to 
 are accepted for pathway analysis. All agriGO (Du, et al., 2010; Tian, et al., 2017) supported IDs are supported for GO analysis by 
 DiVenn ([View table] or download in [Excel]). 
 
-Sample data available here: [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
+Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
 ##### Interface Instructions
 1. Go to the `Classic Analysis` tab on the DiVenn homepage  
@@ -129,7 +127,7 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 
 ---
 
-### Visualization & Interaction
+### **Visualization & Interaction**
 
 - Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
 - Left-clicking will highlight edges (expression patterns). 
@@ -143,12 +141,19 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 - Summarize groups and collapse nodes
 - Filter by condition, GO term, or pathway
 
-![Graph Example](./new_tutorial_imgs/force-directed-graph.png)  
-![Customize Appearance](./new_tutorial_imgs/shape_font.PNG)
+<div align="left">
+  <img src="./new_tutorial_imgs/force-directed-graph.png" alt="Graph Example" width="600"/>
+  <p><em>Figure 2: Graph Example</em></p>
+</div>
+
+<div align="left">
+  <img src="./new_tutorial_imgs/shape_font.PNG" alt="Customize Appearance" width="600"/>
+  <p><em>Figure 2: Customize Appearance</em></p>
+</div>
 
 ---
 
-### Enrichment Analysis
+### **Enrichment Analysis**
 
 #### GO Enrichment
 - Uses `enrichGO` from `clusterProfiler`
@@ -171,7 +176,7 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 
 ---
 
-### Species and ID Mapping
+### **Species and ID Mapping**
 
 - Supports **278 species**, including lesser-model organisms
 - Accepts:
@@ -183,7 +188,7 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 
 ---
 
-### Export Options
+### **Export Options**
 
 You can export:
 
@@ -194,7 +199,7 @@ You can export:
 
 ---
 
-### Citation
+### **Citation**
 
 Please cite the original DiVenn publication if you use this tool:
 
@@ -203,7 +208,7 @@ Please cite the original DiVenn publication if you use this tool:
 
 ---
 
-## Contact & Contributions
+## **Contact & Contributions**
 
 DiVenn is developed and maintained by the **Bioinformatics Core at Boston Children's Hospital**.  
 For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
