@@ -139,7 +139,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 
 ---
 
-## **Output file**
+## **Output File**
 The DEG preprocessing pipeline produces a standardized output file in **CSV format**, where each row represents the differential expression status of a gene between two user-defined conditions within a specific cell type.
 
 | **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
