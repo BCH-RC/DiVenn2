@@ -16,14 +16,14 @@
 ## **Table of Contents**
 - [Overview](#Overview)
 - [Introduction](#Introduction)
-- [Key Features](#Key Features)
+- [Key Features](#KeyFeatures)
 - [Input & Data Preparation](#Input & Data Preparation)
   - [Bulk RNA-seq Input](#Bulk RNA-seq Input)
   - [Single-cell RNA-seq Input](#Single-cell RNA-seq Input)
 - [Visualization & Interaction](#[Visualization & Interaction)
 - [Enrichment Analysis](#Enrichment Analysis)
 - [Species and ID Mapping](#Species and ID Mapping)
-- [Export Options](#Export Options)
+- [Export Options](#ExportOptions)
 - [Citation](#Citation)
 
 ### **Overview**
