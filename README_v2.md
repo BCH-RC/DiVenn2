@@ -9,9 +9,10 @@
 🎥 **Tutorial video**: [Watch on YouTube](https://www.youtube.com/watch?v=OypczjArKoo)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/homepage3_0.PNG" alt="DiVenn 2.0 Web Interface" width="600"/>
+  <img src="./new_tutorial_imgs/homepage3_0.PNG" alt="DiVenn 2.0 Web Interface" width="800"/>
   <p><em>Figure 1: DiVenn 2.0 Web Interface. Users can upload DEG files and select between classic bulk RNA-seq or scRNA-seq modes for visualization and enrichment.</em></p>
 </div>
+
 ---
 
 ## **Table of Contents**
