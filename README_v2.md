@@ -41,7 +41,7 @@ The platform was widely adopted for its ability to provide expression context an
 
 Building on that foundation, **DiVenn 2.0** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
 
-#### ⭐ Key Features
+### **Key Features**
   
 -   Compare up to **15 gene sets** simultaneously;
 -   Supports **bulk** and **scRNA-seq** inputs;
