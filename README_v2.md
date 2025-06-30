@@ -60,8 +60,8 @@ The application is freely available at <https://divenn-dev.tch.harvard.edu/v3_yl
 
 ### **Input & Data Preparation**
 
-#### 1. Bulk RNA-seq Input
-DiVenn currently accepts two types of input data: 
+#### 1. Classic Analysis
+For classic analysis, DiVenn accepts two types of input data: 
 
 - **Two-column tab-delimited files**: For example, gene ID and corresponding pathway data, transcription factors and their regulated downstream genes, 
 and microRNAs and corresponding target genes. The second column must be "1" or "2".The first column is gene IDs and the second column is gene regulation 
@@ -89,7 +89,7 @@ Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2
   <p><em>Figure 2: RNAseq load Data</em></p>
 </div>
 
-#### 2. Single-cell RNA-seq Input
+#### 2. Single-cell RNA-seq Analysis
 
 Single-cell data must be **preprocessed** using our Docker pipeline to ensure compatibility.
 
