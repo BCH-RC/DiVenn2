@@ -20,8 +20,8 @@
 - [Introduction](#Introduction)
 - [Key Features](#Key-Features)
 - [Input & Data Preparation](#Input-Data-Preparation)
-  - [Bulk RNA-seq Input](#Bulk-RNA-seq-Input)
-  - [Single-cell RNA-seq Input](#Single-cell-RNA-seq-Input)
+  - [Classic Analysis](#Bulk-RNA-seq-Input)
+  - [Single-cell RNA-seq Analysis](#Single-cell-RNA-seq-Input)
 - [Visualization & Interaction](#[Visualization-&-Interaction)
 - [Enrichment Analysis](#Enrichment-Analysis)
 - [Species and ID Mapping](#Species-and-ID-Mapping)
@@ -211,7 +211,7 @@ Please cite the original DiVenn publication if you use this tool:
 
 ### **Contact & Contributions**
 
-DiVenn is developed and maintained by the **Bioinformatics Core at Boston Children's Hospital**.  
+DiVenn is developed and maintained by the **Research Computing Bioinformatics Team at Boston Children's Hospital**.  
 For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
 
 
