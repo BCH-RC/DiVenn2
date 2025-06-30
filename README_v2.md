@@ -79,7 +79,7 @@ Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2
 
 ##### Interface Instructions
 1. Go to the `Classic Analysis` tab on the DiVenn homepage
-2. 
+2. Select the species. It is only requited if you plan to perform enrichment analysis
 3. Choose from the upload Type
 4. Select the number of experiments (up to 15 experiments can be loaded)
 5. Load your data per each experiment
