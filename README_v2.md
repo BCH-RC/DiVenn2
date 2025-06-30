@@ -78,10 +78,11 @@ DiVenn ([View table] or download in [Excel]).
 Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
 ##### Interface Instructions
-1. Go to the `Classic Analysis` tab on the DiVenn homepage  
-2. Choose from the upload Type
-3. Select the number of experiments (up to 15 experiments can be loaded)
-4. Load your data per each experiment
+1. Go to the `Classic Analysis` tab on the DiVenn homepage
+2. 
+3. Choose from the upload Type
+4. Select the number of experiments (up to 15 experiments can be loaded)
+5. Load your data per each experiment
 4. Click `Submit` to generate the graph
 
 <div align="left">
