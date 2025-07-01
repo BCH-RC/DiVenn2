@@ -241,7 +241,7 @@ Please cite the original DiVenn publication if you use this tool:
 
 ## Contact & Contributions
 
-DiVenn is developed and maintained by the **Bioinformatics Core at Boston Children Hospital**.  
+DiVenn is developed and maintained by the **Research Computing Bioinformatics Team at Boston Children Hospital**.  
 For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
 
 
