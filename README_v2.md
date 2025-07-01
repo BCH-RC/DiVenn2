@@ -18,14 +18,14 @@
 ### Table of Contents
 - [Overview](#Overview)
 - [Introduction](#Introduction)
-- [Key Features](#Key Features)
-- [Input & Data Preparation](#Input & Data Preparation)
-  - [Classic Analysis](#Classic_Analysis)
-  - [Single-cell RNA-seq Analysis](#Single-cell_RNA-seq_Analysis)
-- [Visualization & Interaction](#[Visualization & Interaction)
-- [Enrichment Analysis](#Enrichment Analysis)
-- [Species and ID Mapping](#Species and ID Mapping)
-- [Export Options](#Export Options)
+- [Key Features](#Key-Features)
+- [Input & Data Preparation](#Input-&-Data-Preparation)
+  - [Classic Analysis](#Classic-Analysis)
+  - [Single-cell RNA-seq Analysis](#Single-cell-RNA-seq-Analysis)
+- [Visualization & Interaction](#[Visualization-&-Interaction)
+- [Enrichment Analysis](#Enrichment-Analysis)
+- [Species and ID Mapping](#Species-and-ID-Mapping)
+- [Export Options](#Export-Options)
 - [Citation](#Citation)
 
 ### Overview
