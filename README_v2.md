@@ -75,7 +75,7 @@ on their own cut-off value of fold change. If users need to link their genes to 
 are accepted for pathway analysis. All agriGO (Du, et al., 2010; Tian, et al., 2017) supported IDs are supported for GO analysis by 
 DiVenn ([View table] or download in [Excel]). 
 
-Sample data available here: [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
+Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
 ##### Interface Instructions
 1. Select the `Classic Analysis` tab on the DiVenn homepage  
