@@ -92,7 +92,7 @@ DiVenn ([View table] or download in [Excel]).
 5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/classic_loadData_2.PNG" alt="Classic load Data" width="600"/>
+  <img src="./new_tutorial_imgs/classic_loadData_2.PNG" alt="Classic load Data" height="50%" width="100%"/>
   <p><em>Figure 2: Classic load Data</em></p>
 </div>
 
