@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 ## **DiVenn 2.0**
 
 **An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
@@ -10,22 +15,29 @@
 
 ---
 
-![DiVenn 2.0 Web Interface](./new_tutorial_imgs/homepage3_0.PNG)  
-*Figure1: DiVenn 2.0 home page interface. Users can upload DEG files and select between classic bulk RNA-seq or scRNA-seq modes for visualization and enrichment.*
+<div align="center">
+  <img src="./new_tutorial_imgs/flowchart.PNG" alt="DiVenn 2.0 Flow chart" height="50%" width="600"/>
+  <p><em></em></p>
+</div>
+
+<div align="left">
+  <img src="./new_tutorial_imgs/homepage3_0.PNG" alt="DiVenn 2.0 Web Interface" width="100%"/>
+  <p><em>Figure 1: DiVenn 2.0 home page interface. Users can upload DEG files and select between classic bulk RNA-seq or scRNA-seq modes for visualization and enrichment.</em></p>
+</div>
 
 ---
 
 ### Table of Contents
 - [Overview](#Overview)
 - [Introduction](#Introduction)
-- [Key Features](#Key-Features)
-- [Input & Data Preparation](#Input-&-Data-Preparation)
-  - [Classic Analysis](#Classic-Analysis)
-  - [Single-cell RNA-seq Analysis](#Single-cell-RNA-seq-Analysis)
-- [Visualization & Interaction](#[Visualization-&-Interaction)
-- [Enrichment Analysis](#Enrichment-Analysis)
-- [Species and ID Mapping](#Species-and-ID-Mapping)
-- [Export Options](#Export-Options)
+- [Key Features](#Key Features)
+- [Input & Data Preparation](#Input & Data Preparation)
+  - [Classic Analysis](#Classic_Analysis)
+  - [Single-cell RNA-seq Analysis](#Single-cell_RNA-seq_Analysis)
+- [Visualization & Interaction](#[Visualization & Interaction)
+- [Enrichment Analysis](#Enrichment Analysis)
+- [Species and ID Mapping](#Species and ID Mapping)
+- [Export Options](#Export Options)
 - [Citation](#Citation)
 
 ### Overview
@@ -45,28 +57,28 @@ Building on that foundation, **DiVenn 2.0** is a major upgrade to the original v
 
 #### Key Features:
   
--   Compare up to **15 gene sets** simultaneously;
--   Supports **bulk** and **scRNA-seq** inputs;
--   Visualize results with customizable **force-directed network graphs**;
--   Perform **GO/KEGG** pathway enrichment analysis using `clusterProfiler` R package;
--   Export high-resolution plots and interactive tables;
--   Choose from **27 species**, including lesser-model species 
--   Support **4 gene ID types** including NCBI/Entrez, Ensembl, UniProt, and gene symbol;
--   Built-in scripts and Docker pipeline for scRNA-seq DEG preparation.
+-   Comparison of up to **15 gene sets** simultaneously.
+-   Supports both **bulk** and **scRNA-seq** inputs.
+-   Interactive **force-directed network graphs** for dynamic visulaization.
+-   Integrated **GO/KEGG pathway enrichment analysis** via `clusterProfiler` R package.
+-   High-resolution plot and interactive interactive exports.
+-   Support **27 species**, including lesser-studied organisms. 
+-   Accepts multiple gene ID types: **NCBI/Entrez, Ensembl, UniProt, and Gene Symbol**.
+-   Built-in scripts and Docker pipelines for scRNA-seq DEG preparation.
 
-The application is freely available at <https://divenn-dev.tch.harvard.edu/v3_yl/index.php>.
+DiVenn 2.0 is freely available at <https://divenn-dev.tch.harvard.edu/v3_yl/index.php>.
 
 ---
 
 ### Input & Data Preparation
 
-#### 1. Classic Analysis Input
-DiVenn currently accepts two types of input data: 
+#### Classic Analysis
+DiVenn 2.0 accepts two input format for classic analysis: 
 
-- **Two-column tab-delimited files**: For example, gene ID and corresponding pathway data, transcription factors and their regulated downstream genes, 
-and microRNAs and corresponding target genes. The second column must be "1" or "2".The first column is gene IDs and the second column is gene regulation 
-value. The second column must be '1' or '2'. we require users to use '1' to represent up-regulated genes and '2' to represent down-regulated genes based on their own cut-off value of fold change.
-
+- **Two-column tab-delimited files**: 
+  - First column: Gene IDs
+  - Second column: Gene regulation values (1 for up-regulated, 2 for down-regulated genes)
+ 
 - **Gene expression data**: The first column is gene IDs and the second column is gene regulation value. The gene regulation value should be obtained 
 from differentially expressed (DE) genes. Users can select the cut-off value of fold change (for example, two-fold change) to define their DE genes. 
 To simplify this gene regulation value, we require users to use “1” to represent up-regulated genes and “2” to represent down-regulated genes based 
@@ -75,51 +87,46 @@ on their own cut-off value of fold change. If users need to link their genes to 
 are accepted for pathway analysis. All agriGO (Du, et al., 2010; Tian, et al., 2017) supported IDs are supported for GO analysis by 
 DiVenn ([View table] or download in [Excel]). 
 
-Sample data available here 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
+👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
 ##### Interface Instructions
-1. Select the `Classic Analysis` tab on the DiVenn homepage  
-2. Select the species. It is only requited if you plan to perform pathway enrichment analysis
-2. Choose from the upload Type
-3. Select the number of experiments (up to 15 experiments can be loaded)
-4. Load your data per each experiment
-4. Click `Submit` to generate the graph
+1. Select the `Classic Analysis` tab on the DiVenn homepage.  
+2. Choose your species (requited for pathway enrichment).
+3. Select input type and number of  experiments (up to 15).
+4. Upload files for each experiment.
+5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/classic_loadData.PNG" alt="Classic load Data" width="600"/>
+  <img src="./new_tutorial_imgs/classic_loadData_2.PNG" alt="Classic load Data" hight="50%"/>
   <p><em>Figure 2: Classic load Data</em></p>
 </div>
 
-#### 2. Single-cell RNA-seq Input
+#### Single-cell RNA-seq Input
 
-Single-cell data must be **preprocessed** using our Docker pipeline to ensure compatibility.
+Single-cell data must first be preprocessed using provided Docker pipeline.
 
-##### 2.1 Input Format
-CSV with 5 required columns (see examples in [Test Data](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/TestData)):
+##### Input Format
+CSV file with required columns: `Condition_1`, `Condition_2`, `CellType`, `Gene`, `Reg_direct`. [Example Data](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/TestData))
 
-- `Condition_1`, `Condition_2`, `CellType`, `Gene`, `Reg_direct`
+##### Docker Pipeline
+- Accept `.rds` (Seurat) or `.h5ad` (Scanpy) files.
+- Performs DEG analysis and generates DiVenn-compatible CSV files.
+- [Docker workflow details](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/docker)
 
-##### 2.2. Docker Pipeline
-Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/docker) which:
-
-- Accept `.rds` (Seurat) or `.h5ad` (Scanpy)
-- Perform DEG analysis and filtering
-- Generate DiVenn-compatible CSV
-
-##### 2.3 Interface Instructions
-1. Select the `scRNAseq Analysis` tab on the DiVenn homepage 
-2. Select the species. It is only required if you want to perform pathway enrichment analysis
-3. Upload your processed `.csv` file  
-4. Select two comparison conditions and one or more cell types. 
-5. Click `Submit` to generate the graph
+##### Interface Instructions
+1. Select the `scRNAseq Analysis` tab.
+2. Choose your species.
+3. Upload processed `.csv` file  
+4. Select comparison conditions and cell type(s). 
+5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select"hight="50%"/>
   <p><em>Figure 3: scRNA Condition Select</em></p>
 </div>
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" hight="50%"/>
   <p><em>Figure 4: scRNA Force Directed Graph</em></p>
 </div>
 
@@ -132,9 +139,8 @@ Use the provided [Docker workflow](https://github.com/BCH-RC/DiVenn2/tree/main/s
 ---
 
 ### Visualization & Interaction
-DiVenn 2.0 provids multiple options to customize the generated graph.
 
-#### 1. Force-Directed Graph
+#### Force-Directed Graph
 - Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
 - Left-clicking will highlight edges (expression patterns). 
 - Double-clicking the same node will hide the connecting edge colors.
@@ -142,12 +148,11 @@ DiVenn 2.0 provids multiple options to customize the generated graph.
 - Right-clicking nodes can show the gene IDs of interest (See figure 5)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions"hight="50%"/>
   <p><em>Figure 5: Right-click functions</em></p>
 </div>
 
-#### 2. Customization
-
+#### Customization
 - Adjust font size, color, and node shape (See figure 6)
 - Summarize groups and collapse nodes
 - Filter by condition, GO term, or pathway
@@ -157,11 +162,11 @@ DiVenn 2.0 provids multiple options to customize the generated graph.
   <p><em>Figure 6: Customize Appearance</em></p>
 </div>
 
-#### 3. Gene Info
-User can get the gene information including different IDs and it's pathways by right clicking the node and select `Gene detail` (See figure 7)
+#### Gene Information
+Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 7)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/geneInfo.PNG" alt="Gene Info" width="600"/>
+  <img src="./new_tutorial_imgs/geneInfo.PNG" alt="Gene Info" height="50%"/>
   <p><em>Figure 7: Gene Info</em></p>
 </div>
 
@@ -169,11 +174,11 @@ User can get the gene information including different IDs and it's pathways by r
 
 ### Enrichment Analysis
 
-#### 1. Link to KEGG pathway and GO terms
+#### KEGG pathway and GO terms
 If users need to check the KEGG pathway or GO terms of a group of genes (examples regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 8).
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_geneDetails.PNG" alt="Gene Pathway" height="50%"/>
   <p><em>Figure 8: Gene Pathway</em></p>
 </div>
 
@@ -182,12 +187,12 @@ To perform GO enrichment for this set of genes, users need to click `GO enrichme
 User also can choose different GO enrichment such as Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). (See figures 8 and 9)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/GO_enrich.PNG" alt="GO Table" width="600"/>
+  <img src="./new_tutorial_imgs/GO_enrich_3.PNG" alt="GO Table" height="50%"/>
   <p><em>Figure 8: GO Table</em></p>
 </div>
 
 <div align="left">
-  <img src="./new_tutorial_imgs/GO_barplot.PNG" alt="GO Barplot" width="600"/>
+  <img src="./new_tutorial_imgs/GO_barplot_2.PNG" alt="GO Barplot" height="50%" />
   <p><em>Figure 9: GO Barplot</em></p>
 </div>
 
@@ -195,23 +200,21 @@ User also can choose different GO enrichment such as Biological Process (BP), Mo
 Similar to GO enrichment, user can perform KEGG pathway analysis by selecting the `KEGG pathway enrichment` and generate an interactive table and bar plots.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_KEGG_plot.PNG" alt="KEGG Barplot" width="600"/>
-  <p><em>Figure 10: KEGG Barplot</em></p>
-</div>
-
-<div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_KEGG_table.PNG" alt="KEGG Table" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_KEGG_table.PNG" alt="KEGG Table" height="50%"/>
   <p><em>Figure 11: KEGG Table</em></p>
 </div>
 
+<div align="left">
+  <img src="./new_tutorial_imgs/scRNAseq_KEGG_plot.PNG" alt="KEGG Barplot"height="50%"/>
+  <p><em>Figure 10: KEGG Barplot</em></p>
+</div>
 
 ---
 
-### Species and ID Mapping
+### Species & ID Mapping
 
-- Supports **278 species**, including lesser-model organisms
-- Accepts:
-  - Entrez, Ensembl, UniProt, Gene Symbol
+- Extensive species support (278 species).
+- Multiple gene ID types accepted.
 - Custom mappings added for species without standard annotations
 - Example organisms with limited mapping: *Dictyostelium discoideum*, *Marchantia polymorpha*, *Physcomitrella patens*
 
@@ -223,10 +226,10 @@ Similar to GO enrichment, user can perform KEGG pathway analysis by selecting th
 
 You can export:
 
-- SVG network diagrams
-- Bar plots (top 20 terms per category)
-- Pathway/GO tables (.txt)
-- Gene details or group tables
+- Network diagrams
+- Bar plots
+- Enrichment tables (.csv)
+- Gene/group details reports
 
 ---
 
