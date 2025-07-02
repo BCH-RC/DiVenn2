@@ -116,7 +116,7 @@ CSV file with required columns: `Condition_1`, `Condition_2`, `CellType`, `Gene`
 5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select" height="50%" width="100%"/>
   <p><em>Figure 3: scRNA Condition Select</em></p>
 </div>
 
