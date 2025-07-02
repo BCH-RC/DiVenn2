@@ -92,7 +92,7 @@ DiVenn ([View table] or download in [Excel]).
 5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/classic_loadData_2.PNG" alt="Classic load Data" hight="50%"/>
+  <img src="./new_tutorial_imgs/classic_loadData_2.PNG" alt="Classic load Data" width="600"/>
   <p><em>Figure 2: Classic load Data</em></p>
 </div>
 
@@ -116,12 +116,12 @@ CSV file with required columns: `Condition_1`, `Condition_2`, `CellType`, `Gene`
 5. Click `Submit` to visualize.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select"hight="50%"/>
+  <img src="./new_tutorial_imgs/scRNAseq_conditionSelection.PNG" alt="scRNA Condition Select" width="600"/>
   <p><em>Figure 3: scRNA Condition Select</em></p>
 </div>
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" hight="50%"/>
+  <img src="./new_tutorial_imgs/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" width="600"/>
   <p><em>Figure 4: scRNA Force Directed Graph</em></p>
 </div>
 
@@ -143,7 +143,7 @@ CSV file with required columns: `Condition_1`, `Condition_2`, `CellType`, `Gene`
 - Right-clicking nodes can show the gene IDs of interest (See figure 5)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions"hight="50%"/>
+  <img src="./new_tutorial_imgs/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="600"/>
   <p><em>Figure 5: Right-click functions</em></p>
 </div>
 
@@ -161,7 +161,7 @@ CSV file with required columns: `Condition_1`, `Condition_2`, `CellType`, `Gene`
 Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 7)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/geneInfo.PNG" alt="Gene Info" height="50%"/>
+  <img src="./new_tutorial_imgs/geneInfo.PNG" alt="Gene Info" width="600"/>
   <p><em>Figure 7: Gene Info</em></p>
 </div>
 
@@ -241,5 +241,4 @@ Please cite the original DiVenn publication if you use this tool:
 
 DiVenn is developed and maintained by the **Research Computing Bioinformatics Team at Boston Children Hospital**.  
 For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
-
 
