@@ -173,7 +173,7 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 If users need to check the KEGG pathway or GO terms of a group of genes (examples regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 8).
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_geneDetails.PNG" alt="Gene Pathway" height="50%" width="600"/>
+  <img src="./new_tutorial_imgs/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="600"/>
   <p><em>Figure 8: Gene Pathway</em></p>
 </div>
 
@@ -182,12 +182,12 @@ To perform GO enrichment for this set of genes, users need to click `GO enrichme
 User also can choose different GO enrichment such as Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). (See figures 8 and 9)
 
 <div align="left">
-  <img src="./new_tutorial_imgs/GO_enrich_3.PNG" alt="GO Table" height="50%"/>
+  <img src="./new_tutorial_imgs/GO_enrich_3.PNG" alt="GO Table" width="600"/>
   <p><em>Figure 8: GO Table</em></p>
 </div>
 
 <div align="left">
-  <img src="./new_tutorial_imgs/GO_barplot_2.PNG" alt="GO Barplot" height="50%" />
+  <img src="./new_tutorial_imgs/GO_barplot_2.PNG" alt="GO Barplot" width="600"/>
   <p><em>Figure 9: GO Barplot</em></p>
 </div>
 
@@ -195,12 +195,12 @@ User also can choose different GO enrichment such as Biological Process (BP), Mo
 Similar to GO enrichment, user can perform KEGG pathway analysis by selecting the `KEGG pathway enrichment` and generate an interactive table and bar plots.
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_KEGG_table.PNG" alt="KEGG Table" height="50%"/>
+  <img src="./new_tutorial_imgs/scRNAseq_KEGG_table.PNG" alt="KEGG Table" width="600"/>
   <p><em>Figure 11: KEGG Table</em></p>
 </div>
 
 <div align="left">
-  <img src="./new_tutorial_imgs/scRNAseq_KEGG_plot.PNG" alt="KEGG Barplot"height="50%"/>
+  <img src="./new_tutorial_imgs/scRNAseq_KEGG_plot.PNG" alt="KEGG Barplot" width="600"/>
   <p><em>Figure 10: KEGG Barplot</em></p>
 </div>
 
