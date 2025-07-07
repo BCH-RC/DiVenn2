@@ -58,7 +58,7 @@ singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degprep
 ### **Using Docker**
 The following examples show how to run the Docker container for processing **h5ad** and **Seurat** files.
 
-### **Example: Running the Pipeline for an h5ad File (Python)**
+#### **Example: Running the Pipeline for an h5ad File (Python)**
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
@@ -75,7 +75,7 @@ CONTAINER_ID=$(docker run -d \
 )
 ```
 
-### **Example: Running the Pipeline for a rds File (R)**
+#### **Example: Running the Pipeline for a rds File (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
@@ -92,10 +92,10 @@ CONTAINER_ID=$(docker run -d \
 )
 
 ```
-## **Running the Singularity Image on HPC Server**
-The following examples show how to run the Singularity image for processing **h5ad** and **Seurat** files on HPC server. Just make sure to load Singularity Module on HPC.
+### **Using Singularity on HPC Server**
+Make sure to load Singularity on your HPC system (e.g., via module load singularity), then run:
 
-### **Example: Running the Pipeline for an h5ad File (Python)**
+#### **Example: Running the Pipeline for an h5ad File (Python)**
 ```bash
 singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   divenn2_degpreprocessing.sif h5ad \
@@ -110,7 +110,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -x all
 ```
 
-### **Example: Running the Pipeline for a rds File (R)**
+#### **Example: Running the Pipeline for a rds File (R)**
 ```bash
 singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   divenn2_degpreprocessing.sif seurat \
