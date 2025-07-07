@@ -125,7 +125,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -x all
 ```
 
-#### **Parameter Descriptions**
+### **Parameter Descriptions**
 | **Parameter** | **Description** |
 |--------------|----------------|
 | `-w, --workdir` | The working directory where files will be processed and stored. |
@@ -140,8 +140,8 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 
 ---
 
-## **Output File**
-The DEG preprocessing pipeline produces a standardized output file in **CSV format**, where each row represents the differential expression status of a gene between two user-defined conditions within a specific cell type.
+## 📤  **Output Format**
+The DEG preprocessing pipeline produces a standardized output file in **CSV format**, where each row represents the differential expression status of a gene between each user-defined condition pair and cell type.
 
 | **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
 |--------------|----------------|--------------|----------------|----------------|
@@ -151,18 +151,17 @@ The DEG preprocessing pipeline produces a standardized output file in **CSV form
 | X | Z | D | TNRC6B | 1 |
 
 where 
-- Condition_1: First condition in the comparison pair (e.g., disease)
-- Condition_2: Second condition in the comparison pair (e.g., control)
-- CellType: Cell type or group in which the comparison is performed
+- `Condition_1` and `Condition_2`: Conditions being compared. (e.g., disease vs control)
+- CellType: Cell type (or group) where DEG analysis was performed
 - Gene: Gene symbol
-- Reg_direct: Expression direction: 1 = upregulated in Condition_1, 2 = downregulated in Condition_1
+- Reg_direct: Direction of regulation - 1 = upregulated in Condition_1, 2 = downregulated in Condition_1
 
 This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
 
 ---
 
-## **Notes**
-- Ensure **Docker** is installed and running before executing the commands.
+## 📝 **Notes**
+- Ensure **Docker** or **Singulatiry** are installed and running before executing the commands.
 - The **volume mount (`-v /path/to/data:/data`)** should be updated to reflect your actual file locations.
 - The container runs in **detached mode (`-d`)**, so you may use the following command to monitor progress:
   ```bash
