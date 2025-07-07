@@ -16,7 +16,7 @@ docker build -t divenn2_degpreprocessing:v2 .
 ## ⚙️ **Installation Instructions**
 To use the DEG preprocessing pipeline, Docker (or Singularity, for HPC systems) must be installed and running/loaded on your system. Docker allows you to run applications in isolated environments called containers, ensuring consistency and reproducibility.
 
-### 🔧 Docker Setup by Platform:
+### 🔧 **Docker Setup by Platform:**
 
 #### macOS
 Download and Install Docker Desktop on Mac:  
@@ -34,7 +34,7 @@ Download and Install Docker Desktop on Linux:
 Explore Docker Desktop:
 👉 [https://docs.docker.com/desktop/use-desktop/](https://docs.docker.com/desktop/use-desktop/)
 
-## 🧪 **Using Singularity (for HPC)**
+## 🧪 **Using Singularity (for HPC):**
 To use this pipeline in HPC environments, convert the Docker image into a Singularity image:
 ```bash
 singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:v2
@@ -54,7 +54,8 @@ singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degprep
 
 ---
 
-## **Running the Docker Image**
+## **Running the Pipeline**
+### **Using Docker**
 The following examples show how to run the Docker container for processing **h5ad** and **Seurat** files.
 
 ### **Example: Running the Pipeline for an h5ad File (Python)**
@@ -89,6 +90,11 @@ CONTAINER_ID=$(docker run -d \
   -v 0.05 \
   -x all
 )
+
+```bash
+docker logs -f $CONTAINER_ID
+```
+
 ```
 ## **Running the Singularity Image on HPC Server**
 The following examples show how to run the Singularity image for processing **h5ad** and **Seurat** files on HPC server. Just make sure to load Singularity Module on HPC.
