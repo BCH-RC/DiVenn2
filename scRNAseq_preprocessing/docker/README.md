@@ -1,11 +1,11 @@
 # **DiVenn2 DEG Preprocessing Pipeline**
 
-This directory contains scripts and a Docker environment for preprocessing **h5ad** and **rds (Seurat obj)** files to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The provided Docker image ensures a standardized runtime environment for reproducibility.
+This directory contains scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
 ## **Docker Image**
-The preprocessing pipeline is encapsulated in a Docker image available on Docker Hub:
+The preprocessing pipeline is encapsulated in a pre-built Docker image:
 
-🛠 **Docker Image:** `rcbioinfo/divenn2_degpreprocessing:v2`
+🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:v2](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing)
 
 #### 🐳 Docker Image (Local)
 You can build and use Docker image locally:
