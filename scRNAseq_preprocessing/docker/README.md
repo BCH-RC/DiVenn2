@@ -91,10 +91,6 @@ CONTAINER_ID=$(docker run -d \
   -x all
 )
 
-```bash
-docker logs -f $CONTAINER_ID
-```
-
 ```
 ## **Running the Singularity Image on HPC Server**
 The following examples show how to run the Singularity image for processing **h5ad** and **Seurat** files on HPC server. Just make sure to load Singularity Module on HPC.
