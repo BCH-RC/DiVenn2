@@ -16,7 +16,7 @@ docker build -t divenn2_degpreprocessing:v2 .
 ## ⚙️ **Installation Instructions**
 To use the DEG preprocessing pipeline, Docker (or Singularity, for HPC systems) must be installed and running/loaded on your system. Docker allows you to run applications in isolated environments called containers, ensuring consistency and reproducibility.
 
-### 🔧 Docker Installation Instructions by Platform:
+### 🔧 Docker Setup by Platform:
 
 #### macOS
 Download and Install Docker Desktop on Mac:  
@@ -34,7 +34,7 @@ Download and Install Docker Desktop on Linux:
 Explore Docker Desktop:
 👉 [https://docs.docker.com/desktop/use-desktop/](https://docs.docker.com/desktop/use-desktop/)
 
-## **Installing Using Singularity**
+## 🧪 **Using Singularity (for HPC)**
 To use this pipeline in HPC environments, convert the Docker image into a Singularity image:
 ```bash
 singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:v2
