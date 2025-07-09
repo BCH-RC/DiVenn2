@@ -46,7 +46,7 @@ def parse_comparison_pairs(comparison_str, conditions):
             print(f"Error parsing comparison pairs: {e}")
             return []
 
-def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_threshold, min_pct, p_val_adj_thd, output_file, comparison_str):
+def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_threshold, min_pct, p_val_adj_thd, output_file, comparison_str,method):
     """ Perform differential expression analysis per cell type for DiVenn2 """
     if cell_type_col not in adata.obs.columns or condition_col not in adata.obs.columns:
         print("Error: Invalid column names provided.")
@@ -69,8 +69,11 @@ def DiVenn2_preprocess_seuratobj(adata, cell_type_col, condition_col, logfc_thre
             if len(adata_cond1) >= 3 and len(adata_cond2) >= 3:
                 print(f"Comparing {cond1} vs {cond2} for cell type {cell_type}...")
                 adata_subset_subset = adata_subset[adata_subset.obs[condition_col].isin([cond1, cond2])].copy()
+                #sc.tl.rank_genes_groups(adata_subset_subset, groupby=condition_col, groups=[cond1], reference=cond2, 
+                #                        method='wilcoxon', n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True)
                 sc.tl.rank_genes_groups(adata_subset_subset, groupby=condition_col, groups=[cond1], reference=cond2, 
-                                        method='wilcoxon', n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True)
+                                        method=method, n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True)
+
                 
                 if 'rank_genes_groups' in adata_subset_subset.uns:
                     result = adata_subset_subset.uns['rank_genes_groups']
@@ -112,6 +115,8 @@ def main():
     parser.add_argument("-r", "--minpct_thd", type=float, default=0.01, help="Minimum cell percent in each condition threshold (default: 0.01)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adjusted p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All", help="Condition comparisons list (format: A:B,A:C,B:C)")
+    parser.add_argument("-m", "--method", type=str, default="wilcoxon", choices=["t-test", "t-test_overestim_var", "wilcoxon", "logreg"],help="Statistical test method for DE analysis (default: wilcoxon)")
+
 
     args = parser.parse_args()
 
@@ -124,7 +129,7 @@ def main():
         exit(1)
 
     #DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_threshold, args.min_pct, args.p_val_adj_thd, args.output, args.comparisons)
-    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_thd, args.minpct_thd, args.padj_thd, args.output, args.comparisons)
+    DiVenn2_preprocess_seuratobj(adata, args.group, args.condition, args.logfc_thd, args.minpct_thd, args.padj_thd, args.output, args.comparisons, args.method)
 
 if __name__ == "__main__":
     main()
