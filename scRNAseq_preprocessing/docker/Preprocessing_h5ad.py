@@ -115,7 +115,7 @@ def main():
     parser.add_argument("-r", "--minpct_thd", type=float, default=0.01, help="Minimum cell percent in each condition threshold (default: 0.01)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adjusted p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All", help="Condition comparisons list (format: A:B,A:C,B:C)")
-    parser.add_argument("-m", "--method", type=str, default="wilcoxon", choices=["t-test", "t-test_overestim_var", "wilcoxon", "logreg"],help="Statistical test method for DE analysis (default: wilcoxon)")
+    parser.add_argument("-m", "--method", type=str, default="wilcoxon",help="Statistical test for DE analysis ('t-test', 't-test_overestim_var' overestimates variance of each group, 'wilcoxon' uses Wilcoxon rank-sum, 'logreg' uses logistic regression. (default: wilcoxon)")
 
 
     args = parser.parse_args()
