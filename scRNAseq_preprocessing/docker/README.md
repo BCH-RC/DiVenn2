@@ -160,6 +160,10 @@ This structure enables consistent input for DiVenn2 and supports downstream visu
 
 ---
 
+## 🔄 Custom DEG Table Input (User-Supplied CSV)
+
+In addition to processing .h5ad and .rds files using the built-in Python and R scripts, the DiVenn2 DEG preprocessing pipeline also supports custom DEG table inputs directly from users. This allows users who have already performed differential expression analysis in their own environments (outside of the container) to supply pre-formatted CSV files, bypassing the need to run the built-in Preprocessing_h5ad.py or Preprocessing_Seuratobj.r scripts. These customized DEG tables must follow the standard DiVenn2 format as described in the 'Output Format' section: each row should contain Condition_1, Condition_2, CellType, Gene, and Reg_direct, where Reg_direct is 1 for upregulated and 2 for downregulated genes in Condition_1. By supporting this flexible input mode, users can seamlessly integrate their existing pipelines and tools with DiVenn2’s powerful visualization capabilities.
+
 ## 📝 **Notes**
 - Ensure **Docker** or **Singulatiry** are installed and running before executing the commands.
 - The **volume mount (`-v /path/to/data:/data`)** should be updated to reflect your actual file locations.
