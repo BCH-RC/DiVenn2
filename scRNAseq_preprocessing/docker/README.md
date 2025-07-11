@@ -1,6 +1,6 @@
 # **DiVenn2 DEG Preprocessing Pipeline**
 
-![Divenn Flow Chart](./new_tutorial_imgs/Flowchart-DEGprep.png)
+![Divenn Flow Chart](../../new_tutorial_imgs/Flowchart-DEGprep.png)
 
 This directory contains scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
