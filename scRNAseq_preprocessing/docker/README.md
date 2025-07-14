@@ -145,7 +145,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 | `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
 | `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
 | `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
-| `-m, --method` | Denotes which test to use. Available options are: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'.
+| `-m, --method` | Denotes which test to use. \n Available options for R are: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'.
 
 ---
 
