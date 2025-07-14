@@ -77,7 +77,8 @@ CONTAINER_ID=$(docker run -d \
   -f 0.2 \
   -r 0.01 \
   -v 0.05 \
-  -x all
+  -x all \
+  -m wilcoxon
 )
 ```
 
@@ -114,7 +115,8 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -f 0.2 \
   -r 0.01 \
   -v 0.05 \
-  -x all
+  -x all \
+  -m wilcoxon
 ```
 
 #### **Example: Running the Pipeline for a rds File (R)**
@@ -145,7 +147,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 | `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
 | `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
 | `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
-| `-m, --method` | Statistical test to use for differential expression analysis. <br>**R options include**: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'.
+| `-m, --method` | Statistical test to use for differential expression analysis. <br>**R options include**: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'. <br>** Python options include**: 'wilcoxon', 't-test', 't-test_overestim_var', 'logreg'.
 
 ---
 
