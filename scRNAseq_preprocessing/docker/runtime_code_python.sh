@@ -12,7 +12,8 @@ CONTAINER_ID=$(docker run -d -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVe
   -f 0.2 \
   -r 0.01 \
   -v 0.05 \
-  -x "CNV:ASD,CNV:CON")
+  -x "CNV:ASD,CNV:CON" \
+  -m "wilcoxon")
 
 # Show the container output
 docker logs -f "$CONTAINER_ID"
