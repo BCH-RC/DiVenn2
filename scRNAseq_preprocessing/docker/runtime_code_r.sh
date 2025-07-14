@@ -13,7 +13,8 @@ CONTAINER_ID=$(docker run -d \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
-  -x CNV:CON,ASD:CON,CNV:ASD)
+  -x CNV:CON,ASD:CON,CNV:ASD \
+  -m wilcox)
 
 # Show the container output
 docker logs -f "$CONTAINER_ID"

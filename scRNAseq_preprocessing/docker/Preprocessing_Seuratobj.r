@@ -21,7 +21,9 @@ option_list <- list(
   make_option(c("-v", "--padj_thd"), type = "numeric", default = 0.05,
               help = "Adjusted p-value threshold", metavar = "numeric"),
   make_option(c("-x", "--comparisons"), type = "character", default = "All",
-              help = "Condition comparisons list (format: A:B,A:C,B:C)", metavar = "character")
+              help = "Condition comparisons list (format: A:B,A:C,B:C)", metavar = "character"),
+  make_option(c("-m", "--method"), type = "character", default = "wilcox",
+              help = "Denotes which test to use. Available options are: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'", metavar = "character")
 )
 
 # Parse the command-line arguments
@@ -67,6 +69,9 @@ if (tolower(opt$comparisons) == "all") {
   }
 }
 
+# DEG method
+method <- opt$method
+
 cat("Working directory:", getwd(), "\n")
 cat("Input seurat object file:", opt$input, "\n")
 cat("Seurat object meta data column for sample condition (disease/normal):", opt$condition, "\n")
@@ -76,6 +81,7 @@ cat("Log fold change threshold:", opt$logfc_thd, "\n")
 cat("Minmumum cell percent in either condition:", opt$minpct_thd, "\n")
 cat("Adjusted p-value threshold:", opt$padj_thd, "\n")
 cat("Condition comparisons (User input):\n")
+cat("DEG method:", method, "\n")
 print(condition_comparisons_table)
 
 # Function to create the preprocessed DEG csv file for DiVenn2
@@ -147,7 +153,11 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
           warning(paste("Skipping comparison:", gp, cond_1, "vs", cond_2, "- One or both groups have fewer than 3 cells."))
           next
       } else {
-          marker_gene_gp <- FindMarkers(seurat_obj_gp, ident.1 = cond_1, ident.2 = cond_2, slot = "data", min.pct = min.pct_thd, logfc.threshold = logfc_thd)
+          if (method == "negbinom" || method == "poisson") {
+            marker_gene_gp <- FindMarkers(seurat_obj_gp, test.use = method, ident.1 = cond_1, ident.2 = cond_2, slot = "counts", min.pct = min.pct_thd, logfc.threshold = logfc_thd)
+          } else {
+            marker_gene_gp <- FindMarkers(seurat_obj_gp, test.use = method, ident.1 = cond_1, ident.2 = cond_2, slot = "data", min.pct = min.pct_thd, logfc.threshold = logfc_thd)
+          }
           marker_gene_gp <- marker_gene_gp[as.numeric(marker_gene_gp$p_val_adj)<pval_adj_thd, ]
       }
 

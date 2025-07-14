@@ -52,8 +52,9 @@ RUN curl -O https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz && \
 # Set CRAN Mirror
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> /usr/local/lib/R/etc/Rprofile.site
 
-# Install required R packages
-RUN R -e "install.packages(c('optparse', 'Seurat'), repos = 'https://cloud.r-project.org')"
+# Install R packages from CRAN and Bioconductor
+RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager'), repos = 'https://cloud.r-project.org')" && \
+    R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
