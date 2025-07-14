@@ -2,7 +2,11 @@
 
 ![Divenn Flow Chart](../../new_tutorial_imgs/Flowchart-DEGprep.png)
 
-This directory contains scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
+## 🔄 Custom DEG Table Input (User-Supplied CSV)
+
+In addition to processing .h5ad and .rds files using the built-in Python and R scripts, the DiVenn2 DEG preprocessing pipeline also supports custom DEG table inputs directly from users. This allows users who have already performed differential expression analysis in their own environments (outside of the container) to supply pre-formatted CSV files, bypassing the need to run the built-in Preprocessing_h5ad.py or Preprocessing_Seuratobj.r scripts. These customized DEG tables must follow the standard DiVenn2 format as described in the 'Output Format' section: each row should contain Condition_1, Condition_2, CellType, Gene, and Reg_direct, where Reg_direct is 1 for upregulated and 2 for downregulated genes in Condition_1. By supporting this flexible input mode, users can seamlessly integrate their existing pipelines and tools with DiVenn2’s powerful visualization capabilities.
+
+The following sections contain scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
@@ -90,7 +94,8 @@ CONTAINER_ID=$(docker run -d \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
-  -x all
+  -x all \
+  -m wilcox
 )
 
 ```
@@ -124,7 +129,8 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
-  -x all
+  -x all \
+  -m wilcox
 ```
 
 ### **Parameter Descriptions**
@@ -139,6 +145,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 | `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
 | `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
 | `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
+| `-m, --method` | Denotes which test to use. Available options are: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'.
 
 ---
 
@@ -161,10 +168,6 @@ where
 This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
 
 ---
-
-## 🔄 Custom DEG Table Input (User-Supplied CSV)
-
-In addition to processing .h5ad and .rds files using the built-in Python and R scripts, the DiVenn2 DEG preprocessing pipeline also supports custom DEG table inputs directly from users. This allows users who have already performed differential expression analysis in their own environments (outside of the container) to supply pre-formatted CSV files, bypassing the need to run the built-in Preprocessing_h5ad.py or Preprocessing_Seuratobj.r scripts. These customized DEG tables must follow the standard DiVenn2 format as described in the 'Output Format' section: each row should contain Condition_1, Condition_2, CellType, Gene, and Reg_direct, where Reg_direct is 1 for upregulated and 2 for downregulated genes in Condition_1. By supporting this flexible input mode, users can seamlessly integrate their existing pipelines and tools with DiVenn2’s powerful visualization capabilities.
 
 ## 📝 **Notes**
 - Ensure **Docker** or **Singulatiry** are installed and running before executing the commands.
