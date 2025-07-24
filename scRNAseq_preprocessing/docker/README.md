@@ -16,7 +16,7 @@ The preprocessing pipeline is encapsulated in a pre-built Docker image:
 To build the Docker image locally:
 
 ```bash
-docker build -t divenn2_degpreprocessing:v2 .
+docker build -t divenn2_degpreprocessing:07_18 .
 ```
 
 ## ⚙️ **Installation Instructions**
