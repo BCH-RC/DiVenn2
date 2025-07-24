@@ -11,7 +11,7 @@ The following sections contain scripts and a Docker/Singularity-based environmen
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
 
-🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:v2](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing)
+🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:07_18](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing:07_18)
 
 To build the Docker image locally:
 
