@@ -67,21 +67,22 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
     #    raise ValueError(f"Error: counts layer '{counts_layer}' not found. Available layers: {list(adata.layers.keys())}")
 
     # Restore raw counts into X (so rank_genes_groups uses counts, not scaled/log values)
-    #counts_layer = "counts_RNA"
+    counts_layer = "counts_RNA"
     #adata.X = adata.layers[counts_layer].copy()
+    adata_de = adata.copy()
+    adata_de.X = adata_de.layers[counts_layer]
     # store raw counts
     #adata.raw = adata.copy()
-    adata = adata.raw.to_adata()
 
-    cell_types = adata.obs[cell_type_col].unique().tolist()
-    conditions = adata.obs[condition_col].unique().tolist()
+    cell_types = adata_de.obs[cell_type_col].unique().tolist()
+    conditions = adata_de.obs[condition_col].unique().tolist()
     comparison_pairs = parse_comparison_pairs(comparison_str, conditions)
 
     catalog = []          # list of dicts describing each stored DE result
     all_degs = pd.DataFrame()    # filtered DEG dataframe
 
     for cell_type in cell_types:
-        adata_ct = adata[adata.obs[cell_type_col] == cell_type].copy()
+        adata_ct = adata_de[adata_de.obs[cell_type_col] == cell_type].copy()
 
         for cond1, cond2 in comparison_pairs:
             adata_cond1 = adata_ct[adata_ct.obs[condition_col] == cond1]
@@ -101,7 +102,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True,key_added=key)
 
                 # Copy result into main adata.uns 
-                adata.uns[key] = adata_pair.uns[key]
+                #adata.uns[key] = adata_pair.uns[key]
 
                 # add the key to catalog list
                 catalog.append({
@@ -109,8 +110,6 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     "cell_type": str(cell_type),
                     "cond1": str(cond1),
                     "cond2": str(cond2),
-                    "n_cond1": len(adata_cond1),
-                    "n_cond2": len(adata_cond2),
                     "method": method,
                     "groupby": condition_col})
 
@@ -134,6 +133,14 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     filtered_degs_df["Condition_2"] = cond2
                     filtered_degs_df["CellType"] = cell_type  
                     filtered_degs_df = filtered_degs_df[["Condition_1", "Condition_2", "CellType", "Gene", "Reg_direct"]]
+                    #adata.uns[key] = filtered_degs_df.to_dict(orient="list")
+                    adata.uns[key] = {
+                        "Gene": filtered_degs_df["Gene"].to_numpy().astype("U"),
+                        "Reg_direct": filtered_degs_df["Reg_direct"].to_numpy().astype("U"),
+                        "Condition_1": str(cond1),
+                        "Condition_2": str(cond2),
+                        "CellType": str(cell_type)
+                        }
                     all_degs = pd.concat([all_degs, filtered_degs_df], ignore_index=True)
                 else:
                     print(f"No DEGs found for {cell_type} ({cond1} vs {cond2}).")
@@ -142,8 +149,10 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
     
 
     # Store into adata.uns 
+    catalog_df = pd.DataFrame(catalog)
+    adata.uns["divenn_rank_genes_groups_catalog"] = catalog_df.to_dict(orient="list")
     #adata.uns["divenn_rank_genes_groups_catalog"] = catalog
-    adata.uns["divenn_degs"] = all_degs.to_dict(orient="list")
+    #adata.uns["divenn_degs"] = all_degs.to_dict(orient="list")
 
     # Write CSV
     if write_csv:
@@ -153,7 +162,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
     # Write output h5ad
-    adata.write_h5ad(output_h5ad)
+    adata.write_h5ad(output_h5ad,compression="gzip")
     print(f"Saved h5ad with embedded DE results to {output_h5ad}")
 
 def main():
@@ -168,6 +177,7 @@ def main():
     parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
     parser.add_argument("-m", "--method", type=str, default="wilcoxon",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: wilcoxon)")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
+    #parser.add_argument("--counts_layer", type=str, default="counts_RNA", help="Counts layer name (default: counts_RNA)")
     parser.add_argument("--write_csv", action="store_true", help="Write all DEG as CSV file")
     parser.add_argument("--output_csv", type=str, default=None, help="Path for optional DEG as CSV file")
 
@@ -181,7 +191,19 @@ def main():
     if adata is None:
         raise SystemExit(1)
 
-    DiVenn2_preprocess_seuratobj(adata,args.group,args.condition,args.logfc_thd,args.minpct_thd,args.padj_thd,args.comparisons,args.method,args.output,args.write_csv,args.output_csv)
+    DiVenn2_preprocess_seuratobj(
+        adata=adata,
+        cell_type_col=args.group,
+        condition_col=args.condition,
+        logfc_threshold=args.logfc_thd,
+        min_pct=args.minpct_thd,
+        p_val_adj_thd=args.padj_thd,
+        comparison_str=args.comparisons,
+        method=args.method,
+        output_h5ad=args.output,
+        write_csv=args.write_csv,
+        output_csv=args.output_csv,
+    )
 
 if __name__ == "__main__":
     main()
