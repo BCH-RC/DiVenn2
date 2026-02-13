@@ -50,7 +50,6 @@ def _sanitize_key(x: str) -> str:
     x = re.sub(r"[^A-Za-z0-9_.-]", "_", x)
     return x
 
-# counts_layer="counts_RNA"
 def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,output_h5ad,write_csv=False,output_csv=None):
     """
     Perform DE analysis per each group/celltype for DiVenn2.
@@ -66,13 +65,19 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
     #if counts_layer not in adata.layers.keys():
     #    raise ValueError(f"Error: counts layer '{counts_layer}' not found. Available layers: {list(adata.layers.keys())}")
 
-    # Restore raw counts into X (so rank_genes_groups uses counts, not scaled/log values)
-    counts_layer = "counts_RNA"
     #adata.X = adata.layers[counts_layer].copy()
     adata_de = adata.copy()
-    adata_de.X = adata_de.layers[counts_layer]
+    #adata_de.X = adata_de.layers[counts_layer]
     # store raw counts
     #adata.raw = adata.copy()
+    # check if raw exists and is usable
+    has_raw = (adata_de.raw is not None)
+    if has_raw:
+        try:
+            _ = adata_de.raw.X
+        except Exception:
+            has_raw = False
+    print(f"[DiVenn2] rank_genes_groups will use: {'adata.raw.X' if has_raw else 'adata.X'}")
 
     cell_types = adata_de.obs[cell_type_col].unique().tolist()
     conditions = adata_de.obs[condition_col].unique().tolist()
@@ -99,7 +104,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 print(key)
 
                 # Run DE and store under key 
-                sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True,key_added=key)
+                sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True,key_added=key,use_raw=None)
 
                 # Copy result into main adata.uns 
                 #adata.uns[key] = adata_pair.uns[key]
@@ -177,7 +182,6 @@ def main():
     parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
     parser.add_argument("-m", "--method", type=str, default="wilcoxon",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: wilcoxon)")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
-    #parser.add_argument("--counts_layer", type=str, default="counts_RNA", help="Counts layer name (default: counts_RNA)")
     parser.add_argument("--write_csv", action="store_true", help="Write all DEG as CSV file")
     parser.add_argument("--output_csv", type=str, default=None, help="Path for optional DEG as CSV file")
 
