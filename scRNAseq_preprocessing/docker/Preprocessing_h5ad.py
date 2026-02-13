@@ -50,7 +50,7 @@ def _sanitize_key(x: str) -> str:
     x = re.sub(r"[^A-Za-z0-9_.-]", "_", x)
     return x
 
-def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,output_h5ad,write_csv=False,output_csv=None):
+def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,correction_method,output_h5ad,write_csv=False,output_csv=None):
     """
     Perform DE analysis per each group/celltype for DiVenn2.
     - Stores each rank_genes_groups result in adata.uns under a unique key
@@ -104,7 +104,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 print(key)
 
                 # Run DE and store under key 
-                sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method='bonferroni', tie_correct=True,key_added=key,use_raw=None)
+                sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method=correction_method, tie_correct=True,key_added=key,use_raw=None)
 
                 # Copy result into main adata.uns 
                 #adata.uns[key] = adata_pair.uns[key]
@@ -133,6 +133,11 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                                                ((degs_df["pts1"] >= min_pct) | (degs_df["pts2"] >= min_pct)) &  
                                                (degs_df["pvals_adj"] < p_val_adj_thd)]
                     
+                    # check if there is no gene pass the filtring
+                    #if filtered_degs_df.shape[0] < 3:
+                    if filtered_degs_df.empty:
+                        print(f"No DEGs passed thresholds for {cell_type} ({cond1} vs {cond2})")
+                        continue
                     filtered_degs_df["Reg_direct"] = filtered_degs_df["logfoldchanges"].apply(lambda x: '1' if x > 0 else '2')
                     filtered_degs_df["Condition_1"] = cond1
                     filtered_degs_df["Condition_2"] = cond2
@@ -142,9 +147,9 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     adata.uns[key] = {
                         "Gene": filtered_degs_df["Gene"].to_numpy().astype("U"),
                         "Reg_direct": filtered_degs_df["Reg_direct"].to_numpy().astype("U"),
-                        "Condition_1": str(cond1),
-                        "Condition_2": str(cond2),
-                        "CellType": str(cell_type)
+                        #"Condition_1": str(cond1),
+                        #"Condition_2": str(cond2),
+                        #"CellType": str(cell_type)
                         }
                     all_degs = pd.concat([all_degs, filtered_degs_df], ignore_index=True)
                 else:
@@ -181,9 +186,10 @@ def main():
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adj p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
     parser.add_argument("-m", "--method", type=str, default="wilcoxon",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: wilcoxon)")
+    parser.add_argument("-t", "--correction_method", type=str, default="benjamini-hochberg",help="p-value correction method: 'benjamini-hochberg', 'bonferroni' (default: 'benjamini-hochberg')")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
-    parser.add_argument("--write_csv", action="store_true", help="Write all DEG as CSV file")
-    parser.add_argument("--output_csv", type=str, default=None, help="Path for optional DEG as CSV file")
+    parser.add_argument("-s","--write_csv", action="store_true", help="Write all DEG as CSV file")
+    parser.add_argument("-n","--output_csv", type=str, default=None, help="Path for optional DEG as CSV file")
 
     args = parser.parse_args()
 
@@ -204,6 +210,7 @@ def main():
         p_val_adj_thd=args.padj_thd,
         comparison_str=args.comparisons,
         method=args.method,
+        correction_method=args.correction_method,
         output_h5ad=args.output,
         write_csv=args.write_csv,
         output_csv=args.output_csv,
