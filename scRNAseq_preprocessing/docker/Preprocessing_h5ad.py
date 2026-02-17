@@ -50,7 +50,7 @@ def _sanitize_key(x: str) -> str:
     x = re.sub(r"[^A-Za-z0-9_.-]", "_", x)
     return x
 
-def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,correction_method,output_h5ad,write_csv=False,output_csv=None):
+def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,correction_method,output_h5ad,write_csv=False):
     """
     Perform DE analysis per each group/celltype for DiVenn2.
     - Stores each rank_genes_groups result in adata.uns under a unique key
@@ -166,8 +166,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
 
     # Write CSV
     if write_csv:
-        if output_csv is None:
-            output_csv = os.path.splitext(output_h5ad)[0] + "_divenn2_deg.csv"
+        output_csv = os.path.splitext(output_h5ad)[0] + "_divenn2_deg.csv"
         all_degs.to_csv(output_csv, index=False)
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
@@ -189,7 +188,6 @@ def main():
     parser.add_argument("-t", "--correction_method", type=str, default="benjamini-hochberg",help="p-value correction method: 'benjamini-hochberg', 'bonferroni' (default: 'benjamini-hochberg')")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
     parser.add_argument("-s","--write_csv", action="store_true", help="Write all DEG as CSV file")
-    parser.add_argument("-n","--output_csv", type=str, default=None, help="Path for optional DEG as CSV file")
 
     args = parser.parse_args()
 
@@ -212,8 +210,7 @@ def main():
         method=args.method,
         correction_method=args.correction_method,
         output_h5ad=args.output,
-        write_csv=args.write_csv,
-        output_csv=args.output_csv,
+        write_csv=args.write_csv
     )
 
 if __name__ == "__main__":
