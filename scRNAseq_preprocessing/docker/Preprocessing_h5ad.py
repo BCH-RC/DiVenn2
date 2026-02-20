@@ -104,7 +104,18 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 print(key)
 
                 # Run DE and store under key 
-                sc.tl.rank_genes_groups(adata_pair, groupby=condition_col, groups=[cond1], reference=cond2,method=method, n_genes=None, pts=True, corr_method=correction_method, tie_correct=True,key_added=key,use_raw=None)
+                tie_correct = True if method.lower() == "wilcoxon" else False # set tie_correct to True only if using wilcox method
+                sc.tl.rank_genes_groups(adata_pair, 
+                    groupby=condition_col, 
+                    groups=[cond1], 
+                    reference=cond2,
+                    method=method, 
+                    n_genes=None, 
+                    pts=True, 
+                    corr_method=correction_method, 
+                    tie_correct=tie_correct,
+                    key_added=key,
+                    use_raw=None)
 
                 # Copy result into main adata.uns 
                 #adata.uns[key] = adata_pair.uns[key]
@@ -184,10 +195,10 @@ def main():
     parser.add_argument("-r", "--minpct_thd", type=float, default=0.01, help="Min pct threshold (default: 0.01)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adj p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
-    parser.add_argument("-m", "--method", type=str, default="wilcoxon",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: wilcoxon)")
+    parser.add_argument("-m", "--method", type=str, default="t-test",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: t-test)")
     parser.add_argument("-t", "--correction_method", type=str, default="benjamini-hochberg",help="p-value correction method: 'benjamini-hochberg', 'bonferroni' (default: 'benjamini-hochberg')")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
-    parser.add_argument("-s","--write_csv", action="store_true", help="Write all DEG as CSV file")
+    parser.add_argument("-s","--write_csv", action="store_false", help="Write all DEG as CSV file")
 
     args = parser.parse_args()
 
