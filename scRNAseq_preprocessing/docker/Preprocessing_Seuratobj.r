@@ -27,7 +27,7 @@ option_list <- list(
               help = "Condition comparisons list (format: A:B,A:C,B:C)", metavar = "character"),
   make_option(c("-m", "--method"), type = "character", default = "wilcox",
               help = "Denotes which test to use. Available options are: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'", metavar = "character"),
-  make_option(c("-s", "--write_csv"),action = "store_true", default = FALSE,
+  make_option(c("-s", "--write_csv"),action = "store_true", default = TRUE,
               help = "Write all DEG as CSV file")
 )
 
@@ -154,7 +154,7 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
     seurat_obj_gp <- seurat_obj[, seurat_obj@meta.data[, gp_col] %in% gp]
     Idents(seurat_obj_gp) <- seurat_obj_gp@meta.data[, cond_col]
     cat("Normalization...\n")
-    seurat_obj_gp <- NormalizeData(seurat_obj_gp)
+    #seurat_obj_gp <- NormalizeData(seurat_obj_gp)
 
     for (i in 1:nrow(combinations)) {
       cond_1 <- combinations[i, 1]
