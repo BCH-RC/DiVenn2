@@ -120,15 +120,6 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 # Copy result into main adata.uns 
                 #adata.uns[key] = adata_pair.uns[key]
 
-                # add the key to catalog list
-                catalog.append({
-                    "key": key,
-                    "cell_type": str(cell_type),
-                    "cond1": str(cond1),
-                    "cond2": str(cond2),
-                    "method": method,
-                    "groupby": condition_col})
-
                 if key in adata_pair.uns:
                     result = adata_pair.uns[key]
                     groups = result['names'].dtype.names
@@ -149,12 +140,24 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     if filtered_degs_df.empty:
                         print(f"No DEGs passed thresholds for {cell_type} ({cond1} vs {cond2})")
                         continue
+                    else:
+                        print(f"Number of DEGs for {cell_type} ({cond1} vs {cond2}): {len(filtered_degs_df)}")
+
                     filtered_degs_df["Reg_direct"] = filtered_degs_df["logfoldchanges"].apply(lambda x: '1' if x > 0 else '2')
                     filtered_degs_df["Condition_1"] = cond1
                     filtered_degs_df["Condition_2"] = cond2
                     filtered_degs_df["CellType"] = cell_type  
                     filtered_degs_df = filtered_degs_df[["Condition_1", "Condition_2", "CellType", "Gene", "Reg_direct"]]
                     #adata.uns[key] = filtered_degs_df.to_dict(orient="list")
+                    # add the key to catalog list
+                    catalog.append({
+                        "key": key,
+                        "cell_type": str(cell_type),
+                        "cond1": str(cond1),
+                        "cond2": str(cond2),
+                        "method": method,
+                        "groupby": condition_col})
+
                     adata.uns[key] = {
                         "Gene": filtered_degs_df["Gene"].to_numpy().astype("U"),
                         "Reg_direct": filtered_degs_df["Reg_direct"].to_numpy().astype("U"),
