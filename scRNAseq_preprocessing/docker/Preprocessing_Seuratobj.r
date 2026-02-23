@@ -153,7 +153,7 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
     cat("Cell group:", gp, "\n")
     seurat_obj_gp <- seurat_obj[, seurat_obj@meta.data[, gp_col] %in% gp]
     Idents(seurat_obj_gp) <- seurat_obj_gp@meta.data[, cond_col]
-    cat("Normalization...\n")
+    #cat("Normalization...\n")
     #seurat_obj_gp <- NormalizeData(seurat_obj_gp)
 
     for (i in 1:nrow(combinations)) {
@@ -215,87 +215,94 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   }
   
   # -------------------- ADD: write h5ad with uns --------------------
-   # If fname ends with .csv -> replace with .h5ad; else append .h5ad
-    #h5ad_fname <- if (grepl("\\.csv$", fname, ignore.case = TRUE)) {
-    #    sub("\\.csv$", ".h5ad", fname, ignore.case = TRUE)
-    #} else {
-    #    paste0(fname, ".h5ad")
-    #}
-
     # Convert Seurat to AnnData (adata)
-    sce <- as.SingleCellExperiment(seurat_obj)
-    adata <- zellkonverter::SCE2AnnData(sce)
+  sce <- as.SingleCellExperiment(seurat_obj)
+  rd <- reducedDims(sce)
+  
+  cat("Rename obsm keys...\n")
+  print(names(rd)) # "PCA", "TSNE", "UMAP", "HARMONY"
+  # Convert to Scanpy style: X_<lowercase_name>
+  new_names <- paste0("X_", tolower(names(rd)))
+  names(rd) <- new_names
 
-    # If output is empty, still write h5ad (just without DEG keys)
-    if (nrow(output) > 0) {
+  #names(rd)[names(rd) == "UMAP"] <- "X_umap"
+  #names(rd)[names(rd) == "TSNE"] <- "X_tsne"
+  #names(rd)[names(rd) == "PCA"]  <- "X_pca"
+  #names(rd)[names(rd) == "HARMONY"] <- "X_harmony"
 
-        output$Condition_1 <- as.character(output$Condition_1)
-        output$Condition_2 <- as.character(output$Condition_2)
-        output$CellType    <- as.character(output$CellType)
-        output$Gene        <- as.character(output$Gene)
-        output$Reg_direct  <- as.character(output$Reg_direct)
+  reducedDims(sce) <- rd
+  adata <- zellkonverter::SCE2AnnData(sce)
 
-        # Create per-comparison keys and catalog
-        # Split output by (CellType, Condition_1, Condition_2)
-        split_list <- split(output, list(output$CellType, output$Condition_1, output$Condition_2), drop = TRUE)
+  # If output is empty, still write h5ad (just without DEG keys)
+  if (nrow(output) > 0) {
 
-        catalog <- data.frame(
-            key = character(),
-            cell_type = character(),
-            cond1 = character(),
-            cond2 = character(),
-            method = character(),
-            groupby = character(),
-            stringsAsFactors = FALSE
-        )
+      output$Condition_1 <- as.character(output$Condition_1)
+      output$Condition_2 <- as.character(output$Condition_2)
+      output$CellType    <- as.character(output$CellType)
+      output$Gene        <- as.character(output$Gene)
+      output$Reg_direct  <- as.character(output$Reg_direct)
 
-        for (nm in names(split_list)) {
-            df <- split_list[[nm]]
-            # avoid empty keys 
-            if (nrow(df) == 0) next  
+      # Create per-comparison keys and catalog
+      # Split output by (CellType, Condition_1, Condition_2)
+      split_list <- split(output, list(output$CellType, output$Condition_1, output$Condition_2), drop = TRUE)
 
-            ct <- df$CellType[1]
-            c1 <- df$Condition_1[1]
-            c2 <- df$Condition_2[1]
+      catalog <- data.frame(
+          key = character(),
+          cell_type = character(),
+          cond1 = character(),
+          cond2 = character(),
+          method = character(),
+          groupby = character(),
+          stringsAsFactors = FALSE
+      )
 
-            key <- make_key(ct, c1, c2)
+      for (nm in names(split_list)) {
+          df <- split_list[[nm]]
+          # avoid empty keys 
+          if (nrow(df) == 0) next  
 
-            # adata.uns[key] = {Gene, Reg_direct}
-            adata$uns[[key]] <- list(Gene = as.character(df$Gene),Reg_direct = as.character(df$Reg_direct))
+          ct <- df$CellType[1]
+          c1 <- df$Condition_1[1]
+          c2 <- df$Condition_2[1]
 
-            # catalog row (only if key exists / non-empty)
-            catalog <- rbind(catalog, data.frame(
-            key = key,
-            cell_type = ct,
-            cond1 = c1,
-            cond2 = c2,
-            method = method,        
-            groupby = cond_col,  
-            stringsAsFactors = FALSE
-            ))
-        }
+          key <- make_key(ct, c1, c2)
 
-        # Store catalog in uns as dict-of-lists
-        adata$uns[["divenn_rank_genes_groups_catalog"]] <- list(
-            key      = as.character(catalog$key),
-            cell_type= as.character(catalog$cell_type),
-            cond1    = as.character(catalog$cond1),
-            cond2    = as.character(catalog$cond2),
-            method   = as.character(catalog$method),
-            groupby  = as.character(catalog$groupby)
-        )
+          # adata.uns[key] = {Gene, Reg_direct}
+          adata$uns[[key]] <- list(Gene = as.character(df$Gene),Reg_direct = as.character(df$Reg_direct))
 
-    }
+          # catalog row (only if key exists / non-empty)
+          catalog <- rbind(catalog, data.frame(
+          key = key,
+          cell_type = ct,
+          cond1 = c1,
+          cond2 = c2,
+          method = method,        
+          groupby = cond_col,  
+          stringsAsFactors = FALSE
+          ))
+      }
 
-    # Write the h5ad
-    adata$write_h5ad(fname, compression = "gzip")
-    cat("Saved h5ad with embedded DE results to:", fname, "\n")
-    # Save the results as .csv file
-    if (store_csv) {
-        csv_fname <- sub("\\.h5ad$", "_divenn2_deg.csv", fname)       
-        write.csv(output, file = csv_fname, quote = FALSE, row.names = FALSE)
-        cat("Saved DEG CSV to:", csv_fname, "\n")
-    }
+      # Store catalog in uns as dict-of-lists
+      adata$uns[["divenn_rank_genes_groups_catalog"]] <- list(
+          key      = as.character(catalog$key),
+          cell_type= as.character(catalog$cell_type),
+          cond1    = as.character(catalog$cond1),
+          cond2    = as.character(catalog$cond2),
+          method   = as.character(catalog$method),
+          groupby  = as.character(catalog$groupby)
+      )
+
+  }
+
+  # Write the h5ad
+  adata$write_h5ad(fname, compression = "gzip")
+  cat("Saved h5ad with embedded DE results to:", fname, "\n")
+  # Save the results as .csv file
+  if (store_csv) {
+      csv_fname <- sub("\\.h5ad$", "_divenn2_deg.csv", fname)       
+      write.csv(output, file = csv_fname, quote = FALSE, row.names = FALSE)
+      cat("Saved DEG CSV to:", csv_fname, "\n")
+  }
 
 }
 
