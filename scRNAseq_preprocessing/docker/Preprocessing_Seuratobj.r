@@ -229,6 +229,13 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   #names(rd)[names(rd) == "TSNE"] <- "X_tsne"
   #names(rd)[names(rd) == "PCA"]  <- "X_pca"
   #names(rd)[names(rd) == "HARMONY"] <- "X_harmony"
+  # FORCE obsm to be plain matrices without dimnames 
+  for (k in names(rd)) {
+    m <- as.matrix(rd[[k]])     
+    rownames(m) <- NULL         
+    colnames(m) <- NULL         
+    rd[[k]] <- m
+  }
 
   reducedDims(sce) <- rd
   adata <- zellkonverter::SCE2AnnData(sce)
