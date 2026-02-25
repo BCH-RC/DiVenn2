@@ -87,6 +87,8 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
     all_degs = pd.DataFrame()    # filtered DEG dataframe
 
     for cell_type in cell_types:
+        print("--------------------------------------------")
+        print(f"Cell group: {cell_type}")
         adata_ct = adata_de[adata_de.obs[cell_type_col] == cell_type].copy()
 
         for cond1, cond2 in comparison_pairs:
@@ -94,14 +96,15 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
             adata_cond2 = adata_ct[adata_ct.obs[condition_col] == cond2]
 
             if len(adata_cond1) >= 3 and len(adata_cond2) >= 3:
-                print(f"Comparing {cond1} vs {cond2} for cell type {cell_type}...")
+                #print(f"Comparing {cond1} vs {cond2} for cell type {cell_type}...")
+                print(f"{cond1} vs {cond2}")
                 adata_pair = adata_ct[adata_ct.obs[condition_col].isin([cond1, cond2])].copy()
                 # Make a stable unique key for this result
                 ct_key = _sanitize_key(cell_type)
                 c1_key = _sanitize_key(cond1)
                 c2_key = _sanitize_key(cond2)
                 key = f"rank_genes_groups__ct={ct_key}__{c1_key}_vs_{c2_key}"
-                print(key)
+                #print(key)
 
                 # Run DE and store under key 
                 tie_correct = True if method.lower() == "wilcoxon" else False # set tie_correct to True only if using wilcox method
@@ -116,32 +119,51 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     tie_correct=tie_correct,
                     key_added=key,
                     use_raw=None)
-
+                df = sc.get.rank_genes_groups_df(adata_pair, key=key, group=cond1)
+                #df_down = df[(df["logfoldchanges"] < 0)]
+                #print(df["logfoldchanges"].min(), df["logfoldchanges"].max())
+                #min_fc=df["logfoldchanges"].min()
+                #sc.tl.filter_rank_genes_groups(adata_pair, 
+                #    key=key, 
+                #    groupby=condition_col, 
+                #    use_raw=None, 
+                #    key_added='rank_genes_groups_filtered', 
+                #    min_in_group_fraction=0.1, 
+                #    min_fold_change=min_fc, 
+                #    max_out_group_fraction=1, 
+                #    compare_abs=False)
+                #filtered_degs = sc.get.rank_genes_groups_df(adata_pair,key='rank_genes_groups_filtered',group=None)
                 # Copy result into main adata.uns 
                 #adata.uns[key] = adata_pair.uns[key]
 
                 if key in adata_pair.uns:
-                    result = adata_pair.uns[key]
-                    groups = result['names'].dtype.names
-                    degs_df = pd.DataFrame({
-                        "Gene": result['names'][groups[0]],
-                        "logfoldchanges": result['logfoldchanges'][groups[0]],
-                        "pvals_adj": result['pvals_adj'][groups[0]],
-                        "pts1": result['pts'][cond1],  
-                        "pts2": result['pts'][cond2]        
-                    })
+                    #result = adata_pair.uns[key]
+                    #groups = result['names'].dtype.names
+                    #degs_df = pd.DataFrame({
+                    #    "Gene": result['names'][groups[0]],
+                    #    "logfoldchanges": result['logfoldchanges'][groups[0]],
+                    #    "pvals_adj": result['pvals_adj'][groups[0]],
+                    #    "pts1": result['pts'][cond1],  
+                    #    "pts2": result['pts'][cond2]        
+                    #})
                     
-                    filtered_degs_df = degs_df[(degs_df["logfoldchanges"].abs() > logfc_threshold) & 
-                                               ((degs_df["pts1"] >= min_pct) | (degs_df["pts2"] >= min_pct)) &  
-                                               (degs_df["pvals_adj"] < p_val_adj_thd)]
+                    #filtered_degs_df = degs_df[(degs_df["logfoldchanges"].abs() > logfc_threshold) & 
+                    #                           ((degs_df["pts1"] > min_pct) | (degs_df["pts2"] > min_pct)) &  
+                    #                           (degs_df["pvals_adj"] < p_val_adj_thd)]
+                    result = sc.get.rank_genes_groups_df(adata_pair, key=key, group=cond1)
+                    result.rename(columns={"names": "Gene"}, inplace=True)
+                    #result = sc.get.rank_genes_groups_df(adata_pair, group = cond1, key=key, pval_cutoff=0.05, log2fc_min=None, log2fc_max=None)
+                    filtered_degs_df = result[(result["logfoldchanges"].abs() > logfc_threshold) & 
+                                               (result["pct_nz_group"] >= min_pct) &  
+                                               (result["pvals_adj"] < p_val_adj_thd)]
                     
                     # check if there is no gene pass the filtring
                     #if filtered_degs_df.shape[0] < 3:
                     if filtered_degs_df.empty:
-                        print(f"No DEGs passed thresholds for {cell_type} ({cond1} vs {cond2})")
+                        print("No marker genes found!")
                         continue
                     else:
-                        print(f"Number of DEGs for {cell_type} ({cond1} vs {cond2}): {len(filtered_degs_df)}")
+                        print(f"Number of marker genes:: {len(filtered_degs_df)}")
 
                     filtered_degs_df["Reg_direct"] = filtered_degs_df["logfoldchanges"].apply(lambda x: '1' if x > 0 else '2')
                     filtered_degs_df["Condition_1"] = cond1
@@ -166,10 +188,8 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                         #"CellType": str(cell_type)
                         }
                     all_degs = pd.concat([all_degs, filtered_degs_df], ignore_index=True)
-                else:
-                    print(f"No DEGs found for {cell_type} ({cond1} vs {cond2}).")
             else:
-                print(f"Not enough cells for comparison between {cond1} and {cond2} in {cell_type}.")
+                print(f"Not enough cells for comparison between {cond1} and {cond2}.")
     
 
     # Store into adata.uns 
@@ -194,8 +214,8 @@ def main():
     parser.add_argument("-i", "--input", type=str, required=True, help="Input .h5ad file")
     parser.add_argument("-c", "--condition", type=str, required=True, help="Condition column in adata.obs")
     parser.add_argument("-g", "--group", type=str, required=True, help="Group column in adata.obs (e.g., cell type)")
-    parser.add_argument("-f", "--logfc_thd", type=float, default=0.2, help="Abs logFC threshold (default: 0.2)")
-    parser.add_argument("-r", "--minpct_thd", type=float, default=0.01, help="Min pct threshold (default: 0.01)")
+    parser.add_argument("-f", "--logfc_thd", type=float, default=1, help="Abs logFC threshold (default: 1)")
+    parser.add_argument("-r", "--minpct_thd", type=float, default=0.25, help="Min pct threshold (default: 0.25)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adj p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
     parser.add_argument("-m", "--method", type=str, default="t-test",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: t-test)")
