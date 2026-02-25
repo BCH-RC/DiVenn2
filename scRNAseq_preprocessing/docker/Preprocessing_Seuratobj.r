@@ -31,6 +31,7 @@ option_list <- list(
               help = "Write all DEG as CSV file")
 )
 
+start_time <- proc.time()
 # Parse the command-line arguments
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
@@ -225,11 +226,7 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   new_names <- paste0("X_", tolower(names(rd)))
   names(rd) <- new_names
 
-  #names(rd)[names(rd) == "UMAP"] <- "X_umap"
-  #names(rd)[names(rd) == "TSNE"] <- "X_tsne"
-  #names(rd)[names(rd) == "PCA"]  <- "X_pca"
-  #names(rd)[names(rd) == "HARMONY"] <- "X_harmony"
-  # FORCE obsm to be plain matrices without dimnames 
+  # force obsm to be plain matrices without dimnames 
   for (k in names(rd)) {
     m <- as.matrix(rd[[k]])     
     rownames(m) <- NULL         
@@ -316,3 +313,6 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
 # Create the preprocessed DEG csv file for DiVenn2
 DiVenn2_preprocess_seuratobj(seurat_obj = seurat_obj, cond_col = condition_col, gp_col = group_col, fname = out_fname, logfc_thd = logfc_thd, min.pct_thd = minpct_thd, pval_adj_thd = padj_thd, condition_comparisons = condition_comparisons_table,store_csv = write_csv)
 
+end_time <- proc.time()
+elapsed_time <- end_time - start_time
+cat("Running time:", elapsed_time, "\n")
