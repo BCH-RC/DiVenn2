@@ -3,7 +3,8 @@ library(optparse)
 library(Seurat)
 library(SeuratDisk)
 library(reticulate)
-reticulate::use_python("/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools")
+#reticulate::use_python("/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools")
+reticulate::use_python(Sys.getenv("RETICULATE_PYTHON"), required = TRUE)
 library(anndata)
 
 ##### Change the following for your own data
