@@ -76,7 +76,7 @@ ENV PATH="/venv/bin:$PATH"
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install scanpy pandas numpy argparse
+    pip install scanpy pandas numpy argparse anndata
 
 # Set working directory
 WORKDIR /usr/src/app
