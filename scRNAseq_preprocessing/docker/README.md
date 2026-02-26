@@ -43,7 +43,7 @@ Explore Docker Desktop:
 ## 🧪 **Using Singularity (for HPC):**
 To use this pipeline in HPC environments, convert the Docker image into a Singularity image:
 ```bash
-singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:v2
+singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing::07_18
 ```
 
 ## **Folder Contents**
