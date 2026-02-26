@@ -53,7 +53,7 @@ RUN curl -O https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz && \
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 # Install R packages from CRAN and Bioconductor
-RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager'), repos = 'https://cloud.r-project.org')" && \
+RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager', 'reticulate', 'anndata', 'remotes'), repos = 'https://cloud.r-project.org')" && \
     R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
@@ -68,6 +68,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
 RUN R -e "devtools::install_github('immunogenomics/presto')"
+RUN R -e "remotes::install_github('mojaveazure/seurat-disk')"
 
 # Create and use a Python 3.11 virtual environment
 RUN python3.11 -m venv /venv
