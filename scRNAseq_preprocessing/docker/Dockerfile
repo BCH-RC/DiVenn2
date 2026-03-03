@@ -57,14 +57,14 @@ RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager', 'reticulate', 
     R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
-#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-#    git \
-#    pkg-config \
-#    libharfbuzz-dev \
-#    libfribidi-dev \
-#    libfreetype6-dev \
-#    libgit2-dev \
-#    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    git \
+    pkg-config \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libgit2-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 #RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
 RUN R -e "remotes::install_github('immunogenomics/presto')"
