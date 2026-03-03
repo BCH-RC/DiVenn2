@@ -36,7 +36,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa && \
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # Set environment variables
-ENV R_VERSION=4.4.0 \
+ENV R_VERSION=4.4.2 \
     CFLAGS='-std=gnu99' \
     R_KEEP_PKG_SOURCE=yes
 
@@ -57,17 +57,17 @@ RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager', 'reticulate', 
     R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git \
-    pkg-config \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libfreetype6-dev \
-    libgit2-dev \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+#    git \
+#    pkg-config \
+#    libharfbuzz-dev \
+#    libfribidi-dev \
+#    libfreetype6-dev \
+#    libgit2-dev \
+#    && rm -rf /var/lib/apt/lists/*
 
-RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
-RUN R -e "devtools::install_github('immunogenomics/presto')"
+#RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
+RUN R -e "remotes::install_github('immunogenomics/presto')"
 RUN R -e "remotes::install_github('mojaveazure/seurat-disk')"
 
 # Create and use a Python 3.11 virtual environment
