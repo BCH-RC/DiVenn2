@@ -2,9 +2,17 @@ library(optparse)
 library(Seurat)
 library(SingleCellExperiment)
 library(zellkonverter)
+cat("RETICULATE_PYTHON env:", Sys.getenv("RETICULATE_PYTHON"), "\n")
+cat("Python requested:", "/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools", "\n")
 library(reticulate)
-reticulate::use_python("/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools")
+reticulate::use_python("/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools", required = TRUE)
+cat("Python actually used by reticulate:\n")
+print(reticulate::py_config())
+
+#library(reticulate)
+#reticulate::use_python("/programs//x86_64-linux//scvi-tools/0.8.1/bin.capsules/python.scvi-tools")
 library(anndata)
+library(S4Vectors)
 
 ##### Change the following for your own data
 # Define the list of options
@@ -19,9 +27,9 @@ option_list <- list(
               help = "Cell Group (cell type)", metavar = "character"),
   make_option(c("-o", "--output"), type = "character", default = NULL,
               help = "Output .h5ad file (DiVenn2-ready)", metavar = "character"),
-  make_option(c("-f", "--logfc_thd"), type = "numeric", default = 0.2,
+  make_option(c("-f", "--logfc_thd"), type = "numeric", default = 0.1,
               help = "Log fold change threshold", metavar = "numeric"),
-  make_option(c("-r", "--minpct_thd"), type = "numeric", default = 0.1,
+  make_option(c("-r", "--minpct_thd"), type = "numeric", default = 0.01,
               help = "Minmumum cell percent in either condition", metavar = "numeric"),
   make_option(c("-v", "--padj_thd"), type = "numeric", default = 0.05,
               help = "Adjusted p-value threshold", metavar = "numeric"),
@@ -302,10 +310,19 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
     rm(seurat_obj_gp)
     gc()
   }
+
+  # Save the results as .csv file
+  if (store_csv) {
+      csv_fname <- sub("\\.h5ad$", "_divenn2_deg.csv", fname)       
+      write.csv(output, file = csv_fname, quote = FALSE, row.names = FALSE)
+      cat("Saved DEG CSV to:", csv_fname, "\n")
+  }
   
   # -------------------- ADD: write h5ad with uns --------------------
     # Convert Seurat to AnnData (adata)
+  np <- reticulate::import("numpy", convert = FALSE)  
   sce <- as.SingleCellExperiment(seurat_obj)
+
   rd <- reducedDims(sce)
   
   cat("Rename obsm keys...\n")
@@ -323,6 +340,20 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   }
 
   reducedDims(sce) <- rd
+
+  # make sure rowData is not empty
+  if (ncol(SummarizedExperiment::rowData(sce)) == 0) {
+    SummarizedExperiment::rowData(sce)$features <- rownames(sce)
+  }
+
+  # keep only logcounts
+  #if ("logcounts" %in% SummarizedExperiment::assayNames(sce)) {
+  #  log_mat <- SummarizedExperiment::assay(sce, "logcounts")
+  #  SummarizedExperiment::assays(sce) <- S4Vectors::SimpleList(logcounts = log_mat)
+  #} else {
+  #  stop("'logcounts' assay not found in sce")
+  #}
+
   adata <- zellkonverter::SCE2AnnData(sce)
 
   # If output is empty, still write h5ad (just without DEG keys)
@@ -360,7 +391,12 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
           key <- make_key(ct, c1, c2)
 
           # adata.uns[key] = {Gene, Reg_direct}
-          adata$uns[[key]] <- list(Gene = as.character(df$Gene),Reg_direct = as.character(df$Reg_direct))
+          #adata$uns[[key]] <- list(Gene = as.character(df$Gene),Reg_direct = as.character(df$Reg_direct))
+          # store as numpy arrays (scanpy-friendly)
+          adata$uns[[key]] <- reticulate::dict(
+            Gene = np$array(as.character(df$Gene), dtype = "object"),
+            Reg_direct = np$array(as.character(df$Reg_direct), dtype = "object")
+          )
 
           # catalog row (only if key exists / non-empty)
           catalog <- rbind(catalog, data.frame(
@@ -375,13 +411,21 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
       }
 
       # Store catalog in uns as dict-of-lists
-      adata$uns[["divenn_rank_genes_groups_catalog"]] <- list(
-          key      = as.character(catalog$key),
-          cell_type= as.character(catalog$cell_type),
-          cond1    = as.character(catalog$cond1),
-          cond2    = as.character(catalog$cond2),
-          method   = as.character(catalog$method),
-          groupby  = as.character(catalog$groupby)
+      #adata$uns[["divenn_rank_genes_groups_catalog"]] <- list(
+      #    key      = as.character(catalog$key),
+      #    cell_type= as.character(catalog$cell_type),
+      #    cond1    = as.character(catalog$cond1),
+      #    cond2    = as.character(catalog$cond2),
+      #    method   = as.character(catalog$method),
+      #    groupby  = as.character(catalog$groupby)
+      #)
+      adata$uns[["divenn_rank_genes_groups_catalog"]] <- reticulate::dict(
+        key       = np$array(as.character(catalog$key), dtype = "object"),
+        cell_type = np$array(as.character(catalog$cell_type), dtype = "object"),
+        cond1     = np$array(as.character(catalog$cond1), dtype = "object"),
+        cond2     = np$array(as.character(catalog$cond2), dtype = "object"),
+        method    = np$array(as.character(catalog$method), dtype = "object"),
+        groupby   = np$array(as.character(catalog$groupby), dtype = "object")
       )
 
   }
@@ -389,12 +433,6 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   # Write the h5ad
   adata$write_h5ad(fname, compression = "gzip")
   cat("Saved h5ad with embedded DE results to:", fname, "\n")
-  # Save the results as .csv file
-  if (store_csv) {
-      csv_fname <- sub("\\.h5ad$", "_divenn2_deg.csv", fname)       
-      write.csv(output, file = csv_fname, quote = FALSE, row.names = FALSE)
-      cat("Saved DEG CSV to:", csv_fname, "\n")
-  }
 
 }
 
