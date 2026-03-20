@@ -91,31 +91,31 @@ def filter_deg_table_by_gene_list(deg_table, gene_list=None, gene_col="Gene", mo
 
     return deg_table.loc[keep_idx].copy()
 
-def strip_counts_from_adata(adata, remove_raw=True, remove_counts_layer=True, count_layer_names=("counts", "raw_counts")):
-    """Remove raw/count storage from AnnData before writing output."""
-    if remove_raw:
-        try:
-            adata.raw = None
-            print("Removed adata.raw")
-        except Exception as e:
-            print(f"Could not remove adata.raw: {e}")
+#def strip_counts_from_adata(adata, remove_raw=True, remove_counts_layer=True, count_layer_names=("counts", "raw_counts")):
+#    """Remove raw/count storage from AnnData before writing output."""
+#    if remove_raw:
+#        try:
+#            adata.raw = None
+#            print("Removed adata.raw")
+#        except Exception as e:
+#            print(f"Could not remove adata.raw: {e}")
 
-    if remove_counts_layer:
-        try:
-            layer_keys = list(adata.layers.keys())
-            print("Existing adata layers:", ", ".join(layer_keys) if len(layer_keys) > 0 else "None")
-            for nm in count_layer_names:
-                if nm in adata.layers:
-                    del adata.layers[nm]
-                    print(f"Removed adata.layers['{nm}']")
-        except Exception as e:
-            print(f"Could not inspect/remove adata layers: {e}")
+#    if remove_counts_layer:
+#        try:
+#            layer_keys = list(adata.layers.keys())
+#            print("Existing adata layers:", ", ".join(layer_keys) if len(layer_keys) > 0 else "None")
+#            for nm in count_layer_names:
+#                if nm in adata.layers:
+#                    del adata.layers[nm]
+#                    print(f"Removed adata.layers['{nm}']")
+#        except Exception as e:
+#            print(f"Could not inspect/remove adata layers: {e}")
 
-    return adata
+#    return adata
 
-def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,
-                                 method,correction_method,output_h5ad,write_csv=False,gene_list=None,gene_filter_mode=None,
-                                 gene_filter_ignore_case=False,remove_raw=True,remove_counts_layer=True):
+def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,
+                                 comparison_str,method,correction_method,output_h5ad,write_csv=False,
+                                 gene_list=None,gene_filter_mode=None,gene_filter_ignore_case=False):
     """
     Perform DE analysis per each group/celltype for DiVenn2.
     - Stores each filtered DEG result in adata.uns under a unique key
@@ -243,12 +243,25 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
     # remove raw counts / count layers before final output
-    adata = strip_counts_from_adata(
-        adata=adata,
-        remove_raw=remove_raw,
-        remove_counts_layer=remove_counts_layer,
-        count_layer_names=("counts", "raw_counts")
-    )
+    #adata = strip_counts_from_adata(
+    #    adata=adata,
+    #    remove_raw=remove_raw,
+    #    remove_counts_layer=remove_counts_layer,
+    #    count_layer_names=("counts", "raw_counts")
+    #)
+    
+    print("layers before:", list(adata.layers.keys()))
+    print("has raw before:", adata.raw is not None)
+    #if "logcounts" in adata.layers:
+    #    adata.X = adata.layers["logcounts"].copy()
+    #    del adata.layers["logcounts"]
+
+    #if "counts" in adata.layers:
+    #    del adata.layers["counts"]
+    #adata.raw = None
+
+    #print("layers after:", list(adata.layers.keys()))
+    #print("has raw after:", adata.raw is not None)
 
     adata.write_h5ad(output_h5ad, compression="gzip")
     print(f"Saved h5ad with embedded DE results to {output_h5ad}")
@@ -276,11 +289,6 @@ def main():
     parser.add_argument("-a", "--gene_filter_ignore_case", action="store_true", default=False,
                         help="Ignore case when filtering DEGs by gene list")
 
-    # control raw/count removal from output h5ad
-    parser.add_argument("-k", "--keep_raw", action="store_true", default=False,
-                        help="Keep adata.raw in final h5ad (default: remove it)")
-    parser.add_argument("-p", "--keep_counts_layer", action="store_true", default=False,
-                        help="Keep counts/raw_counts layers in final h5ad (default: remove them)")
 
     args = parser.parse_args()
 
@@ -310,8 +318,6 @@ def main():
     print("Gene list file:", args.gene_list_file)
     print("Gene filter mode:", args.gene_filter_mode)
     print("Gene filter ignore case:", args.gene_filter_ignore_case)
-    print("Keep adata.raw:", args.keep_raw)
-    print("Keep counts/raw_counts layers:", args.keep_counts_layer)
 
     adata = load_h5ad(args.input)
     if adata is None:
@@ -331,10 +337,9 @@ def main():
         write_csv=args.write_csv,
         gene_list=gene_list,
         gene_filter_mode=args.gene_filter_mode,
-        gene_filter_ignore_case=args.gene_filter_ignore_case,
-        remove_raw=not args.keep_raw,
-        remove_counts_layer=not args.keep_counts_layer
+        gene_filter_ignore_case=args.gene_filter_ignore_case
     )
 
 if __name__ == "__main__":
     main()
+    
