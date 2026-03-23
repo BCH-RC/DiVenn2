@@ -27,7 +27,7 @@ output_dir="/lab-share/RC-DST-Bioinfo-e2/Public/Maryam/I26_DiVenn2/DiVenn2-main/
 #file_path="/lab-share/RC-DST-Bioinfo-e2/Public/Maryam/I26_DiVenn2/DiVenn2-main/scRNAseq_preprocessing/case_study/input_data/p111_casestudy_ctx.h5ad"
 
 # Download link: https://cellxgene.cziscience.com/collections/e5f58829-1a66-40b5-a624-9046778e74f5
-file_path="/lab-share/RC-DST-Bioinfo-e2/Public/Chunhui/I26_DiVenn2/Data/p238_downsize_seuratobj.h5ad"
+file_path="/lab-share/RC-DST-Bioinfo-e2/Public/Chunhui/I26_DiVenn2/Data/p238_seuratobj_downsize.h5ad"
 
 python3 Preprocessing_h5ad_update.py  \
     -w "$output_dir" \
