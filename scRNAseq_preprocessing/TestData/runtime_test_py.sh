@@ -32,15 +32,13 @@ file_path="/lab-share/RC-DST-Bioinfo-e2/Public/Chunhui/I26_DiVenn2/Data/p238_dow
 python3 Preprocessing_h5ad_update.py  \
     -w "$output_dir" \
     -i ${file_path} \
-    -c "sample" \
-    -g "celltypes" \
-    -x "FXPM:CON,FXS:CON" \
+    -c "group" \
+    -g "celltype" \
+    -x "all" \
     -m "t-test" \
     -f 1 \
     -r 0.25 \
     -v 0.05 \
-    #-l "$Gene_list" \
-    #-d keep \
     -o "p238_downsize_py.h5ad"
 
 
