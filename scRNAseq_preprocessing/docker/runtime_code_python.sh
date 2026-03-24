@@ -9,11 +9,11 @@ CONTAINER_ID=$(docker run -d -v /Users/chunhui/BCH_projects/Divenn/git_repo/DiVe
   -c "group" \
   -g "celltype" \
   -o "/data/p238_python.csv" \
-  -f 0.2 \
-  -r 0.01 \
+  -f 1 \
+  -r 0.25 \
   -v 0.05 \
   -x "CNV:ASD,CNV:CON" \
-  -m "wilcoxon")
+  -m "t-test")
 
 # Show the container output
 docker logs -f "$CONTAINER_ID"
