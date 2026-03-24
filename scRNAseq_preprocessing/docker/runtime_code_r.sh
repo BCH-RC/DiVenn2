@@ -10,8 +10,8 @@ CONTAINER_ID=$(docker run -d \
   -c group \
   -g celltype \
   -o /data/p238_seurat.csv \
-  -f 0.2 \
-  -r 0.1 \
+  -f 0.1 \
+  -r 0.01 \
   -v 0.05 \
   -x CNV:CON,ASD:CON,CNV:ASD \
   -m wilcox)
