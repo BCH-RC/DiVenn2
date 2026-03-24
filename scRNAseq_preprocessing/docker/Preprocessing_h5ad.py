@@ -29,7 +29,7 @@ def parse_comparison_pairs(comparison_str, conditions):
     """ Parse comparison string into a list of tuples """
     conditions = list(conditions)
     if comparison_str.lower() == "all":
-        return list(permutations(conditions, 2)) # permutations gives A:B and B:A (directed comparisons)
+        return list(permutations(conditions, 2))  # directed comparisons
     else:
         try:
             pairs = [tuple(pair.split(":")) for pair in comparison_str.split(",")]
@@ -50,26 +50,62 @@ def _sanitize_key(x: str) -> str:
     x = re.sub(r"[^A-Za-z0-9_.-]", "_", x)
     return x
 
-def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,comparison_str,method,correction_method,output_h5ad,write_csv=False):
+def read_gene_list(gene_list_file):
+    """Read a text file with one gene per line."""
+    if gene_list_file is None:
+        return None
+    if not os.path.exists(gene_list_file):
+        raise FileNotFoundError(f"Gene list file does not exist: {gene_list_file}")
+    with open(gene_list_file, "r") as f:
+        genes = [line.strip() for line in f if line.strip() != ""]
+    genes = list(dict.fromkeys(genes))
+    return genes
+
+def filter_deg_table_by_gene_list(deg_table, gene_list=None, gene_col="Gene", mode=None, ignore_case=False):
+    """Filter DEG dataframe by gene list using keep/remove mode."""
+    if gene_list is None or len(gene_list) == 0 or mode is None:
+        return deg_table
+
+    if gene_col not in deg_table.columns:
+        raise ValueError(f"Column '{gene_col}' not found in DEG table.")
+
+    mode = str(mode).strip().lower()
+    if mode not in {"remove", "keep"}:
+        raise ValueError("gene_filter_mode must be either 'remove' or 'keep'")
+
+    genes_deg = deg_table[gene_col].astype(str)
+    genes_ref = pd.Series(gene_list, dtype=str)
+
+    if ignore_case:
+        genes_deg_cmp = genes_deg.str.upper()
+        genes_ref_cmp = set(genes_ref.str.upper())
+    else:
+        genes_deg_cmp = genes_deg
+        genes_ref_cmp = set(genes_ref)
+
+    if mode == "remove":
+        keep_idx = ~genes_deg_cmp.isin(genes_ref_cmp)
+    else:
+        keep_idx = genes_deg_cmp.isin(genes_ref_cmp)
+
+    return deg_table.loc[keep_idx].copy()
+
+
+def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,
+                                 comparison_str,method,correction_method,output_h5ad,write_csv=False,
+                                 gene_list=None,gene_filter_mode=None,gene_filter_ignore_case=False):
     """
     Perform DE analysis per each group/celltype for DiVenn2.
-    - Stores each rank_genes_groups result in adata.uns under a unique key
+    - Stores each filtered DEG result in adata.uns under a unique key
     - Stores a catalog of available results in adata.uns['divenn_rank_genes_groups_catalog']
-    - Stores the consolidated filtered DEG edge table in adata.uns['divenn_degs']
     - Writes a single output .h5ad
     """
 
     if cell_type_col not in adata.obs.columns or condition_col not in adata.obs.columns:
         raise ValueError("Error: Invalid column names provided.")
 
-    #if counts_layer not in adata.layers.keys():
-    #    raise ValueError(f"Error: counts layer '{counts_layer}' not found. Available layers: {list(adata.layers.keys())}")
-
-    #adata.X = adata.layers[counts_layer].copy()
     adata_de = adata.copy()
-    #adata_de.X = adata_de.layers[counts_layer]
-    # store raw counts
-    #adata.raw = adata.copy()
+
     # check if raw exists and is usable
     has_raw = (adata_de.raw is not None)
     if has_raw:
@@ -83,8 +119,8 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
     conditions = adata_de.obs[condition_col].unique().tolist()
     comparison_pairs = parse_comparison_pairs(comparison_str, conditions)
 
-    catalog = []          # list of dicts describing each stored DE result
-    all_degs = pd.DataFrame()    # filtered DEG dataframe
+    catalog = []
+    all_degs = pd.DataFrame()
 
     for cell_type in cell_types:
         print("--------------------------------------------")
@@ -96,116 +132,97 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
             adata_cond2 = adata_ct[adata_ct.obs[condition_col] == cond2]
 
             if len(adata_cond1) >= 3 and len(adata_cond2) >= 3:
-                #print(f"Comparing {cond1} vs {cond2} for cell type {cell_type}...")
                 print(f"{cond1} vs {cond2}")
                 adata_pair = adata_ct[adata_ct.obs[condition_col].isin([cond1, cond2])].copy()
-                # Make a stable unique key for this result
+
                 ct_key = _sanitize_key(cell_type)
                 c1_key = _sanitize_key(cond1)
                 c2_key = _sanitize_key(cond2)
                 key = f"rank_genes_groups__ct={ct_key}__{c1_key}_vs_{c2_key}"
-                #print(key)
 
-                # Run DE and store under key 
-                tie_correct = True if method.lower() == "wilcoxon" else False # set tie_correct to True only if using wilcox method
-                sc.tl.rank_genes_groups(adata_pair, 
-                    groupby=condition_col, 
-                    groups=[cond1], 
+                tie_correct = True if method.lower() == "wilcoxon" else False
+
+                sc.tl.rank_genes_groups(adata_pair,
+                    groupby=condition_col,
+                    groups=[cond1],
                     reference=cond2,
-                    method=method, 
-                    n_genes=None, 
-                    pts=True, 
-                    corr_method=correction_method, 
+                    method=method,
+                    n_genes=None,
+                    pts=True,
+                    corr_method=correction_method,
                     tie_correct=tie_correct,
                     key_added=key,
-                    use_raw=None)
-                df = sc.get.rank_genes_groups_df(adata_pair, key=key, group=cond1)
-                #df_down = df[(df["logfoldchanges"] < 0)]
-                #print(df["logfoldchanges"].min(), df["logfoldchanges"].max())
-                #min_fc=df["logfoldchanges"].min()
-                #sc.tl.filter_rank_genes_groups(adata_pair, 
-                #    key=key, 
-                #    groupby=condition_col, 
-                #    use_raw=None, 
-                #    key_added='rank_genes_groups_filtered', 
-                #    min_in_group_fraction=0.1, 
-                #    min_fold_change=min_fc, 
-                #    max_out_group_fraction=1, 
-                #    compare_abs=False)
-                #filtered_degs = sc.get.rank_genes_groups_df(adata_pair,key='rank_genes_groups_filtered',group=None)
-                # Copy result into main adata.uns 
-                #adata.uns[key] = adata_pair.uns[key]
+                    use_raw=None
+                )
 
                 if key in adata_pair.uns:
-                    #result = adata_pair.uns[key]
-                    #groups = result['names'].dtype.names
-                    #degs_df = pd.DataFrame({
-                    #    "Gene": result['names'][groups[0]],
-                    #    "logfoldchanges": result['logfoldchanges'][groups[0]],
-                    #    "pvals_adj": result['pvals_adj'][groups[0]],
-                    #    "pts1": result['pts'][cond1],  
-                    #    "pts2": result['pts'][cond2]        
-                    #})
-                    
-                    #filtered_degs_df = degs_df[(degs_df["logfoldchanges"].abs() > logfc_threshold) & 
-                    #                           ((degs_df["pts1"] > min_pct) | (degs_df["pts2"] > min_pct)) &  
-                    #                           (degs_df["pvals_adj"] < p_val_adj_thd)]
                     result = sc.get.rank_genes_groups_df(adata_pair, key=key, group=cond1)
                     result.rename(columns={"names": "Gene"}, inplace=True)
-                    #result = sc.get.rank_genes_groups_df(adata_pair, group = cond1, key=key, pval_cutoff=0.05, log2fc_min=None, log2fc_max=None)
-                    filtered_degs_df = result[(result["logfoldchanges"].abs() > logfc_threshold) & 
-                                               (result["pct_nz_group"] >= min_pct) &  
-                                               (result["pvals_adj"] < p_val_adj_thd)]
-                    
-                    # check if there is no gene pass the filtring
-                    #if filtered_degs_df.shape[0] < 3:
+
+                    filtered_degs_df = result[
+                        (result["logfoldchanges"].abs() > logfc_threshold) &
+                        (result["pct_nz_group"] >= min_pct) &
+                        (result["pvals_adj"] < p_val_adj_thd)
+                    ].copy()
+
                     if filtered_degs_df.empty:
                         print("No marker genes found!")
                         continue
                     else:
-                        print(f"Number of marker genes:: {len(filtered_degs_df)}")
+                        print(f"Number of marker genes before optional gene-list filtering: {len(filtered_degs_df)}")
 
-                    filtered_degs_df["Reg_direct"] = filtered_degs_df["logfoldchanges"].apply(lambda x: '1' if x > 0 else '2')
+                    filtered_degs_df["Reg_direct"] = filtered_degs_df["logfoldchanges"].apply(lambda x: "1" if x > 0 else "2")
                     filtered_degs_df["Condition_1"] = cond1
                     filtered_degs_df["Condition_2"] = cond2
-                    filtered_degs_df["CellType"] = cell_type  
+                    filtered_degs_df["CellType"] = cell_type
                     filtered_degs_df = filtered_degs_df[["Condition_1", "Condition_2", "CellType", "Gene", "Reg_direct"]]
-                    #adata.uns[key] = filtered_degs_df.to_dict(orient="list")
-                    # add the key to catalog list
+
+                    # optional DEG filtering by user-defined gene list
+                    n_before_filter = filtered_degs_df.shape[0]
+                    filtered_degs_df = filter_deg_table_by_gene_list(
+                        deg_table=filtered_degs_df,
+                        gene_list=gene_list,
+                        gene_col="Gene",
+                        mode=gene_filter_mode,
+                        ignore_case=gene_filter_ignore_case)
+                    n_after_filter = filtered_degs_df.shape[0]
+
+                    if gene_filter_mode is not None and gene_list is not None:
+                        print(f"Number of marker genes after gene-list filtering: {n_after_filter} (filtered {n_before_filter - n_after_filter} genes)")
+
+                    if filtered_degs_df.empty:
+                        print("No marker genes left after optional gene-list filtering!")
+                        continue
+
                     catalog.append({
                         "key": key,
                         "cell_type": str(cell_type),
                         "cond1": str(cond1),
                         "cond2": str(cond2),
                         "method": method,
-                        "groupby": condition_col})
+                        "groupby": condition_col
+                    })
 
                     adata.uns[key] = {
                         "Gene": filtered_degs_df["Gene"].to_numpy().astype("U"),
                         "Reg_direct": filtered_degs_df["Reg_direct"].to_numpy().astype("U"),
-                        #"Condition_1": str(cond1),
-                        #"Condition_2": str(cond2),
-                        #"CellType": str(cell_type)
-                        }
+                    }
+
                     all_degs = pd.concat([all_degs, filtered_degs_df], ignore_index=True)
             else:
                 print(f"Not enough cells for comparison between {cond1} and {cond2}.")
-    
 
-    # Store into adata.uns 
     catalog_df = pd.DataFrame(catalog)
     adata.uns["divenn_rank_genes_groups_catalog"] = catalog_df.to_dict(orient="list")
-    #adata.uns["divenn_rank_genes_groups_catalog"] = catalog
-    #adata.uns["divenn_degs"] = all_degs.to_dict(orient="list")
 
-    # Write CSV
     if write_csv:
         output_csv = os.path.splitext(output_h5ad)[0] + "_divenn2_deg.csv"
         all_degs.to_csv(output_csv, index=False)
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
-    # Write output h5ad
-    adata.write_h5ad(output_h5ad,compression="gzip")
+    
+    print("layers before:", list(adata.layers.keys()))
+    adata.write_h5ad(output_h5ad, compression="gzip")
     print(f"Saved h5ad with embedded DE results to {output_h5ad}")
 
 def main():
@@ -217,17 +234,48 @@ def main():
     parser.add_argument("-f", "--logfc_thd", type=float, default=1, help="Abs logFC threshold (default: 1)")
     parser.add_argument("-r", "--minpct_thd", type=float, default=0.25, help="Min pct threshold (default: 0.25)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adj p-value threshold (default: 0.05)")
-    parser.add_argument("-x", "--comparisons", type=str, default="All",help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
-    parser.add_argument("-m", "--method", type=str, default="t-test",help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: t-test)")
-    parser.add_argument("-t", "--correction_method", type=str, default="benjamini-hochberg",help="p-value correction method: 'benjamini-hochberg', 'bonferroni' (default: 'benjamini-hochberg')")
+    parser.add_argument("-x", "--comparisons", type=str, default="All", help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
+    parser.add_argument("-m", "--method", type=str, default="t-test", help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: t-test)")
+    parser.add_argument("-t", "--correction_method", type=str, default="benjamini-hochberg", help="p-value correction method: 'benjamini-hochberg', 'bonferroni' (default: 'benjamini-hochberg')")
     parser.add_argument("-o", "--output", type=str, required=True, help="Output .h5ad file (DiVenn2-ready)")
-    parser.add_argument("-s","--write_csv", action="store_false", help="Write all DEG as CSV file")
+    parser.add_argument("-s", "--write_csv", action="store_false", help="Write all DEG as CSV file")
+
+    # DEG gene list filtering
+    parser.add_argument("-l", "--gene_list_file", type=str, default=None,
+                        help="Optional text file with one gene per line for DEG filtering")
+    parser.add_argument("-d", "--gene_filter_mode", type=str, default=None,
+                        help="Optional DEG filtering mode: 'remove' or 'keep'")
+    parser.add_argument("-a", "--gene_filter_ignore_case", action="store_true", default=False,
+                        help="Ignore case when filtering DEGs by gene list")
 
     args = parser.parse_args()
+
+    if args.gene_filter_mode is not None:
+        args.gene_filter_mode = args.gene_filter_mode.strip().lower()
+        if args.gene_filter_mode not in {"remove", "keep"}:
+            raise ValueError("--gene_filter_mode must be either 'remove' or 'keep'")
+
+    gene_list = read_gene_list(args.gene_list_file) if args.gene_list_file is not None else None
 
     if args.workdir:
         os.makedirs(args.workdir, exist_ok=True)
         os.chdir(args.workdir)
+
+    print("Working directory:", os.getcwd())
+    print("Input h5ad file:", args.input)
+    print("Condition column:", args.condition)
+    print("Group column:", args.group)
+    print("Output file:", args.output)
+    print("Log fold change threshold:", args.logfc_thd)
+    print("Minimum cell percent in either condition:", args.minpct_thd)
+    print("Adjusted p-value threshold:", args.padj_thd)
+    print("Condition comparisons:", args.comparisons)
+    print("DEG method:", args.method)
+    print("Correction method:", args.correction_method)
+    print("Store CSV file:", args.write_csv)
+    print("Gene list file:", args.gene_list_file)
+    print("Gene filter mode:", args.gene_filter_mode)
+    print("Gene filter ignore case:", args.gene_filter_ignore_case)
 
     adata = load_h5ad(args.input)
     if adata is None:
@@ -244,8 +292,12 @@ def main():
         method=args.method,
         correction_method=args.correction_method,
         output_h5ad=args.output,
-        write_csv=args.write_csv
+        write_csv=args.write_csv,
+        gene_list=gene_list,
+        gene_filter_mode=args.gene_filter_mode,
+        gene_filter_ignore_case=args.gene_filter_ignore_case
     )
 
 if __name__ == "__main__":
     main()
+    
