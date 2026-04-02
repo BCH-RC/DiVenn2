@@ -7,6 +7,7 @@ import os
 from itertools import permutations
 import logging
 import re
+import scipy.sparse as sp
 
 warnings.filterwarnings("ignore")
 pd.options.mode.chained_assignment = None
@@ -90,8 +91,50 @@ def filter_deg_table_by_gene_list(deg_table, gene_list=None, gene_col="Gene", mo
 
     return deg_table.loc[keep_idx].copy()
 
+def inspect_adata_matrix_state(adata, n_check=10000):
+    out = {}
+    out["X_shape"] = adata.X.shape
+    out["X_type"] = type(adata.X).__name__
+    out["has_raw"] = adata.raw is not None
+    out["layers"] = list(adata.layers.keys())
+    out["uns_keys"] = list(adata.uns.keys())
+    # metadata hint
+    out["has_uns_log1p"] = "log1p" in adata.uns
+    if "log1p" in adata.uns:
+        out["uns_log1p"] = adata.uns["log1p"]
+    # sample values from X
+    X = adata.X
+    if sp.issparse(X):
+        vals = X.data[:n_check]
+        row_sums = np.array(X.sum(axis=1)).ravel()
+    else:
+        vals = np.ravel(X)[:n_check]
+        row_sums = np.sum(X, axis=1)
+    vals = np.asarray(vals)
+    vals = vals[np.isfinite(vals)]
+    out["X_min"] = float(np.min(vals)) if vals.size else None
+    out["X_max"] = float(np.max(vals)) if vals.size else None
+    # integer-like check
+    if vals.size:
+        frac = np.abs(vals - np.round(vals))
+        out["fraction_integer_like"] = float(np.mean(frac < 1e-8))
+    else:
+        out["fraction_integer_like"] = None
+    out["row_sum_min"] = float(np.min(row_sums))
+    out["row_sum_median"] = float(np.median(row_sums))
+    out["row_sum_max"] = float(np.max(row_sums))
+    # heuristic guess
+    guess = []
+    if out["has_uns_log1p"]:
+        guess.append("uns['log1p'] present")
+    if out["fraction_integer_like"] is not None and out["fraction_integer_like"] < 0.95:
+        guess.append("X is mostly non-integer-like")
+    if out["X_max"] is not None and out["X_max"] < 50:
+        guess.append("X range looks compatible with log-normalized expression")
+    out["heuristic"] = guess
+    return out
 
-def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,p_val_adj_thd,
+def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_threshold,min_pct,max_pct,p_val_adj_thd,
                                  comparison_str,method,correction_method,output_h5ad,write_csv=False,
                                  gene_list=None,gene_filter_mode=None,gene_filter_ignore_case=False):
     """
@@ -139,6 +182,7 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                 c1_key = _sanitize_key(cond1)
                 c2_key = _sanitize_key(cond2)
                 key = f"rank_genes_groups__ct={ct_key}__{c1_key}_vs_{c2_key}"
+                key_flt = f"rank_genes_groups_filtered__ct={ct_key}__{c1_key}_vs_{c2_key}"
 
                 tie_correct = True if method.lower() == "wilcoxon" else False
 
@@ -154,14 +198,32 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
                     key_added=key,
                     use_raw=None
                 )
+                lfc = adata_pair.uns[key]['logfoldchanges'][cond1]
+                lfc_min = lfc.min()
+                lfc_max = lfc.max()
+
+                sc.tl.filter_rank_genes_groups(adata_pair, 
+                    key=key, 
+                    groupby=condition_col, 
+                    use_raw=None, 
+                    key_added=key_flt, 
+                    min_in_group_fraction=min_pct, 
+                    min_fold_change=lfc_min-1, 
+                    max_out_group_fraction=max_pct, 
+                    compare_abs=False
+                )
 
                 if key in adata_pair.uns:
-                    result = sc.get.rank_genes_groups_df(adata_pair, key=key, group=cond1)
+                    result = sc.get.rank_genes_groups_df(adata_pair, key=key_flt, group=cond1)
                     result.rename(columns={"names": "Gene"}, inplace=True)
 
+                    #filtered_degs_df = result[
+                    #    (result["logfoldchanges"].abs() > logfc_threshold) &
+                    #    (result["pct_nz_group"] >= min_pct) &
+                    #    (result["pvals_adj"] < p_val_adj_thd)
+                    #].copy()
                     filtered_degs_df = result[
                         (result["logfoldchanges"].abs() > logfc_threshold) &
-                        (result["pct_nz_group"] >= min_pct) &
                         (result["pvals_adj"] < p_val_adj_thd)
                     ].copy()
 
@@ -220,8 +282,16 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
         all_degs.to_csv(output_csv, index=False)
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
-    
-    print("layers before:", list(adata.layers.keys()))
+    info = inspect_adata_matrix_state(adata)
+    #print(info)
+    for k, v in info.items():
+        print(f"{k}: {v}")
+
+    adata.raw = None
+    # remove likely raw-count layers if present
+    for key in ["counts", "raw_counts", "raw", "count"]:
+        if key in adata.layers:
+            del adata.layers[key]                                 
     adata.write_h5ad(output_h5ad, compression="gzip")
     print(f"Saved h5ad with embedded DE results to {output_h5ad}")
 
@@ -233,6 +303,7 @@ def main():
     parser.add_argument("-g", "--group", type=str, required=True, help="Group column in adata.obs (e.g., cell type)")
     parser.add_argument("-f", "--logfc_thd", type=float, default=1, help="Abs logFC threshold (default: 1)")
     parser.add_argument("-r", "--minpct_thd", type=float, default=0.25, help="Min pct threshold (default: 0.25)")
+    parser.add_argument("-p", "--maxpct_thd", type=float, default=0.5, help="Max pct threshold out group fraction (default: 0.5)")
     parser.add_argument("-v", "--padj_thd", type=float, default=0.05, help="Adj p-value threshold (default: 0.05)")
     parser.add_argument("-x", "--comparisons", type=str, default="All", help="Condition comparisons list: 'All' or 'A:B,A:C' etc.")
     parser.add_argument("-m", "--method", type=str, default="t-test", help="DE method: 't-test', 't-test_overestim_var', 'wilcoxon', 'logreg' (default: t-test)")
@@ -267,7 +338,8 @@ def main():
     print("Group column:", args.group)
     print("Output file:", args.output)
     print("Log fold change threshold:", args.logfc_thd)
-    print("Minimum cell percent in either condition:", args.minpct_thd)
+    print("Minimum cell percent in in group condition:", args.minpct_thd)
+    print("Maximum cell percent in out group condition:", args.maxpct_thd)
     print("Adjusted p-value threshold:", args.padj_thd)
     print("Condition comparisons:", args.comparisons)
     print("DEG method:", args.method)
@@ -287,6 +359,7 @@ def main():
         condition_col=args.condition,
         logfc_threshold=args.logfc_thd,
         min_pct=args.minpct_thd,
+        max_pct=args.maxpct_thd,
         p_val_adj_thd=args.padj_thd,
         comparison_str=args.comparisons,
         method=args.method,
