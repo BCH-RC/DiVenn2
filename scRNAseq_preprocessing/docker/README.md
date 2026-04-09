@@ -2,7 +2,7 @@
 
 If your data is already in **.h5ad** format, we recommend using the DiVenn2 website first, as it provides the most straightforward workflow with default DEG parameters. Annotated scRNA-seq data in either **.h5ad** or **.rds** format can be used as input for DEG preprocessing. **.h5ad** files can be processed through the Docker-based pipeline when customized DEG parameters are needed, whereas .rds files must be processed through the Docker-based pipeline. In the Docker workflow, users install Docker, download the pipeline from Docker Hub, and run DEG preprocessing locally. The final output is an .h5ad file containing DEG information that is ready for DiVenn2 input.
 
-![Divenn Flow Chart](../../new_tutorial_imgs/Flowchart-DEGprep.png)
+![Divenn Flow Chart](../../images/Flowchart-DEGprep.png)
 
 ## 🔄 Custom DEG Table Input (User-Supplied CSV)
 
