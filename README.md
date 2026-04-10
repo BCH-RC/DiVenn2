@@ -1,8 +1,8 @@
-## **DiVenn 2.1**
+## **DiVenn 2**
 
 **An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
 
-🔗 **Launch DiVenn 2.1**: https://divenn.tch.harvard.edu/v2.1
+🔗 **Launch DiVenn 2**: https://divenn.tch.harvard.edu/v2
 
 📄 **Original publication**: [Front. Genet. 2019 – DiVenn](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full)
 
@@ -11,13 +11,13 @@
 ---
 
 <figure align="center">
-  <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2.1 Flow chart" width="600px"/>
-  <figcaption>DiVenn 2.1 Flow chart</figcaption>
+  <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2 Flow chart" width="600px"/>
+  <figcaption>DiVenn 2 Flow chart</figcaption>
 </figure>
 
 <figure align="left">
-  <img src="./images/homepage_202604.jpg" alt="DiVenn 2.1 Web Interface" width="100%"/>
-  <figcaption>Figure 1: DiVenn 2.1 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</figcaption>
+  <img src="./images/homepage_202604.jpg" alt="DiVenn 2 Web Interface" width="100%"/>
+  <figcaption>Figure 1: DiVenn 2 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</figcaption>
 </figure>
 
 ---
@@ -31,12 +31,12 @@
   - [Single-cell RNA-seq Analysis](#Single-cell-RNA-seq-Analysis)
 - [Visualization & Interaction](#[Visualization-&-Interaction)
 - [Enrichment Analysis](#Enrichment-Analysis)
-- [Species and ID Mapping](#Species-and-ID-Mapping)
+- [scRNAseq analysis and visualization](#scRNAseq-analysis-and-visualization)
 - [Export Options](#Export-Options)
 - [Citation](#Citation)
 
 ### Overview
-DiVenn 2.1 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
+DiVenn 2 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
 developed to support comprehensive and customizable comparison of gene lists from **bulk** level omics data and **single-cell RNA-seq (scRNA-seq)** datasets.
 This release brings enhanced visualization, expanded species and ID support, built-in GO/KEGG enrichment tools, AI interpretation of enrichment results, and scRNAseq data analysis and visualization all through a simple, interactive web interface.
 
@@ -48,7 +48,7 @@ To address the limitations of static Venn diagrams and to better explore these r
 that visualizes gene list overlaps using force-directed graphs enriched with integrated biological annotations. 
 The platform was widely adopted for its ability to provide expression context and functional annotation through connected GO and KEGG pathway data.
 
-Building on that foundation, **DiVenn 2.1** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
+Building on that foundation, **DiVenn 2** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
 
 #### Key Features:
   
@@ -61,14 +61,14 @@ Building on that foundation, **DiVenn 2.1** is a major upgrade to the original v
 -   Accepts multiple gene ID types: **NCBI/Entrez, Ensembl, UniProt, Gene Symbol and Plant-specific ID types**.
 -   Built-in scripts and Docker pipelines for scRNA-seq data preprocessing.
 
-DiVenn 2.1 is freely available at <https://divenn.tch.harvard.edu/v2.1>.
+DiVenn 2 is freely available at <https://divenn.tch.harvard.edu/v2>.
 
 ---
 
 ### Input & Data Preparation
 
 #### Classic Analysis
-DiVenn 2.1 accepts two input format for classic analysis: 
+DiVenn 2 accepts two input format for classic analysis: 
 
 - **Two-column tab-delimited files**: 
   - First column: Gene IDs
@@ -79,7 +79,7 @@ from differentially expressed (DE) genes. Users can select the cut-off value of 
 To simplify this gene regulation value, we require users to use “1” to represent up-regulated genes and “2” to represent down-regulated genes based 
 on their own cut-off value of fold change. Additional columns can be added to include custom annotations, which could be useful for unsupported sepcies.
 
-👉 [Sample Files](https://divenn.tch.harvard.edu/v2.1/data.php)
+👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
 ##### Interface Instructions
 1. Select the `Classic Analysis` tab on the DiVenn homepage.  
