@@ -4,9 +4,6 @@ If your data is already in **.h5ad** format, we recommend using the DiVenn2 webs
 
 ![Divenn Flow Chart](../../images/Flowchart-DEGprep.png)
 
-## 🔄 Custom DEG Table Input (User-Supplied CSV)
-
-the DiVenn2 DEG preprocessing pipeline supports custom DEG table inputs directly from users. This allows users who have already performed differential expression analysis in their own environments (outside of the container) to supply pre-formatted CSV files, bypassing the need to run the built-in DEG preprocessing steps. These customized DEG tables must follow the standard DiVenn2 format as described in the '📤  **Output Format**' section: each row should contain Condition_1, Condition_2, CellType, Gene, and Reg_direct, where Reg_direct is 1 for upregulated and 2 for downregulated genes in Condition_1. By supporting this flexible input mode, users can seamlessly integrate their existing pipelines and tools with DiVenn2’s powerful visualization capabilities.
 
 The following sections contain scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
@@ -168,8 +165,6 @@ where
 - CellType: Cell type (or group) where DEG analysis was performed
 - Gene: Gene symbol
 - Reg_direct: Direction of regulation - 1 = upregulated in Condition_1, 2 = downregulated in Condition_1
-
-This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
 
 ---
 
