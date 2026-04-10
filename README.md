@@ -10,15 +10,15 @@
 
 ---
 
-<figure align="center">
+<div align="center">
   <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2 Flow chart" width="600px"/>
-  <figcaption>DiVenn 2 Flow chart</figcaption>
-</figure>
+  <p><em>DiVenn 2 Flow chart</em></p>
+</div>
 
-<figure align="left">
+<div align="left">
   <img src="./images/homepage_202604.jpg" alt="DiVenn 2 Web Interface" width="100%"/>
-  <figcaption>Figure 1: DiVenn 2 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</figcaption>
-</figure>
+  <p><em>Figure 1: DiVenn 2 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</em></p>
+</div>
 
 ---
 
@@ -88,10 +88,10 @@ on their own cut-off value of fold change. Additional columns can be added to in
 4. Upload files for each experiment.
 5. Click `Submit` to visualize.
 
-<figure align="left">
+<div align="left">
   <img src="./images/classic_loadData_202604.jpg" alt="Classic load Data"  width="100%"/>
-  <figcaption>Figure 2: Data input in classic analysis mode</figcaption>
-</figure>
+  <p><em>Figure 2: Data input in classic analysis mode</em></p>
+</div>
 
 #### Single-cell RNA-seq Input
 
@@ -104,10 +104,10 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
 - Performs DEG analysis and generates a `.h5ad` file with computed DEGs.
 - [Docker workflow details](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/docker)
 
-<figure align="left">
+<div align="left">
   <img src="./images/Flowchart-DEGprep.png" alt="Docker workflow for DEG preprocessing"  width="100%"/>
-  <figcaption>Figure 3: Workflow of the Docker pipeline for DEG preprocessing</figcaption>
-</figure>
+  <p><em>Figure 3: Workflow of the Docker pipeline for DEG preprocessing</em></p>
+</div>
 
 ##### Interface Instructions
 1. Select the `scRNAseq Analysis` tab.
@@ -115,30 +115,30 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
 3. Choose the ID type.
 4. Click the `H5AD` button to a separate page.
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_loadData_202604.jpg" alt="scRNA data input" width="100%"/>
-  <figcaption>Figure 4: Interface of scRNAseq data input</figcaption>
-</figure>
+  <p><em>Figure 4: Interface of scRNAseq data input</em></p>
+</div>
 
 In the new page, users can load a `.h5ad` file. DiVenn will detect whether the file contains DEG results either from the Docker pipeline or Scanpy. Users can select DEG lists for visualization and comparison in DiVenn.
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_precomp_DEG.jpg" alt="scRNA data DEG lists" width="100%"/>
-  <figcaption>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</figcaption>
-</figure>
+  <p><em>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</em></p>
+</div>
 
 If no DEG results are found, users can select annotations from the file to calculate DEGs on the fly. Users should first choose the annotation of comparison conditions (e.g. disease and control) and then the cell subsets to compare in (e.g. cell types). The selected annotations will be used in the next step to select the comprisons. For example, condition 1 vs condition 2 in selected cell subsets, respectively. Multiple selection is supported with pressing the Shift key. More pairs of conditions can be added by clicking `Add Condition`. After clicking `Calcualte DEG`, the significant DEG lists will be shown similar to the precomputed results.
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_select_conditions_202604.jpg" alt="scRNA comparison selection" width="100%"/>
-  <figcaption>Figure 6: Interface to select DEG comparisons</figcaption>
-</figure>
+  <p><em>Figure 6: Interface to select DEG comparisons</em></p>
+</div>
 
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" height="50%" width="100%"/>
-  <figcaption>Figure 7: scRNA Force Directed Graph</figcaption>
-</figure>
+  <p><em>Figure 7: scRNA Force Directed Graph</em></p>
+</div>
 
 
 ##### Notes
@@ -158,28 +158,28 @@ If no DEG results are found, users can select annotations from the file to calcu
 - Right-clicking a node will show five function options: show or hide one or all node labels, show all gene associated pathways, or GO terms.
 - Right-clicking nodes can show the gene IDs of interest (See figure 8)
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="100%"/>
-  <figcaption>Figure 8: Right-click functions</figcaption>
-</figure>
+  <p><em>Figure 8: Right-click functions</em></p>
+</div>
 
 #### Customization
 - Adjust font size, color, and node shape (See figure 9)
 - Summarize groups and collapse nodes
 - Filter by condition, GO term, or pathway
 
-<figure align="left">
+<div align="left">
   <img src="./images/shape_font_size2.PNG" alt="Customize Appearance" width="100%"/>
-  <figcaption>Figure 9: Customize Appearance</figcaption>
-</figure>
+  <p><em>Figure 9: Customize Appearance</em></p>
+</div>
 
 #### Gene Information
 Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
 
-<figure align="left">
+<div align="left">
   <img src="./images/geneInfo.PNG" alt="Gene Info"  width="100%"/>
-  <figcaption>Figure 10: Gene Info</figcaption>
-</figure>
+  <p><em>Figure 10: Gene Info</em></p>
+</div>
 
 ---
 
@@ -188,64 +188,64 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 #### KEGG pathway and GO terms
 If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
 
-<figure align="left">
+<div align="left">
   <img src="./images/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="100%"/>
-  <figcaption>Figure 11: Genes in a group with KEGG and GO annotations</figcaption>
-</figure>
+  <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
+</div>
 
 #### GO Enrichment
 To perform GO enrichment for this set of genes, users need to click `GO enrichment` tab. It uses `clusterProfiler` R package to perform GO enrichment.
 User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 12), tree map plot (figure 13), AI interpretation (figure 14) and result table (figure 15) can be viewed.
 
 By default, bar chart shows up to 20 significant terms. The GO terms to show can be adjusted from the result table.
-<figure align="left">
+<div align="left">
   <img src="./images/GO_barchart_202604.jpg" alt="GO Barplot" width="100%"/>
-  <figcaption>Figure 13: GO Barplot</figcaption>
-</figure>
+  <p><em>Figure 13: GO Barplot</em></p>
+</div>
 
 Tree map summaries the GO terms based on GO hierarchy when more than 10 terms are selected.
-<figure align="left">
+<div align="left">
   <img src="./images/GO_treemap_202604.jpg" alt="GO treemap" width="100%"/>
-  <figcaption>Figure 14: GO tree map</figcaption>
-</figure>
+  <p><em>Figure 14: GO tree map</em></p>
+</div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
-<figure align="left">
+<div align="left">
   <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
-  <figcaption>Figure 15: GO AI interpretation</figcaption>
-</figure>
+  <p><em>Figure 15: GO AI interpretation</em></p>
+</div>
 
 Users can select GO terms and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
-<figure align="left">
+<div align="left">
   <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
-  <figcaption>Figure 16: GO result table</figcaption>
-</figure>
+  <p><em>Figure 16: GO result table</em></p>
+</div>
 
 #### KEGG Enrichment
 Similar to GO enrichment, user can perform KEGG pathway analysis by selecting the `KEGG pathway enrichment` and generate the same visualization, AI interpretation, and result table.
 
-<figure align="left">
+<div align="left">
   <img src="./images/KEGG_bar_202604.jpg" alt="KEGG Barplot"  width="100%"/>
-  <figcaption>Figure 17: KEGG Barplot</figcaption>
-</figure>
+  <p><em>Figure 17: KEGG Barplot</em></p>
+</div>
 
 Tree map summaries KEGG pathways based on KEGG BRITE database when more than 10 pathways are selected.
-<figure align="left">
+<div align="left">
   <img src="./images/KEGG_treemap_202604.jpg" alt="KEGG treemap" width="100%"/>
-  <figcaption>Figure 18: KEGG tree map</figcaption>
-</figure>
+  <p><em>Figure 18: KEGG tree map</em></p>
+</div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
-<figure align="left">
+<div align="left">
   <img src="./images/KEGG_AI_202604.jpg" alt="KEGG AI interpretation" width="100%"/>
-  <figcaption>Figure 19: KEGG AI interpretation</figcaption>
-</figure>
+  <p><em>Figure 19: KEGG AI interpretation</em></p>
+</div>
 
 Users can select KEGG pathways and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
-<figure align="left">
+<div align="left">
   <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
-  <figcaption>Figure 20: KEGG result table</figcaption>
-</figure>
+  <p><em>Figure 20: KEGG result table</em></p>
+</div>
 
 ---
 
@@ -254,17 +254,17 @@ When the input `.h5ad` file of scRNAseq data contains UMAP and t-SNE coordinates
 
 Users can color the cells by annotations in the file and search for genes to get feature plots. Cell groups can be hidden by unselecting from the annotation list.
 
-<figure align="left">
+<div align="left">
   <img src="./images/featurePlot_202604.jpg" alt="Feature plot" width="100%"/>
-  <figcaption>Figure 21: Feature plot</figcaption>
-</figure>
+  <p><em>Figure 21: Feature plot</em></p>
+</div>
 
 From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page by clicking the `UMAP/t-SNE` button. The `addModuleScore` algorithm from the Seurat package will be used to calculate the module score for this gene group (overlapping between multiple comparisons or unique to a comparison) and use the score to color the dimension reduction plot.
 
-<figure align="left">
+<div align="left">
   <img src="./images/moduleScorePlot_202604.jpg" alt="Module score plot" width="100%"/>
-  <figcaption>Figure 22: UMAP plot colored by module score</figcaption>
-</figure>
+  <p><em>Figure 22: UMAP plot colored by module score</em></p>
+</div>
 
 ---
 
