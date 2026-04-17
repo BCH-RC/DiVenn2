@@ -23,17 +23,17 @@
 ---
 
 ### Table of Contents
-- [Overview](#Overview)
-- [Introduction](#Introduction)
-- [Key Features](#Key-Features)
-- [Input & Data Preparation](#Input-&-Data-Preparation)
-  - [Classic Analysis](#Classic_Analysis)
-  - [Single-cell RNA-seq Analysis](#Single-cell-RNA-seq-Analysis)
-- [Visualization & Interaction](#[Visualization-&-Interaction)
-- [Enrichment Analysis](#Enrichment-Analysis)
-- [scRNAseq analysis and visualization](#scRNAseq-analysis-and-visualization)
-- [Export Options](#Export-Options)
-- [Citation](#Citation)
+- [Overview](#overview)
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Input & Data Preparation](#input--data-preparation)
+  - [Classic Analysis](#classic-analysis)
+  - [Single-cell RNA-seq Analysis](#single-cell-rna-seq-analysis)
+- [Visualization & Interaction](#visualization--interaction)
+- [Enrichment Analysis](#enrichment-analysis)
+- [scRNAseq analysis and visualization](#scrnaseq-analysis-and-visualization)
+- [Export Options](#export-options)
+- [Citation](#citation)
 
 ### Overview
 DiVenn 2 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
@@ -44,13 +44,13 @@ This release brings enhanced visualization, expanded species and ID support, bui
 Gene expression data from different biological states - such as mutant, double mutant, and wild-type samples - are commonly compared using Venn diagram tools. These comparisons help identify shared and unique genes
 between conditions and gain insights into their biological roles, especially through associated pathways and gene ontology (GO) terms.
 
-To address the limitations of static Venn diagrams and to better explore these relationships, we originally developed [DiVenn](https://divenn.tch.harvard.edu), an interactive web-based tool
+To address the limitations of static Venn diagrams and to better explore these relationships, we originally developed [DiVenn](https://divenn.tch.harvard.edu/v1), an interactive web-based tool
 that visualizes gene list overlaps using force-directed graphs enriched with integrated biological annotations. 
 The platform was widely adopted for its ability to provide expression context and functional annotation through connected GO and KEGG pathway data.
 
 Building on that foundation, **DiVenn 2** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
 
-#### Key Features:
+#### Key Features
   
 -   Comparison of up to **15 gene sets** simultaneously.
 -   Supports both **bulk** and **scRNA-seq** inputs.
@@ -93,7 +93,7 @@ on their own cut-off value of fold change. Additional columns can be added to in
   <p><em>Figure 2: Data input in classic analysis mode</em></p>
 </div>
 
-#### Single-cell RNA-seq Input
+#### Single-cell RNA-seq Analysis
 
 A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the input. If users have a `.rds` file from the Seurat pipeline, we provide a Docker pipeline to preprocess and convert the data. DiVenn can perform differentially expressed gene analysis with default methods and parameters in Seurat and Scanpy. Users can use the Docker pipeline described below to adjust the parameters.
 
@@ -102,7 +102,7 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
 ##### Docker Pipeline
 - Accept `.rds` (Seurat) or `.h5ad` (Scanpy) files.
 - Performs DEG analysis and generates a `.h5ad` file with computed DEGs.
-- [Docker workflow details](https://github.com/BCH-RC/DiVenn2/tree/main/scRNAseq_preprocessing/docker)
+- [Docker workflow details](./scRNAseq_preprocessing/docker)
 
 <div align="left">
   <img src="./images/Flowchart-DEGprep.png" alt="Docker workflow for DEG preprocessing"  width="100%"/>
@@ -143,7 +143,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 
 ##### Notes
 - Use your own comparison names (e.g. `WT_vs_KO`), but **do not start names with a number**
-- You can choose from four gene ID types (Ensembl, Uniprot, gene symbol and NCBI/Entrez. (see [ID Mapping](#species-and-id-mapping))
+- You can choose from gene ID types from Ensembl, Uniprot, gene symbol, NCBI/Entrez and plant specific IDs from Phytozome database
 - You can upload up to 15 experiment data sets for comparison 
 - Choose between 27 supported species from a drop-down menu
 
@@ -276,6 +276,7 @@ You can export:
 - Bar plots
 - Enrichment tables (.csv)
 - Gene/group details reports
+- Feature plot and module score plot on UMAP or t-SNE
 
 ---
 
