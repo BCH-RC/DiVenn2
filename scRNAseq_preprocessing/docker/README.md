@@ -1,12 +1,11 @@
-# **DiVenn2 DEG Preprocessing Pipeline**
+# **DiVenn 2 DEG Preprocessing Pipeline**
 
-![Divenn Flow Chart](../../new_tutorial_imgs/Flowchart-DEGprep.png)
+If your data is already in **.h5ad** format, we recommend using the DiVenn 2 website first, as it provides the most straightforward workflow with default DEG parameters. Annotated scRNA-seq data in either **.h5ad** or **.rds** format can be used as input for DEG preprocessing. **.h5ad** files can be processed through the Docker-based pipeline when customized DEG parameters are needed, whereas .rds files must be processed through the Docker-based pipeline. In the Docker workflow, users install Docker, download the pipeline from Docker Hub, and run DEG preprocessing locally. The final output is an .h5ad file containing DEG information that is ready for DiVenn 2 input.
 
-## 🔄 Custom DEG Table Input (User-Supplied CSV)
+![Divenn Flow Chart](../../images/Flowchart-DEGprep.png)
 
-the DiVenn2 DEG preprocessing pipeline supports custom DEG table inputs directly from users. This allows users who have already performed differential expression analysis in their own environments (outside of the container) to supply pre-formatted CSV files, bypassing the need to run the built-in DEG preprocessing steps. These customized DEG tables must follow the standard DiVenn2 format as described in the '📤  **Output Format**' section: each row should contain Condition_1, Condition_2, CellType, Gene, and Reg_direct, where Reg_direct is 1 for upregulated and 2 for downregulated genes in Condition_1. By supporting this flexible input mode, users can seamlessly integrate their existing pipelines and tools with DiVenn2’s powerful visualization capabilities.
 
-The following sections contain scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn2**. The containerized setup ensures reproducibility and consistency across computing environments.
+The following sections contain scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn 2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
@@ -43,7 +42,7 @@ Explore Docker Desktop:
 ## 🧪 **Using Singularity (for HPC):**
 To use this pipeline in HPC environments, convert the Docker image into a Singularity image:
 ```bash
-singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:v2
+singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing::07_18
 ```
 
 ## **Folder Contents**
@@ -51,8 +50,8 @@ singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degprep
 | File | Description |
 |------|------------|
 | **Dockerfile** | The script used to build the Docker image. |
-| **Preprocessing_h5ad.py** | Python script for processing **h5ad** files to generate DEG files as input for DiVenn2. |
-| **Preprocessing_Seuratobj.r** | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn2. |
+| **Preprocessing_h5ad.py** | Python script for processing **h5ad** files to generate DEG files as input for DiVenn 2. |
+| **Preprocessing_Seuratobj.r** | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn 2. |
 | **run_preprocessing.sh** | Wrapper script that allows users to run either `Preprocessing_h5ad.py` or `Preprocessing_Seuratobj.r` based on file type. |
 | **runtime_code_python.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **h5ad** format. |
 | **runtime_code_r.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **rds (Seurat obj)** format. |
@@ -166,8 +165,6 @@ where
 - CellType: Cell type (or group) where DEG analysis was performed
 - Gene: Gene symbol
 - Reg_direct: Direction of regulation - 1 = upregulated in Condition_1, 2 = downregulated in Condition_1
-
-This structure enables consistent input for DiVenn2 and supports downstream visualization of DEG intersections across multiple conditions and cell types.
 
 ---
 

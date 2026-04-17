@@ -36,7 +36,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa && \
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # Set environment variables
-ENV R_VERSION=4.4.0 \
+ENV R_VERSION=4.4.2 \
     CFLAGS='-std=gnu99' \
     R_KEEP_PKG_SOURCE=yes
 
@@ -53,8 +53,11 @@ RUN curl -O https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz && \
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 # Install R packages from CRAN and Bioconductor
-RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager'), repos = 'https://cloud.r-project.org')" && \
+RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager', 'reticulate', 'anndata', 'remotes'), repos = 'https://cloud.r-project.org')" && \
     R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
+
+RUN R -e "BiocManager::install('SingleCellExperiment',update = TRUE, ask = FALSE)"
+RUN R -e "BiocManager::install('zellkonverter',update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -66,8 +69,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
-RUN R -e "devtools::install_github('immunogenomics/presto')"
+#RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
+RUN R -e "remotes::install_github('immunogenomics/presto')"
+#RUN R -e "remotes::install_github('mojaveazure/seurat-disk')"
 
 # Create and use a Python 3.11 virtual environment
 RUN python3.11 -m venv /venv
@@ -75,7 +79,7 @@ ENV PATH="/venv/bin:$PATH"
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install scanpy pandas numpy argparse
+    pip install scanpy pandas numpy argparse anndata
 
 # Set working directory
 WORKDIR /usr/src/app

@@ -1,0 +1,137 @@
+<mxfile host="app.diagrams.net" pages="2">
+  <diagram name="Github_ver" id="Rlg876JijRv3pdEv-7rh">
+    <mxGraphModel dx="1174" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-0" />
+        <mxCell id="ue59SffXbuVytkPUU_Qh-1" parent="ue59SffXbuVytkPUU_Qh-0" />
+        <mxCell id="ue59SffXbuVytkPUU_Qh-2" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7e2cf;strokeColor=#6D1F00;strokeWidth=2;fontSize=22;align=center;verticalAlign=middle;arcSize=18;fontColor=#ffffff;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Annotated&lt;br&gt;scRNA-seq .h5ad file&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="260" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-4" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4ff;strokeColor=#6d9eeb;strokeWidth=2;arcSize=18;" value="" vertex="1">
+          <mxGeometry height="350" width="420" x="588" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-5" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6d9eeb;strokeWidth=1.5;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;" value="Docker pipeline for DEG analysis&lt;br&gt;(&lt;span style=&quot;font-size: 20px;&quot;&gt;customized&lt;/span&gt;&amp;nbsp;parameters)" vertex="1">
+          <mxGeometry height="55" width="305" x="635" y="353" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-6" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c9daf8;strokeColor=#666666;strokeWidth=2;fontSize=18;align=center;verticalAlign=middle;arcSize=14;" value="Install Docker &amp;amp; Download pipeline from Docker Hub" vertex="1">
+          <mxGeometry height="75" width="230" x="700" y="438" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-7" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c9daf8;strokeColor=#666666;strokeWidth=2;fontSize=18;align=center;verticalAlign=middle;arcSize=14;" value="Run DEG preprocessing&lt;br&gt;pipeline" vertex="1">
+          <mxGeometry height="82" width="230" x="700" y="548" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-9" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#93e17c;strokeColor=#4d8f3a;strokeWidth=2;fontSize=22;align=center;verticalAlign=middle;arcSize=18;" value="h5ad file with DEG information ready&lt;br&gt;for DiVenn2 input" vertex="1">
+          <mxGeometry height="120" width="270" x="1100" y="415.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-11" edge="1" parent="ue59SffXbuVytkPUU_Qh-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;fontSize=16;" value="">
+          <mxGeometry relative="1" x="0.3333" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="550" y="398" />
+              <mxPoint x="550" y="458" />
+            </Array>
+            <mxPoint x="500" y="398" as="sourcePoint" />
+            <mxPoint x="700" y="458" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-13" edge="1" parent="ue59SffXbuVytkPUU_Qh-1" source="ue59SffXbuVytkPUU_Qh-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;" target="ue59SffXbuVytkPUU_Qh-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ue59SffXbuVytkPUU_Qh-14" edge="1" parent="ue59SffXbuVytkPUU_Qh-1" source="ue59SffXbuVytkPUU_Qh-7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="ue59SffXbuVytkPUU_Qh-9" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="590" />
+              <mxPoint x="1040" y="488" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6H03Va9Kik7CPGG_ejX5-0" parent="ue59SffXbuVytkPUU_Qh-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7e2cf;strokeColor=#6D1F00;strokeWidth=2;fontSize=22;align=center;verticalAlign=middle;arcSize=18;fontColor=#ffffff;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Annotated&lt;br&gt;scRNA-seq .rds file&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="260" y="528" as="geometry" />
+        </mxCell>
+        <mxCell id="6H03Va9Kik7CPGG_ejX5-1" edge="1" parent="ue59SffXbuVytkPUU_Qh-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;fontSize=16;" value="">
+          <mxGeometry relative="1" x="0.3333" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="550" y="578" />
+              <mxPoint x="550" y="488" />
+            </Array>
+            <mxPoint x="500" y="578" as="sourcePoint" />
+            <mxPoint x="700" y="488" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Page-1" id="pNpQOBuKQyYclWpObvcx">
+    <mxGraphModel dx="1654" dy="895" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7e2cf;strokeColor=#6D1F00;strokeWidth=2;fontSize=22;align=center;verticalAlign=middle;arcSize=18;fontColor=#ffffff;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Annotated&lt;br&gt;scRNA-seq file&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(.h5ad / .rds)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="250" x="250" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f7e2cf;strokeColor=#9b7b63;strokeWidth=2;fontSize=20;align=center;verticalAlign=middle;" value="Choose&lt;br&gt;DEG Preparation&lt;br&gt;Method" vertex="1">
+          <mxGeometry height="200" width="230" x="260" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerGroup" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4ff;strokeColor=#6d9eeb;strokeWidth=2;arcSize=18;" value="" vertex="1">
+          <mxGeometry height="350" width="420" x="628" y="372" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerTitle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6d9eeb;strokeWidth=1.5;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;" value="Docker pipeline for DEG analysis&lt;br&gt;(&lt;span style=&quot;font-size: 20px; font-weight: 400;&quot;&gt;customized&lt;/span&gt;&amp;nbsp;parameters)" vertex="1">
+          <mxGeometry height="55" width="305" x="675" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="docker1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c9daf8;strokeColor=#666666;strokeWidth=2;fontSize=18;align=center;verticalAlign=middle;arcSize=14;" value="Install Docker" vertex="1">
+          <mxGeometry height="75" width="230" x="740" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="docker2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c9daf8;strokeColor=#666666;strokeWidth=2;fontSize=18;align=center;verticalAlign=middle;arcSize=14;" value="Run DEG preprocessing&lt;br&gt;pipeline from Docker Hub" vertex="1">
+          <mxGeometry height="95" width="270" x="720" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="divenn" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9ead3;strokeColor=#6aa84f;strokeWidth=2;fontSize=20;align=center;verticalAlign=middle;arcSize=18;" value="DiVenn2 interface for DEG analysis&lt;br&gt;(&lt;span style=&quot;font-size: 18px; font-weight: 700;&quot;&gt;default&lt;/span&gt;&amp;nbsp;parameters)" vertex="1">
+          <mxGeometry height="90" width="330" x="690" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="ready" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#93e17c;strokeColor=#4d8f3a;strokeWidth=2;fontSize=22;align=center;verticalAlign=middle;arcSize=18;" value="DEG file ready&lt;br&gt;for DiVenn input" vertex="1">
+          <mxGeometry height="120" width="270" x="1170" y="467.5" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;" target="decision" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;fontSize=16;" target="docker1" value="input is .h5ad / .rds file">
+          <mxGeometry relative="1" x="0.3343" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="660" y="520" />
+              <mxPoint x="660" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="divenn" value="input is .h5ad file only">
+          <mxGeometry relative="1" x="-0.1619" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="540" y="590" />
+              <mxPoint x="540" y="305" />
+            </Array>
+            <mxPoint x="630" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="docker1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;" target="docker2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="docker2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;" target="ready" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="648" />
+              <mxPoint x="1120" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="divenn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=2;" target="ready" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="305" />
+              <mxPoint x="1120" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

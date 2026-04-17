@@ -1,186 +1,296 @@
-# DiVenn
+## **DiVenn 2**
 
-**DiVenn** is an interactive and integrated web-based tool for comparing gene lists
+**An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
 
-## Introduction
+🔗 **Launch DiVenn 2**: https://divenn.tch.harvard.edu/v2
 
-Gene expression data generated from multiple biological states (mutant sample, double mutant sample and wild-type samples) are often compared via Venn diagram tools. It is of great interest to know the expression pattern between overlapping genes and their associated gene pathways or gene ontology terms. We developed DiVenn – a novel web-based tool that compares gene lists from multiple RNA-Seq experiments in a force directed graph, which shows the gene regulation levels for each gene and integrated KEGG pathway and gene ontology (GO) knowledge for the data visualization. Divenn2 includes exciting new features:
- - Expanded the number of species that can now be supported for gene analysis (now 23 species in total), including less-model species.
- - Support for a new ID type: Ensembl IDs. NCBI/Entrez, Uniprot, and Ensembl IDs are now supported depending on the target organism
- - Increased number of experiments allowed for visualization to 10 total experiments
- - More color and shape options for visualizations
- - Font size options
- - Pathway details and KEGG pathway enrichment details tables
- - Gene ontology details and GO enrichment details tables
- - Right-click options for each gene group to generate gene group details tables
- - Single gene detail tables
- - An updated database to include new species and provide mapping to other ID types if necessary/available (see Figure 17)
- - Generation of tables and bar chart visualizations for GO enrichment and KEGG enrichment analysis (See Figures 13, 14, 15, & 16)
+📄 **Original publication**: [Front. Genet. 2019 – DiVenn](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full)
+
+🎥 **Tutorial video**: [Watch on YouTube](https://www.youtube.com/watch?v=OypczjArKoo)
+
+---
+
+<div align="center">
+  <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2 Flow chart" width="600px"/>
+  <p><em>DiVenn 2 Flow chart</em></p>
+</div>
+
+<div align="left">
+  <img src="./images/homepage_202604.jpg" alt="DiVenn 2 Web Interface" width="100%"/>
+  <p><em>Figure 1: DiVenn 2 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</em></p>
+</div>
+
+---
+
+### Table of Contents
+- [Overview](#overview)
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Input & Data Preparation](#input--data-preparation)
+  - [Classic Analysis](#classic-analysis)
+  - [Single-cell RNA-seq Analysis](#single-cell-rna-seq-analysis)
+- [Visualization & Interaction](#visualization--interaction)
+- [Enrichment Analysis](#enrichment-analysis)
+- [scRNAseq analysis and visualization](#scrnaseq-analysis-and-visualization)
+- [Export Options](#export-options)
+- [Citation](#citation)
+
+### Overview
+DiVenn 2 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
+developed to support comprehensive and customizable comparison of gene lists from **bulk** level omics data and **single-cell RNA-seq (scRNA-seq)** datasets.
+This release brings enhanced visualization, expanded species and ID support, built-in GO/KEGG enrichment tools, AI interpretation of enrichment results, and scRNAseq data analysis and visualization all through a simple, interactive web interface.
+
+### Introduction
+Gene expression data from different biological states - such as mutant, double mutant, and wild-type samples - are commonly compared using Venn diagram tools. These comparisons help identify shared and unique genes
+between conditions and gain insights into their biological roles, especially through associated pathways and gene ontology (GO) terms.
+
+To address the limitations of static Venn diagrams and to better explore these relationships, we originally developed [DiVenn](https://divenn.tch.harvard.edu/v1), an interactive web-based tool
+that visualizes gene list overlaps using force-directed graphs enriched with integrated biological annotations. 
+The platform was widely adopted for its ability to provide expression context and functional annotation through connected GO and KEGG pathway data.
+
+Building on that foundation, **DiVenn 2** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
+
+#### Key Features
+  
+-   Comparison of up to **15 gene sets** simultaneously.
+-   Supports both **bulk** and **scRNA-seq** inputs.
+-   Interactive **force-directed network graphs** for dynamic visulaization.
+-   Integrated **GO/KEGG pathway enrichment analysis** via the `clusterProfiler` R package.
+-   High-resolution plot and interactive interactive exports.
+-   Support **27 species**, including lesser-studied organisms. 
+-   Accepts multiple gene ID types: **NCBI/Entrez, Ensembl, UniProt, Gene Symbol and Plant-specific ID types**.
+-   Built-in scripts and Docker pipelines for scRNA-seq data preprocessing.
+
+DiVenn 2 is freely available at <https://divenn.tch.harvard.edu/v2>.
+
+---
+
+### Input & Data Preparation
+
+#### Classic Analysis
+DiVenn 2 accepts two input format for classic analysis: 
+
+- **Two-column tab-delimited files**: 
+  - First column: Gene IDs
+  - Second column: Gene regulation values (1 for up-regulated, 2 for down-regulated genes)
  
+- **Gene expression data**: The first column is gene IDs and the second column is gene regulation values. The gene regulation value should be obtained 
+from differentially expressed (DE) genes. Users can select the cut-off value of fold change (for example, two-fold change) to define their DE genes. 
+To simplify this gene regulation value, we require users to use “1” to represent up-regulated genes and “2” to represent down-regulated genes based 
+on their own cut-off value of fold change. Additional columns can be added to include custom annotations, which could be useful for unsupported sepcies.
 
-### DiVenn has three key features:
+👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
-- Informative force-directed graph with gene expression levels to compare multiple data sets;
-- Interactive visualization with biological annotations and integrated pathway and GO databases, which can be used to subset or highlight gene nodes to pathway or GO terms of interest in the graph;
-- High resolution image and gene-associated information export.
+##### Interface Instructions
+1. Select the `Classic Analysis` tab on the DiVenn homepage.  
+2. Choose your species (requited for pathway/GO enrichment).
+3. Select input ID type and number of experiments (up to 15).
+4. Upload files for each experiment.
+5. Click `Submit` to visualize.
 
-_The current version is “2.0”._
+<div align="left">
+  <img src="./images/classic_loadData_202604.jpg" alt="Classic load Data"  width="100%"/>
+  <p><em>Figure 2: Data input in classic analysis mode</em></p>
+</div>
 
-The application is freely available at https://divenn.tch.harvard.edu/v2 (see Figure 1).
+#### Single-cell RNA-seq Analysis
 
-# Citation
-Sun, Liang, et al. 
-["DiVenn: An Interactive and Integrated Web-based Visualization Tool for Comparing Gene Lists."](https://www.frontiersin.org/articles/10.3389/fgene.2019.00421/abstract) Frontiers in Genetics (2019),doi: 10.3389/fgene.2019.00421 
-##### REPLACE with new article
+A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the input. If users have a `.rds` file from the Seurat pipeline, we provide a Docker pipeline to preprocess and convert the data. DiVenn can perform differentially expressed gene analysis with default methods and parameters in Seurat and Scanpy. Users can use the Docker pipeline described below to adjust the parameters.
 
-# Authors
-- Liang Sun: sunliang@udel.edu
-- Dane Zeeb: dane.zeeb@childrens.harvard.edu
-- Yinbing Ge: yinge@noble.org
-- Xueqiong Li: xli@noble.org
-# Contact Us
-If you have any questions, please contact Liang Sun: sunliang@udel.edu
-# Tutorial
-> **[Version 1.2](https://divenn.tch.harvard.edu/)**
-**[Version 2.0](https://divenn.tch.harvard.edu/v2/)**
+**Note**: Only Chrome and FireFox are supported for processing `.h5ad` files in the browser. Due to techinical limitations, Chrome can only work with files smaller than 2GB. If you encounter problems with large files (for example larger than 5GB), please consider using our Docker pipeline for preprocessing.
 
-Click below to watch a tutorial video.
+##### Docker Pipeline
+- Accept `.rds` (Seurat) or `.h5ad` (Scanpy) files.
+- Performs DEG analysis and generates a `.h5ad` file with computed DEGs.
+- [Docker workflow details](./scRNAseq_preprocessing/docker)
 
-[![Watch the video](https://img.youtube.com/vi/OypczjArKoo/0.jpg)](https://www.youtube.com/watch?v=OypczjArKoo)
+<div align="left">
+  <img src="./images/Flowchart-DEGprep.png" alt="Docker workflow for DEG preprocessing"  width="100%"/>
+  <p><em>Figure 3: Workflow of the Docker pipeline for DEG preprocessing</em></p>
+</div>
 
-The application is freely available at https://divenn.tch.harvard.edu/  (see Figure 1). 
+##### Interface Instructions
+1. Select the `scRNAseq Analysis` tab.
+2. Choose your species.
+3. Choose the ID type.
+4. Click the `H5AD` button to a separate page.
 
- 
-![Home Page](./new_tutorial_imgs/homepage2_0.PNG)
- _**Figure 1.** Homepage of DiVenn_
+<div align="left">
+  <img src="./images/scRNAseq_loadData_202604.jpg" alt="scRNA data input" width="100%"/>
+  <p><em>Figure 4: Interface of scRNAseq data input</em></p>
+</div>
 
+In the new page, users can load a `.h5ad` file. DiVenn will detect whether the file contains DEG results either from the Docker pipeline or Scanpy. Users can select DEG lists for visualization and comparison in DiVenn.
 
-## Browser requirements
-All modern browsers, such as Safari, Google Chrome, and IE are supported. The recommended web browser is [Chrome](https://www.google.com/chrome/). 
+<div align="left">
+  <img src="./images/scRNAseq_precomp_DEG.jpg" alt="scRNA data DEG lists" width="100%"/>
+  <p><em>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</em></p>
+</div>
 
-## Introduction of DiVenn Interface
-### 1.   Input Data
+If no DEG results are found, users can select annotations from the file to calculate DEGs on the fly. Users should first choose the annotation of comparison conditions (e.g. disease and control) and then the cell subsets to compare in (e.g. cell types). The selected annotations will be used in the next step to select the comprisons. For example, condition 1 vs condition 2 in selected cell subsets, respectively. Multiple selection is supported with pressing the Shift key. More pairs of conditions can be added by clicking `Add Condition`. After clicking `Calcualte DEG`, the significant DEG lists will be shown similar to the precomputed results.
 
-DiVenn currently accepts two types of input data (see Figure 2): 
-1. Two-column tab separated custom data. For example, gene ID and corresponding pathway data, transcription factors and their regulated downstream genes, and microRNAs and corresponding target genes. The second column must be "1" or "2". 
-2. Gene expression data. The first column is gene IDs and the second column is gene regulation value. The gene regulation value should be obtained from differentially expressed (DE) genes. Users can select the cut-off value of fold change (for example, two-fold change) to define their DE genes. To simplify this gene regulation value, we require users to use “1” to represent up-regulated genes and “2” to represent down-regulated genes based on their own cut-off value of fold change. If users need to link their genes to the KEGG pathway (Kanehisa and Goto, 2000) or GO database, 14 model species are supported in DiVenn. Currently, three types of gene IDs : KEGG, Uniprot (UniProt, 2008) and NCBI (Benson, et al., 2018), are accepted for pathway analysis. All agriGO (Du, et al., 2010; Tian, et al., 2017) supported IDs are supported for GO analysis by DiVenn ([View table](image/tutorial/GO_table.md) or download in [Excel](image/tutorial/GO_version.xlsx)).
-
-Please use the following sample data to test our tool: https://divenn.tch.harvard.edu/v2/data.php
-
-![Divenn Flow Chart](./new_tutorial_imgs/Divenn_flow_chart.png)
-
-_**Figure 2.** Flow chart of DiVenn_
-
-### 2.   Visualization
-![Visualization Example](./new_tutorial_imgs/force-directed-graph.png)
-
- _**Figure 3.** Force-directed graph in DiVenn_
-
-![Shape Font Example](./new_tutorial_imgs/shape_font.PNG)
-_**Figure 4.** Change shapes and font size_
-
-![Summarize Node and Color Example](./new_tutorial_imgs/summarize_color.PNG)
-_**Figure 5.** Change color scheme and summarize groups_
-
-### 3.	Click on the Graph
-Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
-
-Left-clicking a node will show the connected edge colors, which will display the gene regulation status for each experiment. Double-clicking the same node will hide the connecting edge colors.
-
-Right-clicking a node will show five function options: show or hide one or all node labels, show all gene associated pathways, or GO terms.
+<div align="left">
+  <img src="./images/scRNAseq_select_conditions_202604.jpg" alt="scRNA comparison selection" width="100%"/>
+  <p><em>Figure 6: Interface to select DEG comparisons</em></p>
+</div>
 
 
-#### 3.1	Show and hide node label function
-Right-clicking nodes can show the gene IDs of interest (see Figure 6).
-
-#### 3.2	Link to KEGG pathway and GO terms
-If users need to check the KEGG pathway or GO terms of interested gene node, they can choose the ‘Gene details’ option after right clicking the node (see Figure 7). Users may also see the KEGG pathway and GO terms of all genes in a given group of gene nodes by selecting 'Gene group details' after right clicking any node in a group (see Figure 6 and Figure #).
-
- 
-![Right-Click Example](./new_tutorial_imgs/clickGraph.PNG)
-
-_**Figure 6.** Right-click functions. Gene node names can be displayed and hidden; the detailed gene function, including pathway and GO terms, can be displayed through ‘Gene details’ button. A list of GO terms, pathways, and alternate IDs for each gene in a group of nodes can be displayed through the "Gene group details" button. Additionally, GO enrichment and KEGG pathway enrichment can be performed from the Gene group details table (see Figure #)._
+<div align="left">
+  <img src="./images/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" height="50%" width="100%"/>
+  <p><em>Figure 7: scRNA Force Directed Graph</em></p>
+</div>
 
 
-![Gene Detail Example](./new_tutorial_imgs/geneDetail.PNG)
+##### Notes
+- Use your own comparison names (e.g. `WT_vs_KO`), but **do not start names with a number**
+- You can choose from gene ID types from Ensembl, Uniprot, gene symbol, NCBI/Entrez and plant specific IDs from Phytozome database
+- You can upload up to 15 experiment data sets for comparison 
+- Choose between 27 supported species from a drop-down menu
 
-_**Figure 7.** Gene details. KEGG pathway and GO terms will be displayed._
+---
 
-### 4.	GUI Function
+### Visualization & Interaction
 
-#### Label Style
-You can hide or show node labels. 
+#### Force-Directed Graph
+- Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
+- Left-clicking will highlight edges (expression patterns). 
+- Double-clicking the same node will hide the connecting edge colors.
+- Right-clicking a node will show five function options: show or hide one or all node labels, show all gene associated pathways, or GO terms.
+- Right-clicking nodes can show the gene IDs of interest (See figure 8)
 
-#### Color
-You can change the color of all parent/experiment nodes in GUI (see Figure 5).
+<div align="left">
+  <img src="./images/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="100%"/>
+  <p><em>Figure 8: Right-click functions</em></p>
+</div>
 
-#### Save
-Graph can be saved as an SVG image file via the "Save as SVG" function, and the SVG file can be downloaded to your local computer. This SVG file can be converted to a high-resolution image using free online tools.
+#### Customization
+- Adjust font size, color, and node shape (See figure 9)
+- Summarize groups and collapse nodes
+- Filter by condition, GO term, or pathway
 
-#### Show Pathway Detail
-You can show all gene-associated pathways by clicking this button to get the pathway information table (see Figure 8).
+<div align="left">
+  <img src="./images/shape_font_size2.PNG" alt="Customize Appearance" width="100%"/>
+  <p><em>Figure 9: Customize Appearance</em></p>
+</div>
 
-The column headers on the informative table are sortable; the table is also searchable with key words of interest. If users need to sort a gene list based on the pathway name, they can click on the “Pathway” column header. If users need to select multiple genes from the same pathway after sorting the genes based on pathway, they can click the first checkbox and press shift before clicking the last checkbox. They can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button. For example, we can select all genes which are enriched to a significant KEGG pathway “Plant-pathogen interaction” (p value = 7.83e-14) and highlight all genes to be square shapes via “Redraw” function (See Figure 8). We can also subset all genes which belong to KEGG pathway “Plant-pathogen interaction” into another new graph (See Figure 10).
- 
+#### Gene Information
+Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
 
- 
-![Pathway Example](./new_tutorial_imgs/pathwayTable.PNG)
-_**Figure 8.** Pathway details of all associated genes in the force-directed graph._
+<div align="left">
+  <img src="./images/geneInfo.PNG" alt="Gene Info"  width="100%"/>
+  <p><em>Figure 10: Gene Info</em></p>
+</div>
 
-![Gene Highlight](./tutorial/highlight.PNG)
-_**Figure 9.** Highlight of genes in KEGG Plant-pathogen interaction pathway (square node)._
+---
 
-![Gene Subset](./new_tutorial_imgs/subset.PNG)
-_**Figure 10.** Subset of genes belonging to KEGG Plant-pathogen interaction pathway._
+### Enrichment Analysis
 
-#### Show Gene Ontology Detail
-You can show all gene-associated gene ontologies by clicking this button to get the gene ontology informative table (see Figure 11).
+#### KEGG pathway and GO terms
+If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
 
-The column headers on the informative table are sortable; the table is also searchable with key words of interest. If you need to sort the gene list based on the gene ontology name, click on the “GO term” column header. If you need to select multiple genes from the same GO terms after sorting the genes based on GO terms, click the first checkbox and press shift before clicking the last checkbox. You can redraw the selected genes to the square shapes by clicking the “Redraw” button at the end of the table or subset the genes into another new graph by clicking the “Only Redraw Selected” checkbox and the “Redraw” button.
+<div align="left">
+  <img src="./images/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="100%"/>
+  <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
+</div>
 
-![Gene Ontology Details](./new_tutorial_imgs/GO_table.png)
-_**Figure 11.** Gene ontology details of all associated genes in the force-directed graph._
+#### GO Enrichment
+To perform GO enrichment for this set of genes, users need to click `GO enrichment` tab. It uses `clusterProfiler` R package to perform GO enrichment.
+User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 12), tree map plot (figure 13), AI interpretation (figure 14) and result table (figure 15) can be viewed.
 
-#### Show Gene Group Details
-Detailed information for a group of genes can be obtained by right-clicking a node within a group of nodes in the graph and selecting "Gene Group Details". 
+By default, bar chart shows up to 20 significant terms. The GO terms to show can be adjusted from the result table.
+<div align="left">
+  <img src="./images/GO_barchart_202604.jpg" alt="GO Barplot" width="100%"/>
+  <p><em>Figure 13: GO Barplot</em></p>
+</div>
 
-The resulting table includes rows for each gene in the group with information such as its ID and any other mapped IDs (if available), gene description, pathway(s) that each gene is involved in with KEGG URLs, and GO information in the format: GO ID, GO description, GO category. The gene group details table also includes a button to export a txt file of the current table, and buttons to perform GO and KEGG pathway enrichment analysis (Figures 13-16).
+Tree map summaries the GO terms based on GO hierarchy when more than 10 terms are selected.
+<div align="left">
+  <img src="./images/GO_treemap_202604.jpg" alt="GO treemap" width="100%"/>
+  <p><em>Figure 14: GO tree map</em></p>
+</div>
 
-![Gene Group Details Table](./new_tutorial_imgs/gene_group_details.PNG)
-_**Figure 12.** Table generated when clicking on a node -> show gene group details._
+The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
+<div align="left">
+  <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
+  <p><em>Figure 15: GO AI interpretation</em></p>
+</div>
 
-#### Show GO Enrichment Analysis Table and Bar Plot Visualizations
-You can perform GO enrichment analysis for all genes after generating the pathway or GO tables, or for groups of genes by generating the gene group detail table and pressing the corresponding buttons. 
+Users can select GO terms and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
+<div align="left">
+  <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
+  <p><em>Figure 16: GO result table</em></p>
+</div>
 
-GO enrichment analysis is performed after mapping the list of genes to relevant IDs if necessary (see Figure 17). A table is generated providing detailed information for each enriched GO ID, including gene ratio, adjusted p val., q val., and more. All of the output of the GO enrichment analysis can be viewed via the "All" tab, or by category in each corresponding tab. Additionally, bar chart visualizations of the top 20 GO IDs are created for all and per category. You can also change the color of the visualizations using 4 color schemes in the drop down menu (Figure 13 and Figure 14).
+#### KEGG Enrichment
+Similar to GO enrichment, user can perform KEGG pathway analysis by selecting the `KEGG pathway enrichment` and generate the same visualization, AI interpretation, and result table.
 
-![Gene Ontology Table](./new_tutorial_imgs/GO_enrich.PNG)
-_**Figure 13.** GO enrichment results table with separate tabs for all, BP, CC, MF, and corresponding bar plot visualizations._
+<div align="left">
+  <img src="./images/KEGG_bar_202604.jpg" alt="KEGG Barplot"  width="100%"/>
+  <p><em>Figure 17: KEGG Barplot</em></p>
+</div>
 
-![Gene Ontology Table Barplot](./new_tutorial_imgs/GO_barplot.PNG)
-_**Figure 14.** GO enrichment bar plot visualizations created from GO enrichment results._
+Tree map summaries KEGG pathways based on KEGG BRITE database when more than 10 pathways are selected.
+<div align="left">
+  <img src="./images/KEGG_treemap_202604.jpg" alt="KEGG treemap" width="100%"/>
+  <p><em>Figure 18: KEGG tree map</em></p>
+</div>
 
-#### Show KEGG Pathway Enrichment Analysis Table
-You can perform KEGG pathway enrichment analysis for all genes after generating the pathway or GO tables, or for groups of genes by generating the gene group detail table and pressing the corresponding buttons. 
+The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
+<div align="left">
+  <img src="./images/KEGG_AI_202604.jpg" alt="KEGG AI interpretation" width="100%"/>
+  <p><em>Figure 19: KEGG AI interpretation</em></p>
+</div>
 
-KEGG pathway enrichment analysis is performed after mapping the list of genes to relevant IDs if necessary (see Figure 17). A table is generated providing detailed information for each enriched pathway, including gene ratio, adjusted p val., q val., and more. All of the output of the KEGG pathway enrichment analysis can be viewed via the "KEGG Pathways" tab. Additionally, a bar chart visualization of the top 20 pathways is created. You can also change the color of the visualizations using 4 color schemes in the drop down menu (Figure 15 and Figure 16).
+Users can select KEGG pathways and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
+<div align="left">
+  <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
+  <p><em>Figure 20: KEGG result table</em></p>
+</div>
 
-![KEGG Pathway Enrichment Table](./new_tutorial_imgs/KEGG_table.PNG)
-_**Figure 15.** KEGG pathway enrichment results table._
+---
 
-![KEGG Pathway Enrichment Bar plot](./new_tutorial_imgs/KEGG_bar.png)
-_**Figure 16.** KEGG pathway enrichment bar plot visualization created from KEGG pathway enrichment results._
+### scRNAseq analysis and visualization
+When the input `.h5ad` file of scRNAseq data contains UMAP and t-SNE coordinates stored in standard `X_UMAP` and `X_TSNE` slots, DiVenn can visualize expression of individual genes on the dimension reduction plot (often called feature plot). When right clicking on a gene node in the Divenn graph, there is a `Feature plot` menu option that will open a new page.
 
-#### Divenn2 Information Mapping Flow
-ID mapping is necessary for GO enrichment analysis and KEGG pathway enrichment analysis in some cases. Mapping is performed depending on the input ID type and species. Some species do not have annotation data for gene ID mapping so custom annotation files were created to supplement our database. Figure 17 shows the flow for ID mapping. In general, NCBI/Entrez IDs are acceptable for all organisms, although a couple of organisms have limited NCBI/Entrez IDs available in our database so enrichment analysis may not yield sufficient results. There is no mapping from Ensembl and Uniprot IDs to the following organisms: ddi, mpo, ppa (Dictyostelium discoideum, Marchantia polymorpha, and Physcomitrella patens respectively).
+Users can color the cells by annotations in the file and search for genes to get feature plots. Cell groups can be hidden by unselecting from the annotation list.
 
-More information about species mapping and sample species IDs can be found in the "Sample Data" section of from the homepage. The ID table is viewable under Species ID Samples and Reference.
+<div align="left">
+  <img src="./images/featurePlot_202604.jpg" alt="Feature plot" width="100%"/>
+  <p><em>Figure 21: Feature plot</em></p>
+</div>
 
-![Divenn Information Mapping Flow Chart](./new_tutorial_imgs/Mapping_Flow.png)
-_**Figure 17.** ID mapping scheme/flow for user input data._
+From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page by clicking the `UMAP/t-SNE` button. The `addModuleScore` algorithm from the Seurat package will be used to calculate the module score for this gene group (overlapping between multiple comparisons or unique to a comparison) and use the score to color the dimension reduction plot.
 
-# Open Source
-Visualization tools [D3.js](https://github.com/d3/d3) and a lightweight graphical user interface 
-[dat.GUI](https://github.com/dataarts/dat.gui)
+<div align="left">
+  <img src="./images/moduleScorePlot_202604.jpg" alt="Module score plot" width="100%"/>
+  <p><em>Figure 22: UMAP plot colored by module score</em></p>
+</div>
 
+---
+
+### Export Options
+
+You can export:
+
+- Network diagrams
+- Bar plots
+- Enrichment tables (.csv)
+- Gene/group details reports
+- Feature plot and module score plot on UMAP or t-SNE
+
+---
+
+### Citation
+
+Please cite the original DiVenn publication if you use this tool:
+
+> **Sun et al.** *DiVenn: An Interactive and Integrated Web-Based Visualization Tool for Comparing Gene Lists*. Front. Genet. 2019.  
+> [https://doi.org/10.3389/fgene.2019.00421](https://doi.org/10.3389/fgene.2019.00421)
+
+---
+
+## Contact & Contributions
+
+DiVenn is developed and maintained by the **Research Computing Bioinformatics Team at Boston Children Hospital**.  
+For issues or feature requests, [open an issue](https://github.com/BCH-RC/DiVenn2/issues) or reach out through the homepage.
 
