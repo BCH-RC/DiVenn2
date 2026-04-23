@@ -12,7 +12,7 @@
 
 <div align="center">
   <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2 Flow chart" width="600px"/>
-  <p><em>DiVenn 2 Flow chart</em></p>
+  <p><em>Figure 1: DiVenn 2 Flow chart</em></p>
 </div>
 
 <div align="left">
@@ -136,7 +136,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 
 
 <div align="left">
-  <img src="./images/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" height="50%" width="100%"/>
+  <img src="./images/scRNAseq_directed_graph.jpg" alt="scRNA Force Directed Graph" height="50%" width="100%"/>
   <p><em>Figure 7: scRNA Force Directed Graph</em></p>
 </div>
 
@@ -159,7 +159,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 - Right-clicking nodes can show the gene IDs of interest (See figure 8)
 
 <div align="left">
-  <img src="./images/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="100%"/>
+  <img src="./images/scRNAseq_directed_graph_geneInfo.jpg" alt="Right-click functions" width="100%"/>
   <p><em>Figure 8: Right-click functions</em></p>
 </div>
 
@@ -169,7 +169,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 - Filter by condition, GO term, or pathway
 
 <div align="left">
-  <img src="./images/shape_font_size2.PNG" alt="Customize Appearance" width="100%"/>
+  <img src="./images/DiVenn_graph_customization.jpg" alt="Customize Appearance" width="100%"/>
   <p><em>Figure 9: Customize Appearance</em></p>
 </div>
 
@@ -177,7 +177,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
 
 <div align="left">
-  <img src="./images/geneInfo.PNG" alt="Gene Info"  width="100%"/>
+  <img src="./images/geneInfo.jpg" alt="Gene Info"  width="100%"/>
   <p><em>Figure 10: Gene Info</em></p>
 </div>
 
@@ -189,7 +189,7 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
 
 <div align="left">
-  <img src="./images/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="100%"/>
+  <img src="./images/scRNAseq_geneDetails.jpg" alt="Gene Pathway" width="100%"/>
   <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
 </div>
 
@@ -200,25 +200,25 @@ User also can switch different GO enrichment results namely Biological Process (
 By default, bar chart shows up to 20 significant terms. The GO terms to show can be adjusted from the result table.
 <div align="left">
   <img src="./images/GO_barchart_202604.jpg" alt="GO Barplot" width="100%"/>
-  <p><em>Figure 13: GO Barplot</em></p>
+  <p><em>Figure 12: GO Barplot</em></p>
 </div>
 
 Tree map summaries the GO terms based on GO hierarchy when more than 10 terms are selected.
 <div align="left">
   <img src="./images/GO_treemap_202604.jpg" alt="GO treemap" width="100%"/>
-  <p><em>Figure 14: GO tree map</em></p>
+  <p><em>Figure 13: GO tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
   <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
-  <p><em>Figure 15: GO AI interpretation</em></p>
+  <p><em>Figure 14: GO AI interpretation</em></p>
 </div>
 
 Users can select GO terms and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
 <div align="left">
   <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
-  <p><em>Figure 16: GO result table</em></p>
+  <p><em>Figure 15: GO result table</em></p>
 </div>
 
 #### KEGG Enrichment
@@ -226,25 +226,25 @@ Similar to GO enrichment, user can perform KEGG pathway analysis by selecting th
 
 <div align="left">
   <img src="./images/KEGG_bar_202604.jpg" alt="KEGG Barplot"  width="100%"/>
-  <p><em>Figure 17: KEGG Barplot</em></p>
+  <p><em>Figure 16: KEGG Barplot</em></p>
 </div>
 
 Tree map summaries KEGG pathways based on KEGG BRITE database when more than 10 pathways are selected.
 <div align="left">
   <img src="./images/KEGG_treemap_202604.jpg" alt="KEGG treemap" width="100%"/>
-  <p><em>Figure 18: KEGG tree map</em></p>
+  <p><em>Figure 17: KEGG tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
   <img src="./images/KEGG_AI_202604.jpg" alt="KEGG AI interpretation" width="100%"/>
-  <p><em>Figure 19: KEGG AI interpretation</em></p>
+  <p><em>Figure 18: KEGG AI interpretation</em></p>
 </div>
 
 Users can select KEGG pathways and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
 <div align="left">
   <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
-  <p><em>Figure 20: KEGG result table</em></p>
+  <p><em>Figure 19: KEGG result table</em></p>
 </div>
 
 ---
@@ -256,14 +256,14 @@ Users can color the cells by annotations in the file and search for genes to get
 
 <div align="left">
   <img src="./images/featurePlot_202604.jpg" alt="Feature plot" width="100%"/>
-  <p><em>Figure 21: Feature plot</em></p>
+  <p><em>Figure 20: Feature plot</em></p>
 </div>
 
 From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page by clicking the `UMAP/t-SNE` button. The `addModuleScore` algorithm from the Seurat package will be used to calculate the module score for this gene group (overlapping between multiple comparisons or unique to a comparison) and use the score to color the dimension reduction plot.
 
 <div align="left">
   <img src="./images/moduleScorePlot_202604.jpg" alt="Module score plot" width="100%"/>
-  <p><em>Figure 22: UMAP plot colored by module score</em></p>
+  <p><em>Figure 21: UMAP plot colored by module score</em></p>
 </div>
 
 ---
