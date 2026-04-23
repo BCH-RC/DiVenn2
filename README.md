@@ -24,6 +24,8 @@
 - [Input & Data Preparation](#input--data-preparation)
   - [Classic Analysis](#classic-analysis)
   - [Single-cell RNA-seq Analysis](#single-cell-rna-seq-analysis)
+    - [H5AD file with precomputed DEG](#h5ad-file-with-precomputed-deg)
+    - [Calculating DEG on-the-fly](#calculating-deg-on-the-fly-based-on-annotations)
 - [Visualization & Interaction](#visualization--interaction)
 - [Enrichment Analysis](#enrichment-analysis)
 - [scRNAseq analysis and visualization](#scrnaseq-analysis-and-visualization)
@@ -117,11 +119,13 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
 
 In the new page, users can load a `.h5ad` file. DiVenn will detect whether the file contains DEG results either from the Docker pipeline or Scanpy. Users can select DEG lists for visualization and comparison in DiVenn.
 
+###### H5AD file with precomputed DEG 
 <div align="left">
   <img src="./images/scRNAseq_precomp_DEG.jpg" alt="scRNA data DEG lists" width="100%"/>
   <p><em>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</em></p>
 </div>
 
+###### Calculating DEG on-the-fly based on annotations
 If no DEG results are found, users can select annotations from the file to calculate DEGs on the fly. Users should first choose the annotation of comparison conditions (e.g. disease and control) and then the cell subsets to compare in (e.g. cell types). The selected annotations will be used in the next step to select the comprisons. For example, condition 1 vs condition 2 in selected cell subsets, respectively. Multiple selection is supported with pressing the Shift key. More pairs of conditions can be added by clicking `Add Condition`. After clicking `Calcualte DEG`, the significant DEG lists will be shown similar to the precomputed results.
 
 <div align="left">
