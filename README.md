@@ -15,11 +15,6 @@
   <p><em>Figure 1: DiVenn 2 Flow chart</em></p>
 </div>
 
-<div align="left">
-  <img src="./images/homepage_202604.jpg" alt="DiVenn 2 Web Interface" width="100%"/>
-  <p><em>Figure 1: DiVenn 2 home page interface. Classic analysis mode and a new scRNAseq analysis mode can be selected.</em></p>
-</div>
-
 ---
 
 ### Table of Contents
