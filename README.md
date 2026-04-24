@@ -1,4 +1,4 @@
-## **DiVenn 2**
+# **DiVenn 2**
 
 **An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
 
@@ -17,27 +17,27 @@
 
 ---
 
-### Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Introduction](#introduction)
 - [Key Features](#key-features)
 - [Input & Data Preparation](#input--data-preparation)
   - [Classic Analysis](#classic-analysis)
   - [Single-cell RNA-seq Analysis](#single-cell-rna-seq-analysis)
-    - [H5AD file with precomputed DEG](#h5ad-file-with-precomputed-deg)
     - [Calculating DEG on-the-fly](#calculating-deg-on-the-fly-based-on-annotations)
+    - [H5AD file with precomputed DEG](#h5ad-file-with-precomputed-deg)
 - [Visualization & Interaction](#visualization--interaction)
 - [Enrichment Analysis](#enrichment-analysis)
 - [scRNAseq analysis and visualization](#scrnaseq-analysis-and-visualization)
 - [Export Options](#export-options)
 - [Citation](#citation)
 
-### Overview
+## Overview
 DiVenn 2 is a major upgrade to the original [DiVenn platform](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full), 
 developed to support comprehensive and customizable comparison of gene lists from **bulk** level omics data and **single-cell RNA-seq (scRNA-seq)** datasets.
 This release brings enhanced visualization, expanded species and ID support, built-in GO/KEGG enrichment tools, AI interpretation of enrichment results, and scRNAseq data analysis and visualization all through a simple, interactive web interface.
 
-### Introduction
+## Introduction
 Gene expression data from different biological states - such as mutant, double mutant, and wild-type samples - are commonly compared using Venn diagram tools. These comparisons help identify shared and unique genes
 between conditions and gain insights into their biological roles, especially through associated pathways and gene ontology (GO) terms.
 
@@ -47,7 +47,7 @@ The platform was widely adopted for its ability to provide expression context an
 
 Building on that foundation, **DiVenn 2** is a major upgrade to the original version. This release introduces new functionalities designed to support **bulk and scRNA-seq** workflows with greater customization, scalability, and analytic depth.
 
-#### Key Features
+## Key Features
   
 -   Comparison of up to **15 gene sets** simultaneously.
 -   Supports both **bulk** and **scRNA-seq** inputs.
@@ -62,9 +62,9 @@ DiVenn 2 is freely available at <https://divenn.tch.harvard.edu/v2>.
 
 ---
 
-### Input & Data Preparation
+## Input & Data Preparation
 
-#### Classic Analysis
+### Classic Analysis
 DiVenn 2 accepts two input format for classic analysis: 
 
 - **Two-column tab-delimited files**: 
@@ -78,7 +78,7 @@ on their own cut-off value of fold change. Additional columns can be added to in
 
 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
-##### Interface Instructions
+#### Interface Instructions
 1. Select the `Classic Analysis` tab on the DiVenn homepage.  
 2. Choose your species (requited for pathway/GO enrichment).
 3. Select input ID type and number of experiments (up to 15).
@@ -90,13 +90,13 @@ on their own cut-off value of fold change. Additional columns can be added to in
   <p><em>Figure 2: Data input in classic analysis mode</em></p>
 </div>
 
-#### Single-cell RNA-seq Analysis
+### Single-cell RNA-seq Analysis
 
 A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the input. If users have a `.rds` file from the Seurat pipeline, we provide a Docker pipeline to preprocess and convert the data. DiVenn can perform differentially expressed gene analysis with default methods and parameters in Seurat and Scanpy. Users can use the Docker pipeline described below to adjust the parameters.
 
 **Note**: Only Chrome and FireFox are supported for processing `.h5ad` files in the browser. Due to techinical limitations, Chrome can only work with files smaller than 2GB. If you encounter problems with large files (for example larger than 5GB), please consider using our Docker pipeline for preprocessing.
 
-##### Docker Pipeline
+#### Docker Pipeline
 - Accept `.rds` (Seurat) or `.h5ad` (Scanpy) files.
 - Performs DEG analysis and generates a `.h5ad` file with computed DEGs.
 - [Docker workflow details](./scRNAseq_preprocessing/docker)
@@ -106,7 +106,7 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
   <p><em>Figure 3: Workflow of the Docker pipeline for DEG preprocessing</em></p>
 </div>
 
-##### Interface Instructions
+#### Interface Instructions
 1. Select the `scRNAseq Analysis` tab.
 2. Choose your species.
 3. Choose the ID type.
@@ -119,18 +119,19 @@ A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the inp
 
 In the new page, users can load a `.h5ad` file. DiVenn will detect whether the file contains DEG results either from the Docker pipeline or Scanpy. Users can select DEG lists for visualization and comparison in DiVenn.
 
-###### H5AD file with precomputed DEG 
-<div align="left">
-  <img src="./images/scRNAseq_precomp_DEG.jpg" alt="scRNA data DEG lists" width="100%"/>
-  <p><em>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</em></p>
-</div>
-
-###### Calculating DEG on-the-fly based on annotations
+#### Calculating DEG on-the-fly based on annotations
 If no DEG results are found, users can select annotations from the file to calculate DEGs on the fly. Users should first choose the annotation of comparison conditions (e.g. disease and control) and then the cell subsets to compare in (e.g. cell types). The selected annotations will be used in the next step to select the comprisons. For example, condition 1 vs condition 2 in selected cell subsets, respectively. Multiple selection is supported with pressing the Shift key. More pairs of conditions can be added by clicking `Add Condition`. After clicking `Calcualte DEG`, the significant DEG lists will be shown similar to the precomputed results.
 
 <div align="left">
   <img src="./images/scRNAseq_select_conditions_202604.jpg" alt="scRNA comparison selection" width="100%"/>
   <p><em>Figure 6: Interface to select DEG comparisons</em></p>
+</div>
+
+#### H5AD file with precomputed DEG 
+If the input `.h5ad` file contains precomputed DEGs, either from the Docker pipeline or Scanpy analysis, DiVenn will extract the differential gene lists and users can directly select them to visulize on DiVenn graph. 
+<div align="left">
+  <img src="./images/scRNAseq_precomp_DEG.jpg" alt="scRNA data DEG lists" width="100%"/>
+  <p><em>Figure 5: Interface to select precomputed DEG lists from scRNAseq data</em></p>
 </div>
 
 
@@ -140,7 +141,7 @@ If no DEG results are found, users can select annotations from the file to calcu
 </div>
 
 
-##### Notes
+#### Notes
 - Use your own comparison names (e.g. `WT_vs_KO`), but **do not start names with a number**
 - You can choose from gene ID types from Ensembl, Uniprot, gene symbol, NCBI/Entrez and plant specific IDs from Phytozome database
 - You can upload up to 15 experiment data sets for comparison 
@@ -148,9 +149,9 @@ If no DEG results are found, users can select annotations from the file to calcu
 
 ---
 
-### Visualization & Interaction
+## Visualization & Interaction
 
-#### Force-Directed Graph
+### Force-Directed Graph
 - Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
 - Left-clicking will highlight edges (expression patterns). 
 - Double-clicking the same node will hide the connecting edge colors.
@@ -162,7 +163,7 @@ If no DEG results are found, users can select annotations from the file to calcu
   <p><em>Figure 8: Right-click functions</em></p>
 </div>
 
-#### Customization
+### Customization
 - Adjust font size, color, and node shape (See figure 9)
 - Summarize groups and collapse nodes
 - Filter by condition, GO term, or pathway
@@ -172,7 +173,7 @@ If no DEG results are found, users can select annotations from the file to calcu
   <p><em>Figure 9: Customize Appearance</em></p>
 </div>
 
-#### Gene Information
+### Gene Information
 Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
 
 <div align="left">
@@ -182,9 +183,9 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 
 ---
 
-### Enrichment Analysis
+## Enrichment Analysis
 
-#### KEGG pathway and GO terms
+### KEGG pathway and GO terms
 If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
 
 <div align="left">
@@ -192,7 +193,7 @@ If users need to check the KEGG pathway or GO terms of a group of genes (for exa
   <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
 </div>
 
-#### GO Enrichment
+### GO Enrichment
 To perform GO enrichment for this set of genes, users need to click `GO enrichment` tab. It uses `clusterProfiler` R package to perform GO enrichment.
 User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 12), tree map plot (figure 13), AI interpretation (figure 14) and result table (figure 15) can be viewed.
 
@@ -248,7 +249,7 @@ Users can select KEGG pathways and update all the above visualization and AI int
 
 ---
 
-### scRNAseq analysis and visualization
+## scRNAseq analysis and visualization
 When the input `.h5ad` file of scRNAseq data contains UMAP and t-SNE coordinates stored in standard `X_UMAP` and `X_TSNE` slots, DiVenn can visualize expression of individual genes on the dimension reduction plot (often called feature plot). When right clicking on a gene node in the Divenn graph, there is a `Feature plot` menu option that will open a new page.
 
 Users can color the cells by annotations in the file and search for genes to get feature plots. Cell groups can be hidden by unselecting from the annotation list.
@@ -267,7 +268,7 @@ From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page
 
 ---
 
-### Export Options
+## Export Options
 
 You can export:
 
@@ -279,7 +280,7 @@ You can export:
 
 ---
 
-### Citation
+## Citation
 
 Please cite the original DiVenn publication if you use this tool:
 
