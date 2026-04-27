@@ -11,7 +11,7 @@
 ---
 
 <div align="center">
-  <img src="./images/DiVenn2.1_Flowchart_202604.png" alt="DiVenn 2 Flow chart" width="600px"/>
+  <img src="./images/DiVenn2.1_Flowchart-April_15_2026_v5.png" alt="DiVenn 2 Flow chart" width="600px"/>
   <p><em>Figure 1: DiVenn 2 Flow chart</em></p>
 </div>
 
