@@ -195,64 +195,67 @@ If users need to check the KEGG pathway or GO terms of a group of genes (for exa
 
 ### GO Enrichment
 To perform GO enrichment for this set of genes, users need to click `GO enrichment` tab. It uses `clusterProfiler` R package to perform GO enrichment.
-User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 12), tree map plot (figure 13), AI interpretation (figure 14) and result table (figure 15) can be viewed.
 
-By default, bar chart shows up to 20 significant terms. The GO terms to show can be adjusted from the result table.
+User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, result table (figure 12), bar chart (figure 13), tree map plot (figure 14), and AI interpretation (figure 15) can be viewed.
+
+Users can select GO terms in the table and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported. Users can sort the table or filter for gene set description or genes.
+
+<div align="left">
+  <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
+  <p><em>Figure 12: GO result table</em></p>
+</div>
+
+By default, bar chart shows up to 20 terms. The GO terms to show can be adjusted from the result table.
 <div align="left">
   <img src="./images/GO_barchart_202604.jpg" alt="GO Barplot" width="100%"/>
-  <p><em>Figure 12: GO Barplot</em></p>
+  <p><em>Figure 13: GO Barplot</em></p>
 </div>
 
 Tree map summaries the GO terms based on GO hierarchy when more than 10 terms are selected.
 <div align="left">
   <img src="./images/GO_treemap_202604.jpg" alt="GO treemap" width="100%"/>
-  <p><em>Figure 13: GO tree map</em></p>
+  <p><em>Figure 14: GO tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
   <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
-  <p><em>Figure 14: GO AI interpretation</em></p>
-</div>
-
-Users can select GO terms and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
-<div align="left">
-  <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
-  <p><em>Figure 15: GO result table</em></p>
+  <p><em>Figure 15: GO AI interpretation</em></p>
 </div>
 
 #### KEGG Enrichment
 Similar to GO enrichment, user can perform KEGG pathway analysis by selecting the `KEGG pathway enrichment` and generate the same visualization, AI interpretation, and result table.
 
+Users can select KEGG pathways and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
+<div align="left">
+  <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
+  <p><em>Figure 16: KEGG result table</em></p>
+</div>
+
 <div align="left">
   <img src="./images/KEGG_bar_202604.jpg" alt="KEGG Barplot"  width="100%"/>
-  <p><em>Figure 16: KEGG Barplot</em></p>
+  <p><em>Figure 17: KEGG Barplot</em></p>
 </div>
 
 Tree map summaries KEGG pathways based on KEGG BRITE database when more than 10 pathways are selected.
 <div align="left">
   <img src="./images/KEGG_treemap_202604.jpg" alt="KEGG treemap" width="100%"/>
-  <p><em>Figure 17: KEGG tree map</em></p>
+  <p><em>Figure 18: KEGG tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
   <img src="./images/KEGG_AI_202604.jpg" alt="KEGG AI interpretation" width="100%"/>
-  <p><em>Figure 18: KEGG AI interpretation</em></p>
+  <p><em>Figure 19: KEGG AI interpretation</em></p>
 </div>
 
-Users can select KEGG pathways and update all the above visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
-<div align="left">
-  <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
-  <p><em>Figure 19: KEGG result table</em></p>
-</div>
 
 ---
 
 ## scRNAseq analysis and visualization
 When the input `.h5ad` file of scRNAseq data contains UMAP and t-SNE coordinates stored in standard `X_UMAP` and `X_TSNE` slots, DiVenn can visualize expression of individual genes on the dimension reduction plot (often called feature plot). When right clicking on a gene node in the Divenn graph, there is a `Feature plot` menu option that will open a new page.
 
-Users can color the cells by annotations in the file and search for genes to get feature plots. Cell groups can be hidden by unselecting from the annotation list.
+Users can color the cells by annotations in the file and search for genes to get feature plots. The color for annotations can be changed by clicking on the color boxes before the annotation labels. Cell groups can be hidden by unselecting from the annotation list.
 
 <div align="left">
   <img src="./images/featurePlot_202604.jpg" alt="Feature plot" width="100%"/>
@@ -260,6 +263,8 @@ Users can color the cells by annotations in the file and search for genes to get
 </div>
 
 From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page by clicking the `UMAP/t-SNE` button. The `addModuleScore` algorithm from the Seurat package will be used to calculate the module score for this gene group (overlapping between multiple comparisons or unique to a comparison) and use the score to color the dimension reduction plot.
+
+From the result table of GO and KEGG enrichment results, users can also view the feature plot of each overlapping gene in the pathway and calculate the module score of the input genes in the pathway (Figure 12 and 16).
 
 <div align="left">
   <img src="./images/moduleScorePlot_202604.jpg" alt="Module score plot" width="100%"/>
