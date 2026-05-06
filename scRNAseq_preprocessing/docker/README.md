@@ -4,7 +4,6 @@ If your data is already in **.h5ad** format, we recommend using the DiVenn 2 web
 
 ![Divenn Flow Chart](../../images/Flowchart-DEGprep.png)
 
-
 The following sections contain scripts and a Docker/Singularity-based environment for preprocessing single-cell datasets in **h5ad** and **rds (Seurat obj)** formats to generate differentially expressed gene (DEG) files as input for **DiVenn 2**. The containerized setup ensures reproducibility and consistency across computing environments.
 
 ## **Docker Image**
@@ -49,17 +48,25 @@ singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degprep
 
 | File | Description |
 |------|------------|
-| **Dockerfile** | The script used to build the Docker image. |
-| **Preprocessing_h5ad.py** | Python script for processing **h5ad** files to generate DEG files as input for DiVenn 2. |
-| **Preprocessing_Seuratobj.r** | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn 2. |
-| **run_preprocessing.sh** | Wrapper script that allows users to run either `Preprocessing_h5ad.py` or `Preprocessing_Seuratobj.r` based on file type. |
-| **runtime_code_python.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **h5ad** format. |
-| **runtime_code_r.sh** | Shell script for running the preprocessing pipeline inside the Docker container using the **rds (Seurat obj)** format. |
-| **README.md** | This documentation file. |
-
+| `Dockerfile` | The script used to build the Docker image. |
+| `Preprocessing_h5ad.py` | Python script for processing **h5ad** files to generate DEG files as input for DiVenn 2. |
+| `Preprocessing_Seuratobj.r` | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn 2. |
+| `run_preprocessing.sh` | Wrapper script that allows users to run either `Preprocessing_h5ad.py` or `Preprocessing_Seuratobj.r` based on file type. |
+| `README.md` | This documentation file. |
 ---
 
 ## **Running the Pipeline**
+
+Both workflows require an annotated object with:
+
+- A metadata column identifying the condition to compare, passed with `-c, --condition`.
+- A metadata column identifying the cell group, cell type, or cluster to run DE within, passed with `-g, --group`.
+- At least 3 cells for each condition within a cell group. Comparisons with fewer cells are skipped.
+
+The `.h5ad` workflow uses `scanpy.tl.rank_genes_groups`. It uses `adata.raw.X` when usable; otherwise it uses `adata.X`. The input should already contain appropriate expression values for the selected Scanpy test, typically normalized/log-transformed data.
+
+The Seurat workflow uses the `RNA` assay, keeps the condition and group metadata columns, and runs `FindMarkers`. It uses the `data` slot for most tests and the `counts` slot for `negbinom` and `poisson`.
+
 ### **Using Docker**
 The following examples show how to run the Docker container for processing **h5ad** and **Seurat** files.
 
@@ -72,12 +79,14 @@ CONTAINER_ID=$(docker run -d \
   -i /data/TestInput.h5ad \
   -c group \
   -g celltype \
-  -o /data/TestOutput_h5ad.csv \
+  -o /data/TestOutput_h5ad.h5ad \
   -f 0.2 \
   -r 0.01 \
+  -p 0.5 \
   -v 0.05 \
   -x all \
-  -m wilcoxon
+  -m wilcoxon \
+  -t benjamini-hochberg
 )
 ```
 
@@ -90,7 +99,7 @@ CONTAINER_ID=$(docker run -d \
   -i /data/TestInput.rds \
   -c group \
   -g celltype \
-  -o /data/TestOutput_seurat.csv \
+  -o /data/TestOutput_seurat.h5ad \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
@@ -110,12 +119,14 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -i /data/TestInput.h5ad \
   -c group \
   -g celltype \
-  -o /data/TestOutput_h5ad.csv \
+  -o /data/TestOutput_h5ad.h5ad \
   -f 0.2 \
   -r 0.01 \
+  -p 0.5 \
   -v 0.05 \
   -x all \
-  -m wilcoxon
+  -m wilcoxon \
+  -t benjamini-hochberg
 ```
 
 #### **Example: Running the Pipeline for a rds File (R)**
@@ -126,7 +137,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -i /data/TestInput.rds \
   -c group \
   -g celltype \
-  -o /data/TestOutput_seurat.csv \
+  -o /data/TestOutput_seurat.h5ad \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
@@ -135,23 +146,54 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 ```
 
 ### **Parameter Descriptions**
-| **Parameter** | **Description** |
-|--------------|----------------|
-| `-w, --workdir` | The working directory where files will be processed and stored. |
-| `-i, --input` | Input file path (**h5ad** or **Seurat** format). |
-| `-c, --condition` | Column name representing the sample condition (e.g., disease vs. normal). |
-| `-g, --group` | Column name representing the cell type or other grouping variable. |
-| `-o, --output` | Output file path for the processed DEG results (CSV format). |
-| `-f` | Log fold-change filtering threshold for Seurat data (default: `0.2`). |
-| `-r` | Minimum proportion of cells expressing a gene in one condition (default: `0.1`). |
-| `-v` | Adjusted p-value threshold for Seurat data (default: `0.05`). |
-| `-x, --comparisons` | Condition pairs for differential expression analysis (e.g., `"X:Y,X:Z"`). Use `"all"` for all possible comparisons. |
-| `-m, --method` | Statistical test to use for differential expression analysis. <br>**R options include**: 'wilcox', 'wilcox_limma', 'bimod', 'roc', 't', 'negbinom', 'poisson', 'LR', 'MAST'. <br>**Python options include**: 'wilcoxon', 't-test', 't-test_overestim_var', 'logreg'.
+| Parameter | Applies to | Description |
+| --- | --- | --- |
+| `h5ad` or `seurat` | Both | First argument after the image name. Selects the Python `.h5ad` workflow or the R Seurat workflow. |
+| `-w, --workdir` | Both | Working directory inside the container. Usually the mounted `/data` directory. |
+| `-i, --input` | Both | Input file path inside the container. Use `.h5ad` for `h5ad` mode or `.rds` for `seurat` mode. |
+| `-c, --condition` | Both | Metadata column containing the sample condition, such as disease/control. |
+| `-g, --group` | Both | Metadata column containing the cell type, cluster, or other grouping variable. |
+| `-o, --output` | Both | Output `.h5ad` file path. A companion DEG CSV is also written by default. |
+| `-f, --logfc_thd` | Both | Absolute log fold-change threshold. Defaults: `.h5ad` workflow `1`; Seurat workflow `0.1`. |
+| `-r, --minpct_thd` | Both | Minimum fraction of cells expressing a gene. Defaults: `.h5ad` workflow `0.25`; Seurat workflow `0.01`. |
+| `-v, --padj_thd` | Both | Adjusted p-value threshold. Default: `0.05`. |
+| `-x, --comparisons` | Both | Condition comparisons as `A:B,A:C`, where `A` is Condition_1 and `B` is Condition_2. Use `all` for all directed pairwise comparisons. |
+| `-m, --method` | Both | Differential expression test. See method options below. |
+| `-l, --gene_list_file` | Both | Optional text file with one gene per line for post-DEG filtering. |
+| `-d, --gene_filter_mode` | Both | Optional gene-list filtering mode: `remove` excludes listed genes; `keep` keeps only listed genes. |
+| `-a, --gene_filter_ignore_case` | Both | Ignore case when applying the gene-list filter. |
+| `-p, --maxpct_thd` | `.h5ad` only | Maximum out-group expression fraction used by Scanpy filtering. Default: `0.5`. |
+| `-t, --correction_method` | `.h5ad` only | Scanpy p-value correction method: `benjamini-hochberg` or `bonferroni`. Default: `benjamini-hochberg`. |
+| `-s, --write_csv` | Both | CSV behavior differs by script. In the `.h5ad` workflow, passing `-s` disables CSV writing. In the Seurat workflow, the CSV is written by default. |
+
+Method options:
+
+- `.h5ad` / Scanpy: `wilcoxon`, `t-test`, `t-test_overestim_var`, `logreg`.
+- Seurat: `wilcox`, `wilcox_limma`, `bimod`, `roc`, `t`, `negbinom`, `poisson`, `LR`, `MAST`.
 
 ---
 
 ## 📤  **Output Format**
-The DEG preprocessing pipeline produces a standardized output file in **CSV format**, where each row represents the differential expression status of a gene between each user-defined condition pair and cell type.
+
+The primary output is a DiVenn2-ready `.h5ad` file. DEG results are embedded in `adata.uns` under keys like:
+
+```text
+rank_genes_groups__ct=<cell_type>__<condition_1>_vs_<condition_2>
+```
+
+The catalog of available DEG result keys is stored in:
+
+```text
+adata.uns["divenn_rank_genes_groups_catalog"]
+```
+
+By default, the workflow also writes a companion CSV named from the output file:
+
+```text
+<output_basename>_divenn2_deg.csv
+```
+
+The CSV has the standardized DiVenn 2 DEG table format:
 
 | **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
 |--------------|----------------|--------------|----------------|----------------|
