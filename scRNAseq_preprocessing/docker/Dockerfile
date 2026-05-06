@@ -5,11 +5,13 @@ FROM ubuntu:22.04
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     tzdata \
     curl \
+    git \
     build-essential \
+    pkg-config \
+    gfortran \
     libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
-    gfortran \
     libreadline-dev \
     libxt-dev \
     libpng-dev \
@@ -19,6 +21,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libbz2-dev \
     liblzma-dev \
     xz-utils \
+    libhdf5-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libfontconfig1-dev \
+    libgit2-dev \
+    libnode-dev \
+    pandoc \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
@@ -34,6 +44,18 @@ RUN add-apt-repository ppa:deadsnakes/ppa && \
 
 # Set Python 3.11 as default
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+
+# Create and use a Python 3.11 virtual environment
+RUN python3.11 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install scanpy pandas numpy argparse anndata 
+
+# Set RETICULATE_PYTHON to use in R script as venv
+ENV RETICULATE_PYTHON=/venv/bin/python
+
 
 # Set environment variables
 ENV R_VERSION=4.4.2 \
@@ -52,34 +74,40 @@ RUN curl -O https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz && \
 # Set CRAN Mirror
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> /usr/local/lib/R/etc/Rprofile.site
 
-# Install R packages from CRAN and Bioconductor
-RUN R -e "install.packages(c('optparse', 'Seurat', 'BiocManager', 'reticulate', 'anndata', 'remotes'), repos = 'https://cloud.r-project.org')" && \
-    R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
+# Install R packages from CRAN
+RUN R -e "install.packages(c('optparse', 'BiocManager', 'reticulate', 'remotes'), repos = 'https://cloud.r-project.org')" 
 
+RUN R -e "install.packages(c('optparse', 'BiocManager', 'reticulate', 'remotes'), repos = 'https://cloud.r-project.org')"
+
+# Install Seurat's problematic dependencies
+RUN R -e "install.packages(c('fs', 'sass', 'bslib', 'rmarkdown', 'shiny', 'htmlwidgets', 'miniUI'), repos = 'https://cloud.r-project.org')"
+RUN R -e "install.packages('plotly', repos = 'https://cloud.r-project.org')"
+
+# Install Seurat 
+RUN R -e "install.packages('Seurat', repos = 'https://cloud.r-project.org')" && \
+    R -e "library(Seurat); cat('Seurat version:', as.character(packageVersion('Seurat')), '\n')"
+
+# Install anndata R package separately
+RUN R -e "install.packages('anndata', repos = 'https://cloud.r-project.org')"
+
+# Install Bioconductor packages
+RUN R -e "BiocManager::install(c('limma', 'MAST', 'DESeq2'), update = TRUE, ask = FALSE)"
 RUN R -e "BiocManager::install('SingleCellExperiment',update = TRUE, ask = FALSE)"
 RUN R -e "BiocManager::install('zellkonverter',update = TRUE, ask = FALSE)"
 
 # Install immunogenomics/presto for faster Wilcoxon Rank Sum Test
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git \
-    pkg-config \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libfreetype6-dev \
-    libgit2-dev \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+#    git \
+#    pkg-config \
+#    libharfbuzz-dev \
+#    libfribidi-dev \
+#    libfreetype6-dev \
+#    libgit2-dev \
+#    && rm -rf /var/lib/apt/lists/*
 
-#RUN R -e "install.packages(c('devtools'), repos = 'https://cloud.r-project.org')"
+# # Install presto
 RUN R -e "remotes::install_github('immunogenomics/presto')"
-#RUN R -e "remotes::install_github('mojaveazure/seurat-disk')"
 
-# Create and use a Python 3.11 virtual environment
-RUN python3.11 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
-
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install scanpy pandas numpy argparse anndata
 
 # Set working directory
 WORKDIR /usr/src/app
