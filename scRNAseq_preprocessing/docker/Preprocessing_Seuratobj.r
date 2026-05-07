@@ -343,12 +343,12 @@ DiVenn2_preprocess_seuratobj <- function(seurat_obj, cond_col, gp_col, fname, lo
   }
 
   # keep only logcounts
-  #if ("logcounts" %in% SummarizedExperiment::assayNames(sce)) {
-  #  log_mat <- SummarizedExperiment::assay(sce, "logcounts")
-  #  SummarizedExperiment::assays(sce) <- S4Vectors::SimpleList(logcounts = log_mat)
-  #} else {
-  #  stop("'logcounts' assay not found in sce")
-  #}
+  if ("logcounts" %in% SummarizedExperiment::assayNames(sce)) {
+    log_mat <- SummarizedExperiment::assay(sce, "logcounts")
+    SummarizedExperiment::assays(sce) <- S4Vectors::SimpleList(logcounts = log_mat)
+  } else {
+    stop("'logcounts' assay not found in sce")
+  }
 
   adata <- zellkonverter::SCE2AnnData(sce)
 
@@ -447,6 +447,3 @@ DiVenn2_preprocess_seuratobj(
   gene_filter_mode = gene_filter_mode,
   gene_filter_ignore_case = gene_filter_ignore_case)
 
-end_time <- proc.time()
-elapsed_time <- end_time - start_time
-cat("Running time:", elapsed_time, "\n")
