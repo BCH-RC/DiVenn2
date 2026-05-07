@@ -9,12 +9,12 @@ The following sections contain scripts and a Docker/Singularity-based environmen
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
 
-🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:07_18](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing:07_18)
+🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:latest](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing:latest)
 
 To build the Docker image locally:
 
 ```bash
-docker build -t divenn2_degpreprocessing:07_18 .
+docker build -t divenn2_degpreprocessing:latest .
 ```
 
 ## ⚙️ **Installation Instructions**
@@ -41,7 +41,7 @@ Explore Docker Desktop:
 ## 🧪 **Using Singularity (for HPC):**
 To use this pipeline in HPC environments, convert the Docker image into a Singularity image:
 ```bash
-singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing::07_18
+singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degpreprocessing:latest
 ```
 
 ## **Folder Contents**
@@ -200,7 +200,7 @@ The CSV has the standardized DiVenn 2 DEG table format:
 | X | Z | D | RNF220 | 1 |
 | X	| Z	| D	| FRMD5	| 1 |
 | X	| Z	| D	| AC092691.1 | 1 |
-| X | Z | D | TNRC6B | 1 |
+| X | Z | D | TNRC6B | 2 |
 
 where 
 - `Condition_1` and `Condition_2`: Conditions being compared. (e.g., disease vs control)
