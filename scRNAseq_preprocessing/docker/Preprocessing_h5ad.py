@@ -282,10 +282,10 @@ def DiVenn2_preprocess_seuratobj(adata,cell_type_col,condition_col,logfc_thresho
         all_degs.to_csv(output_csv, index=False)
         print(f"Saved consolidated DEGs CSV to {output_csv}")
 
-    info = inspect_adata_matrix_state(adata)
+    #info = inspect_adata_matrix_state(adata)
     #print(info)
-    for k, v in info.items():
-        print(f"{k}: {v}")
+    #for k, v in info.items():
+    #    print(f"{k}: {v}")
 
     adata.raw = None
     # remove likely raw-count layers if present
