@@ -153,33 +153,38 @@ If the input `.h5ad` file contains precomputed DEGs, either from the Docker pipe
 
 ### Force-Directed Graph
 - Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
-- Left-clicking on gene nodes will highlight the group and connecting input gene lists. Click again on the background to reset.
+- Left-clicking on gene nodes will highlight the group and connecting input gene lists. Click again on the background to reset. (See figure 8)
 - Left-clicking on edges will highlight edges with colors of regulation directions.
 - Right-clicking a node will show five function options: show or hide one or all node labels, show all gene associated pathways, or GO terms.
-- Right-clicking nodes can show the gene IDs of interest (See figure 8)
+- Right-clicking nodes can show the gene IDs of interest (See figure 9)
+
+<div align="left">
+  <img src="./images/click_highlight_groups.jpg" alt="Right-click functions" width="100%"/>
+  <p><em>Figure 8: Left-click to highlight the gene group and their conditions</em></p>
+</div>
 
 <div align="left">
   <img src="./images/scRNAseq_directed_graph_geneInfo.jpg" alt="Right-click functions" width="100%"/>
-  <p><em>Figure 8: Right-click functions</em></p>
+  <p><em>Figure 9: Right-click functions</em></p>
 </div>
 
 ### Customization
-- Adjust font size, color, node shape, and etc. (See figure 9)
+- Adjust font size, color, node shape, and etc. (See figure 10)
 - Summarize groups and collapse nodes
 - Search genes to highlight
 - Filter by condition, GO term, or pathway
 
 <div align="left">
   <img src="./images/DiVenn_graph_customization.jpg" alt="Customize Appearance" width="100%"/>
-  <p><em>Figure 9: Customize Appearance</em></p>
+  <p><em>Figure 10: Customize Appearance</em></p>
 </div>
 
 ### Gene Information
-Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
+Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 11)
 
 <div align="left">
   <img src="./images/geneInfo.jpg" alt="Gene Info"  width="100%"/>
-  <p><em>Figure 10: Gene Info</em></p>
+  <p><em>Figure 11: Gene Info</em></p>
 </div>
 
 ---
@@ -187,43 +192,43 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 ## Enrichment Analysis
 
 ### KEGG pathway and GO terms
-If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
+If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 12).
 
 The table allows users to select genes either with quick filters of up-, down-regulated genes consistent across the selected groups or discordant genes that have different regulatory directions. Users could also directly select genes in the table manually. Selected genes will be used for downstream analysis, such as enrichment analysis and module score calculation.
 
 <div align="left">
   <img src="./images/scRNAseq_geneDetails.jpg" alt="Gene Pathway" width="100%"/>
-  <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
+  <p><em>Figure 12: Genes in a group with KEGG and GO annotations</em></p>
 </div>
 
 ### GO Enrichment
 To perform GO enrichment for this set of genes, users need to click `GO enrichment` button. It uses the `clusterProfiler` R package to perform GO enrichment.
 
-User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, result table (figure 12), bar chart (figure 13), tree map plot (figure 14), and AI interpretation (figure 15) can be viewed.
+User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, result table (figure 13), bar chart (figure 14), tree map plot (figure 15), and AI interpretation (figure 16) can be viewed.
 
 Users can select GO terms in the table and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported. Users can sort the table or filter for gene set description or genes.
 
 <div align="left">
   <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
-  <p><em>Figure 12: GO result table</em></p>
+  <p><em>Figure 13: GO result table</em></p>
 </div>
 
 By default, bar chart shows up to 20 terms. The GO terms to show can be adjusted from the result table.
 <div align="left">
   <img src="./images/GO_barchart_202604.jpg" alt="GO Barplot" width="100%"/>
-  <p><em>Figure 13: GO Barplot</em></p>
+  <p><em>Figure 14: GO Barplot</em></p>
 </div>
 
 Tree map summaries the GO terms based on GO hierarchy when more than 10 terms are selected.
 <div align="left">
   <img src="./images/GO_treemap_202604.jpg" alt="GO treemap" width="100%"/>
-  <p><em>Figure 14: GO tree map</em></p>
+  <p><em>Figure 15: GO tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
-  <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
-  <p><em>Figure 15: GO AI interpretation</em></p>
+  <img src="./images/GO_AI_202606.jpg" alt="GO AI interpretation" width="100%"/>
+  <p><em>Figure 16: GO AI interpretation</em></p>
 </div>
 
 #### KEGG Enrichment
@@ -232,24 +237,24 @@ Similar to GO enrichment, user can perform KEGG pathway analysis by selecting th
 Users can select KEGG pathways and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
 <div align="left">
   <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
-  <p><em>Figure 16: KEGG result table</em></p>
+  <p><em>Figure 17: KEGG result table</em></p>
 </div>
 
 <div align="left">
   <img src="./images/KEGG_bar_202604.jpg" alt="KEGG Barplot"  width="100%"/>
-  <p><em>Figure 17: KEGG Barplot</em></p>
+  <p><em>Figure 18: KEGG Barplot</em></p>
 </div>
 
 Tree map summaries KEGG pathways based on KEGG BRITE database when more than 10 pathways are selected.
 <div align="left">
   <img src="./images/KEGG_treemap_202604.jpg" alt="KEGG treemap" width="100%"/>
-  <p><em>Figure 18: KEGG tree map</em></p>
+  <p><em>Figure 19: KEGG tree map</em></p>
 </div>
 
 The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
-  <img src="./images/KEGG_AI_202604.jpg" alt="KEGG AI interpretation" width="100%"/>
-  <p><em>Figure 19: KEGG AI interpretation</em></p>
+  <img src="./images/KEGG_AI_202606.jpg" alt="KEGG AI interpretation" width="100%"/>
+  <p><em>Figure 20: KEGG AI interpretation</em></p>
 </div>
 
 
@@ -262,16 +267,16 @@ Users can color the cells by annotations in the file and search for genes to get
 
 <div align="left">
   <img src="./images/featurePlot_202606.jpg" alt="Feature plot" width="100%"/>
-  <p><em>Figure 20: Feature plot</em></p>
+  <p><em>Figure 21: Feature plot</em></p>
 </div>
 
 From the `Gene group detail` window, users can also navigate the UMAP/t-SNE page by clicking the `UMAP/t-SNE` button. The `addModuleScore` algorithm from the Seurat package will be used to calculate the module score for this gene group (overlapping between multiple comparisons or unique to a comparison) and use the score to color the dimension reduction plot.
 
-From the result table of GO and KEGG enrichment results, users can also view the feature plot of each overlapping gene in the pathway and calculate the module score of the input genes in the pathway (Figure 12 and 16).
+From the result table of GO and KEGG enrichment results, users can also view the feature plot of each overlapping gene in the pathway and calculate the module score of the input genes in the pathway (Figure 13 and 17).
 
 <div align="left">
   <img src="./images/moduleScorePlot_202606.jpg" alt="Module score plot" width="100%"/>
-  <p><em>Figure 21: UMAP plot colored by module score</em></p>
+  <p><em>Figure 22: UMAP plot colored by module score</em></p>
 </div>
 
 ---
