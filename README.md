@@ -6,7 +6,7 @@
 
 📄 **Original publication**: [Front. Genet. 2019 – DiVenn](https://www.frontiersin.org/journals/genetics/articles/10.3389/fgene.2019.00421/full)
 
-🎥 **Tutorial video**: [scRNA-seq in DiVenn](https://youtu.be/7DloqhnFIQk) [bulk data in DiVenn](https://youtu.be/tqwX86h_r8w)
+🎥 **Tutorial video**: [scRNA-seq in DiVenn](https://youtu.be/7DloqhnFIQk) or [bulk data in DiVenn](https://youtu.be/tqwX86h_r8w)
 
 ---
 
