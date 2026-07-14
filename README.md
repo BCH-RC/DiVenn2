@@ -29,6 +29,7 @@
 - [Visualization & Interaction](#visualization--interaction)
 - [Enrichment Analysis](#enrichment-analysis)
 - [scRNAseq analysis and visualization](#scrnaseq-analysis-and-visualization)
+- [Session Export and Import](#session-export-and-import)
 - [Export Options](#export-options)
 - [Citation](#citation)
 
@@ -113,7 +114,7 @@ An annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the in
 4. Click the `H5AD` button to a separate page.
 
 <div align="left">
-  <img src="./images/scRNAseq_loadData_202606.jpg" alt="scRNA data input" width="100%"/>
+  <img src="./images/scRNAseq_loadData_202607.jpg" alt="scRNA data input" width="100%"/>
   <p><em>Figure 4: Interface of scRNAseq data input</em></p>
 </div>
 
@@ -194,7 +195,7 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 ### KEGG pathway and GO terms
 If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 12).
 
-The table allows users to select genes either with quick filters of up-, down-regulated genes consistent across the selected groups or discordant genes that have different regulatory directions. Users could also directly select genes in the table manually. Selected genes will be used for downstream analysis, such as enrichment analysis and module score calculation.
+The table allows users to select genes either with quick filters of up-, down-regulated genes consistent across the selected groups, concordant genes that combine consistently up- or down-regulated genes, or discordant genes that have different regulatory directions. Users could also directly select genes in the table manually. Selected genes will be used for downstream analysis, such as enrichment analysis and module score calculation.
 
 <div align="left">
   <img src="./images/scRNAseq_geneDetails.jpg" alt="Gene Pathway" width="100%"/>
@@ -209,7 +210,7 @@ User also can switch different GO enrichment results namely Biological Process (
 Users can select GO terms in the table and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported. Users can sort the table or filter for gene set description or genes.
 
 <div align="left">
-  <img src="./images/GO_table_202604.jpg" alt="GO result table" width="100%"/>
+  <img src="./images/GO_table_202607.jpg" alt="GO result table" width="100%"/>
   <p><em>Figure 13: GO result table</em></p>
 </div>
 
@@ -236,7 +237,7 @@ Similar to GO enrichment, user can perform KEGG pathway analysis by selecting th
 
 Users can select KEGG pathways and update all the visualization and AI interpretation results. Multiple select with pressing the Shift key is supported.
 <div align="left">
-  <img src="./images/KEGG_table_202604.jpg" alt="KEGG result table" width="100%"/>
+  <img src="./images/KEGG_table_202607.jpg" alt="KEGG result table" width="100%"/>
   <p><em>Figure 17: KEGG result table</em></p>
 </div>
 
@@ -277,6 +278,17 @@ From the result table of GO and KEGG enrichment results, users can also view the
 <div align="left">
   <img src="./images/moduleScorePlot_202606.jpg" alt="Module score plot" width="100%"/>
   <p><em>Figure 22: UMAP plot colored by module score</em></p>
+</div>
+
+---
+
+## Session Export and Import
+
+Users can export and download a session file from the menu in the DiVenn graph page to save the graph configuration, including the layout and customized aesthetics. The session file can be loaded from the DiVenn graph page or the front page to restore the graph. Session files need to be used in the same mode as the initial analysis. A session file from the classic mode contains all the necessary information. For scRNA mode, a session file needs to be used with the matching H5AD file.
+
+<div align="left">
+  <img src="./images/session_import.jpg" alt="Module score plot" width="100%"/>
+  <p><em>Figure 23: Session import from the front page</em></p>
 </div>
 
 ---
