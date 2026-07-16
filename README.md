@@ -11,9 +11,10 @@
 ---
 
 <div align="center">
-  <img src="./images/DiVenn2.1_Flowchart-April_15_2026_v5.png" alt="DiVenn 2 Flow chart" width="600px"/>
+  <img src="./images/DiVenn2_Flowchart_202607.jpg" alt="DiVenn 2 Flow chart" width="600px"/>
   <p><em>Figure 1: DiVenn 2 Flow chart</em></p>
 </div>
+<p><small>* To perform differential gene expression analysis with customized parameters, run DiVenn 2 Docker pipeline to embed differential genes to H5AD file.</small></p>
 
 ---
 
