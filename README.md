@@ -53,14 +53,9 @@ Building on that foundation, **DiVenn 2** is a major upgrade to the original ver
 
 ## Key Features
   
--   Comparison of up to **15 gene sets** simultaneously.
--   Supports both **bulk** and **scRNA-seq** inputs.
--   Interactive **force-directed network graphs** for dynamic visulaization.
--   Integrated **GO/KEGG pathway enrichment analysis** via the `clusterProfiler` R package.
--   High-resolution plot and interactive interactive exports.
--   Support **27 species**, including lesser-studied organisms. 
--   Accepts multiple gene ID types: **NCBI/Entrez, Ensembl, UniProt, Gene Symbol and Plant-specific ID types**.
--   Built-in scripts and Docker pipelines for scRNA-seq data preprocessing.
+-   DiVenn 2 enables comparative interpretation of gene-expression changes across bulk and single-cell RNA-seq studies spanning conditions, cell types, and species.
+-   The platform directly supports Seurat and Scanpy objects, with browser-based analysis and an optional Docker workflow for large-scale datasets.
+-   DiVenn 2 integrates differential expression, gene-set visualization, functional enrichment, and AI-assisted interpretation within a unified web-based environment.
 
 DiVenn 2 is freely available at <https://divenn.tch.harvard.edu/v2>.
 
