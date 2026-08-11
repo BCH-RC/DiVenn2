@@ -150,6 +150,12 @@ If the input `.h5ad` file contains precomputed DEGs, either from the Docker pipe
 
 ## Visualization & Interaction
 
+### Elements in DiVenn Graph
+- **Nodes and Genes**: The large, colored nodes represent the different experimental comparisons. Each smaller dot represents an individual Differentially Expressed (DE) gene.
+- **Edges (Lines)**: The lines connect a gene to the comparison it belongs to. If a gene has multiple lines connecting it to different nodes, it means that gene is shared across those multiple comparisons.
+- **Gene Colors**: A gene's color indicates its regulatory direction across all the comparisons it is linked to. Red means it is up-regulated in all its associated comparisons, while blue means it is down-regulated in all of them. Yellow indicates a discordant gene, meaning it is up-regulated in some comparisons but down-regulated in others.
+- **Edge Colors**: The connecting lines themselves can also be colored red or blue. This specifically highlights the gene's regulatory direction within that single, exact comparison.
+
 ### Force-Directed Graph
 - Scrolling with the mouse wheel on the graph will zoom into/out of the graph.
 - Left-clicking on gene nodes will highlight the group and connecting input gene lists. Click again on the background to reset. (See figure 8)
