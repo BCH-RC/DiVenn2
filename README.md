@@ -1,6 +1,8 @@
 # **DiVenn 2**
 
-$\color{#FF5733}\text{DiVenn is currently under maintenance. Our team is working to bring the website back online as soon as possible. Thank you for your understanding.}$
+$\color{#FF5733}\text{DiVenn is currently under maintenance. Our team is working to bring the website back online as soon as possible.}$
+
+$\color{#FF5733}\text{Thank you for your understanding.}$
 
 **An Interactive and integrated web-based visualization and enrichment tool for comparing gene lists for bulk and single-cell RNA-seq data**
 
