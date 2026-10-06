@@ -9,7 +9,7 @@ The following sections contain scripts and a Docker/Singularity-based environmen
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
 
-🛠 **Docker Hub:** [Docker Hub](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing)
+🛠 **Docker Hub:** [Docker Hub](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing/tags)
 
 You can pull the latest image directly:
 
