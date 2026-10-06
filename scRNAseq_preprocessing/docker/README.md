@@ -9,12 +9,18 @@ The following sections contain scripts and a Docker/Singularity-based environmen
 ## **Docker Image**
 The preprocessing pipeline is encapsulated in a pre-built Docker image:
 
-🛠 **Docker Hub:** [rcbioinfo/divenn2_degpreprocessing:latest](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing:latest)
+🛠 **Docker Hub:** [Docker Hub](https://hub.docker.com/r/rcbioinfo/divenn2_degpreprocessing)
+
+You can pull the latest image directly:
+
+```bash
+docker pull rcbioinfo/divenn2_degpreprocessing:latest
+```
 
 To build the Docker image locally:
 
 ```bash
-docker build -t divenn2_degpreprocessing:latest .
+docker build -t rcbioinfo/divenn2_degpreprocessing:latest .
 ```
 
 ## ⚙️ **Installation Instructions**
