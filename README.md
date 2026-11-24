@@ -54,7 +54,7 @@ Building on that foundation, **DiVenn 2** is a major upgrade to the original ver
   
 -   Comparison of up to **15 gene sets** simultaneously.
 -   Supports both **bulk** and **scRNA-seq** inputs.
--   Interactive **force-directed network graphs** for dynamic visulaization.
+-   Interactive **force-directed network graphs** for dynamic visualization.
 -   Integrated **GO/KEGG pathway enrichment analysis** via the `clusterProfiler` R package.
 -   High-resolution plot and interactive interactive exports.
 -   Support **27 species**, including lesser-studied organisms. 
@@ -77,7 +77,7 @@ DiVenn 2 accepts two input format for classic analysis:
 - **Gene expression data**: The first column is gene IDs and the second column is gene regulation values. The gene regulation value should be obtained 
 from differentially expressed (DE) genes. Users can select the cut-off value of fold change (for example, two-fold change) to define their DE genes. 
 To simplify this gene regulation value, we require users to use “1” to represent up-regulated genes and “2” to represent down-regulated genes based 
-on their own cut-off value of fold change. Additional columns can be added to include custom annotations, which could be useful for unsupported sepcies.
+on their own cut-off value of fold change. Additional columns can be added to include custom annotations, which could be useful for unsupported species.
 
 👉 [Sample Files](https://divenn.tch.harvard.edu/v2/data.php)
 
@@ -95,13 +95,13 @@ on their own cut-off value of fold change. Additional columns can be added to in
 
 #### Single-cell RNA-seq Analysis
 
-A annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the input. If users have a `.rds` file from the Seurat pipeline, we provide a Docker pipeline to preprocess and convert the data. DiVenn can perform differentially expressed gene analysis with default methods and parameters in Seurat and Scanpy. Users can use the Docker pipeline described below to adjust the parameters.
+An annotated `.h5ad` (H5 AnnData) file of single-cell data is accepted as the input. If users have a `.rds` file from the Seurat pipeline, we provide a Docker pipeline to preprocess and convert the data. DiVenn can perform differentially expressed gene analysis at the single-cell level using default methods in Seurat and Scanpy, as well as pseudobulk DEG analysis (e.g., via PyDESeq2). Users can use the Docker pipeline described below to adjust parameters and choose their preferred DEG mode.
 
 **Note**: Only Chrome and FireFox are supported for processing `.h5ad` files in the browser. Due to techinical limitations, Chrome can only work with files smaller than 2GB. If you encounter problems with large files (for example larger than 5GB), please consider using our Docker pipeline for preprocessing.
 
 ##### Docker Pipeline
 - Accept `.rds` (Seurat) or `.h5ad` (Scanpy) files.
-- Performs DEG analysis and generates a `.h5ad` file with computed DEGs.
+- Performs DEG analysis ((supporting both standard single-cell tests and pseudobulk modeling) and generates a `.h5ad` file with computed DEGs.
 - [Docker workflow details](./scRNAseq_preprocessing/docker)
 
 <div align="left">
