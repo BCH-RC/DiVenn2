@@ -61,16 +61,18 @@ Both workflows require an annotated object with:
 
 - A metadata column identifying the condition to compare, passed with `-c, --condition`.
 - A metadata column identifying the cell group, cell type, or cluster to run DE within, passed with `-g, --group`.
-- At least 3 cells for each condition within a cell group. Comparisons with fewer cells are skipped.
 
-The `.h5ad` workflow uses `scanpy.tl.rank_genes_groups`. It uses `adata.raw.X` when usable; otherwise it uses `adata.X`. The input should already contain appropriate expression values for the selected Scanpy test, typically normalized/log-transformed data.
+The `.h5ad` workflow supports two DEG analysis modes controlled by `--deg_mode`:
+
+- **`single_cell` (default):** Uses `scanpy.tl.rank_genes_groups`. It requires at least 3 cells per condition within a cell group (comparisons with fewer cells are skipped) and uses `adata.raw.X` when usable; otherwise it uses `adata.X` (typically normalized/log-transformed expression).
+- **`pseudobulk`:** Sums raw integer UMI counts by biological sample (`--sample_col`) within each cell group (`-g`) and runs `PyDESeq2` (`DeseqDataSet` and `DeseqStats` with default parameters and `~condition` design). It requires an unnormalized integer count matrix (`--counts_layer`, default `counts`, or `X`/`raw`), at least `--min_cells_per_sample` cells per sample/cell-type (default `3`), and at least `--min_replicates` biological samples per condition (default `2`). Single-cell expression fraction filters (`-r`, `-p`) are not applied in `pseudobulk` mode.
 
 The Seurat workflow uses the `RNA` assay, keeps the condition and group metadata columns, and runs `FindMarkers`. It uses the `data` slot for most tests and the `counts` slot for `negbinom` and `poisson`.
 
 ### **Using Docker**
 The following examples show how to run the Docker container for processing **h5ad** and **Seurat** files.
 
-#### **Example: Running the Pipeline for an h5ad File (Python)**
+#### **Example: Running the Pipeline for an h5ad File in Single-cell Mode (Python)**
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
@@ -80,6 +82,7 @@ CONTAINER_ID=$(docker run -d \
   -c group \
   -g celltype \
   -o /data/TestOutput_h5ad.h5ad \
+  --deg_mode single_cell \
   -f 0.2 \
   -r 0.01 \
   -p 0.5 \
@@ -111,7 +114,7 @@ CONTAINER_ID=$(docker run -d \
 ### **Using Singularity on HPC Server**
 Make sure to load Singularity on your HPC system (e.g., via module load singularity), then run:
 
-#### **Example: Running the Pipeline for an h5ad File (Python)**
+#### **Example: Running the Pipeline for an h5ad File in Single-cell Mode (Python)**
 ```bash
 singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   divenn2_degpreprocessing.sif h5ad \
@@ -120,6 +123,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -c group \
   -g celltype \
   -o /data/TestOutput_h5ad.h5ad \
+  --deg_mode single_cell \
   -f 0.2 \
   -r 0.01 \
   -p 0.5 \
@@ -155,16 +159,23 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 | `-g, --group` | Both | Metadata column containing the cell type, cluster, or other grouping variable. |
 | `-o, --output` | Both | Output `.h5ad` file path. A companion DEG CSV is also written by default. |
 | `-f, --logfc_thd` | Both | Absolute log fold-change threshold. Defaults: `.h5ad` workflow `1`; Seurat workflow `0.1`. |
-| `-r, --minpct_thd` | Both | Minimum fraction of cells expressing a gene. Defaults: `.h5ad` workflow `0.25`; Seurat workflow `0.01`. |
+| `-r, --minpct_thd` | Both | Minimum fraction of cells expressing a gene (`single_cell` mode only in `.h5ad`; ignored in `pseudobulk`). Defaults: `.h5ad` workflow `0.25`; Seurat workflow `0.01`. |
 | `-v, --padj_thd` | Both | Adjusted p-value threshold. Default: `0.05`. |
 | `-x, --comparisons` | Both | Condition comparisons as `A:B,A:C`, where `A` is Condition_1 and `B` is Condition_2. Use `all` for all directed pairwise comparisons. |
-| `-m, --method` | Both | Differential expression test. See method options below. |
+| `-m, --method` | Both | Differential expression test (`single_cell` mode only in `.h5ad`; `pseudobulk` uses `PyDESeq2`). See method options below. |
 | `-l, --gene_list_file` | Both | Optional text file with one gene per line for post-DEG filtering. |
 | `-d, --gene_filter_mode` | Both | Optional gene-list filtering mode: `remove` excludes listed genes; `keep` keeps only listed genes. |
 | `-a, --gene_filter_ignore_case` | Both | Ignore case when applying the gene-list filter. |
 | `-p, --maxpct_thd` | `.h5ad` only | Maximum out-group expression fraction used by Scanpy filtering. Default: `0.5`. |
 | `-t, --correction_method` | `.h5ad` only | Scanpy p-value correction method: `benjamini-hochberg` or `bonferroni`. Default: `benjamini-hochberg`. |
 | `-s, --write_csv` | Both | CSV behavior differs by script. In the `.h5ad` workflow, passing `-s` disables CSV writing. In the Seurat workflow, the CSV is written by default. |
+| `--deg_mode` | `.h5ad` only | DEG analysis mode: `single_cell` (Scanpy) or `pseudobulk` (PyDESeq2). Default: `single_cell`. |
+| `--sample_col` | `.h5ad` only | Metadata column containing unique biological sample/replicate IDs. **Required** when `--deg_mode pseudobulk`. |
+| `--counts_layer` | `.h5ad` only | Source of raw integer UMI counts for `pseudobulk` mode (`counts` layer name, `X`, or `raw`). Default: `counts`. |
+| `--min_cells_per_sample` | `.h5ad` only | Minimum number of cells required per sample within a cell group in `pseudobulk` mode; smaller groups are excluded before aggregation. Default: `3`. |
+| `--min_replicates` | `.h5ad` only | Minimum number of biological replicate samples required per condition in `pseudobulk` mode. Default: `2`. |
+| `--n_cpus` | `.h5ad` only | Number of CPU workers used by `PyDESeq2` in `pseudobulk` mode. Default: `1`. |
+| `--write_stats_csv` | `.h5ad` only | Optional flag to write an additional `<output_basename>_deg_statistics.csv` table with full statistical metrics (`log2FoldChange`, `pvalue`, `padj`, `baseMean`, etc.). |
 
 Method options:
 
@@ -193,6 +204,12 @@ By default, the workflow also writes a companion CSV named from the output file:
 <output_basename>_divenn2_deg.csv
 ```
 
+In the `.h5ad` workflow, passing `--write_stats_csv` also writes a full statistics table named:
+
+```text
+<output_basename>_deg_statistics.csv
+```
+
 The CSV has the standardized DiVenn 2 DEG table format:
 
 | **Condition_1** | **Condition_2** | **CellType** | **Gene** | **Reg_direct** |
@@ -211,7 +228,7 @@ where
 ---
 
 ## 📝 **Notes**
-- Ensure **Docker** or **Singulatiry** are installed and running before executing the commands.
+- Ensure **Docker** or **Singularity** are installed and running before executing the commands.
 - The **volume mount (`-v /path/to/data:/data`)** should be updated to reflect your actual file locations.
 - The container runs in **detached mode (`-d`)**, so you may use the following command to monitor progress:
   ```bash
