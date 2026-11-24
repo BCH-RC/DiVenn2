@@ -134,6 +134,8 @@ If no DEG results are found, users can select annotations from the file to calcu
   <p><em>Figure 6: Interface to select DEG comparisons</em></p>
 </div>
 
+If there are replicates in the dataset, users can choose to perform pseudobulk DEG analysis with DESeq2, which is implemented in [Rust](https://github.com/necoli1822/rust_deseq2) and compiled to WebAssembly. Another dropdown selection for which annotation to use for aggregation (for example, sample IDs) will then be presented. It is recommended to have at least 3 replicates for each comparison group for pseudobulk analysis. 
+
 
 <div align="left">
   <img src="./images/scRNAseq_directed_graph.PNG" alt="scRNA Force Directed Graph" height="50%" width="100%"/>
@@ -157,28 +159,39 @@ If no DEG results are found, users can select annotations from the file to calcu
 - Double-clicking the same node will hide the connecting edge colors.
 - Right-clicking a node will show five function options: show or hide one or all node labels, show all gene associated pathways, or GO terms.
 - Right-clicking nodes can show the gene IDs of interest (See figure 8)
+- A floating group inspector in the corner provides quick summary of the group with mouse hover and allows users to open the gene detail window.
 
 <div align="left">
   <img src="./images/scRNAseq_directed_graph_geneInfo.PNG" alt="Right-click functions" width="100%"/>
   <p><em>Figure 8: Right-click functions</em></p>
 </div>
 
+#### Directional Pattern Plot
+DiVenn 2 contains a directional pattern plot to help users find groups with interesting regulatory patterns. A button in GUI opens up a window with a pattern plot showing all unique and overlapping groups with numbers of up-, down-regulated genes and discordant genes. When the group consists of multiple overlapping expreiments, the number of discordant patterns grow exponentially. Each group in the plot can be expanded to show the breakdown of gene counts across all pattern combinations. Buttons in each row can be clicked to highlight the group on DiVenn graph (Locate) and open the group details with genes selected (Details), respectively.
+
+Similarly, within the Gene detail window for each group, a directional pattern plot is shown with the distribution of DEGs across all possible regulatory patterns within the group. This can help users to select genes with specific regulatory patterns for further analysis, such as GO enrichment analysis and module score calculation.
+
+<div align="left">
+  <img src="./images/scRNAseq_directional_pattern_plot.PNG" alt="Directional Pattern Plot" width="100%"/>
+  <p><em>Figure 9: Directional Pattern Plot</em></p>
+</div>
+
 #### Customization
-- Adjust font size, color, and node shape (See figure 9)
+- Adjust font size, color, and node shape (See figure 10)
 - Summarize groups and collapse nodes
 - Filter by condition, GO term, or pathway
 
 <div align="left">
-  <img src="./images/shape_font_size2.PNG" alt="Customize Appearance" width="100%"/>
-  <p><em>Figure 9: Customize Appearance</em></p>
+  <img src="./images/shape_font_size3.PNG" alt="Customize Appearance" width="100%"/>
+  <p><em>Figure 10: Customize Appearance</em></p>
 </div>
 
 #### Gene Information
-Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 10)
+Access detailed gene information by right-clicking nodes and select `Gene detail` (See figure 11)
 
 <div align="left">
   <img src="./images/geneInfo.PNG" alt="Gene Info"  width="100%"/>
-  <p><em>Figure 10: Gene Info</em></p>
+  <p><em>Figure 11: Gene Info</em></p>
 </div>
 
 ---
@@ -186,16 +199,16 @@ Access detailed gene information by right-clicking nodes and select `Gene detail
 ### Enrichment Analysis
 
 #### KEGG pathway and GO terms
-If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 11).
+If users need to check the KEGG pathway or GO terms of a group of genes (for example, regulated genes in group Z versus group D in cell type D), they can choose the `Gene group detail` option after right clicking the node (See figure 12).
 
 <div align="left">
   <img src="./images/scRNAseq_geneDetails.PNG" alt="Gene Pathway" width="100%"/>
-  <p><em>Figure 11: Genes in a group with KEGG and GO annotations</em></p>
+  <p><em>Figure 12: Genes in a group with KEGG and GO annotations</em></p>
 </div>
 
 #### GO Enrichment
 To perform GO enrichment for this set of genes, users need to click `GO enrichment` tab. It uses `clusterProfiler` R package to perform GO enrichment.
-User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 12), tree map plot (figure 13), AI interpretation (figure 14) and result table (figure 15) can be viewed.
+User also can switch different GO enrichment results namely Biological Process (BP), Molecular Function (MF), and Cellular Component (CC). In the tab of each GO category, bar chart (figure 13), tree map plot (figure 14), AI interpretation (figure 15) and result table (figure 16) can be viewed.
 
 By default, bar chart shows up to 20 significant terms. The GO terms to show can be adjusted from the result table.
 <div align="left">
@@ -209,7 +222,7 @@ Tree map summaries the GO terms based on GO hierarchy when more than 10 terms ar
   <p><em>Figure 14: GO tree map</em></p>
 </div>
 
-The enrichment results are sent to Google's Gemma model for interpretation. Users can add experimental background to help improve the interpretation.
+The enrichment results are sent to Google's Gemma 4 model for interpretation. Users can add experimental background to help improve the interpretation.
 <div align="left">
   <img src="./images/GO_AI_202604.jpg" alt="GO AI interpretation" width="100%"/>
   <p><em>Figure 15: GO AI interpretation</em></p>
