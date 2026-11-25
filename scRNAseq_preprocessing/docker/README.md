@@ -98,6 +98,30 @@ CONTAINER_ID=$(docker run -d \
 )
 ```
 
+#### **Example: Running the Pipeline for an h5ad File in Pseudobulk Mode (Python)**
+```bash
+CONTAINER_ID=$(docker run -d \
+  -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  rcbioinfo/divenn2_degpreprocessing:latest h5ad \
+  -w /data \
+  -i /data/TestInput.h5ad \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_h5ad.h5ad \
+  --deg_mode pseudobulk \
+  --sample_col sample \
+  --counts_layer "counts" \
+  --min_cells_per_sample 10 \
+  --min_replicates 2 \
+  --n_cpus 1 \
+  -f 0 \
+  -v 0.05 \
+  -x all \
+  -s \
+  --write_stats_csv
+)
+```
+
 #### **Example: Running the Pipeline for a rds File in Single-cell Mode (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
@@ -160,6 +184,28 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -x all \
   -m wilcoxon \
   -t benjamini-hochberg
+```
+
+#### **Example: Running the Pipeline for an h5ad File in Pseudobulk Mode (Python)**
+```bash
+singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  divenn2_degpreprocessing.sif h5ad \
+  -w /data \
+  -i /data/TestInput.h5ad \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_h5ad.h5ad \
+  --deg_mode pseudobulk \
+  --sample_col sample \
+  --counts_layer "counts" \
+  --min_cells_per_sample 10 \
+  --min_replicates 2 \
+  --n_cpus 1 \
+  -f 0 \
+  -v 0.05 \
+  -x all \
+  -s \
+  --write_stats_csv
 ```
 
 #### **Example: Running the Pipeline for a rds File in Single-cell Mode (R)**
