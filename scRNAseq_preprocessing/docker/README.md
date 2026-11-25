@@ -50,7 +50,7 @@ singularity pull divenn2_degpreprocessing.sif docker://rcbioinfo/divenn2_degprep
 |------|------------|
 | `Dockerfile` | The script used to build the Docker image. |
 | `Preprocessing_h5ad.py` | Python script for processing **h5ad** files to generate DEG files as input for DiVenn 2. |
-| `Preprocessing_Seuratobj.r` | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn 2. |
+| `Preprocessing_Seuratobj.r` | R script for processing **rds (Seurat obj)** files to generate DEG files as input for DiVenn 2, in `single_cell` or `pseudobulk` mode. |
 | `run_preprocessing.sh` | Wrapper script that allows users to run either `Preprocessing_h5ad.py` or `Preprocessing_Seuratobj.r` based on file type. |
 | `README.md` | This documentation file. |
 ---
@@ -67,7 +67,12 @@ The `.h5ad` workflow supports two DEG analysis modes controlled by `--deg_mode`:
 - **`single_cell` (default):** Uses `scanpy.tl.rank_genes_groups`. It requires at least 3 cells per condition within a cell group (comparisons with fewer cells are skipped) and uses `adata.raw.X` when usable; otherwise it uses `adata.X` (typically normalized/log-transformed expression).
 - **`pseudobulk`:** Sums raw integer UMI counts by biological sample (`--sample_col`) within each cell group (`-g`) and runs `PyDESeq2` (`DeseqDataSet` and `DeseqStats` with default parameters and `~condition` design). It requires an unnormalized integer count matrix (`--counts_layer`, default `counts`, or `X`/`raw`), at least `--min_cells_per_sample` cells per sample/cell-type (default `3`), and at least `--min_replicates` biological samples per condition (default `2`). Single-cell expression fraction filters (`-r`, `-p`) are not applied in `pseudobulk` mode.
 
-The Seurat workflow uses the `RNA` assay, keeps the condition and group metadata columns, and runs `FindMarkers`. It uses the `data` slot for most tests and the `counts` slot for `negbinom` and `poisson`.
+The Seurat (`.rds`) workflow supports the same two modes through `--deg_mode`:
+
+- **`single_cell` (default):** Runs Seurat `FindMarkers` within each cell group on the `--assay` assay (default `RNA`). It uses the `data` layer for most tests and the `counts` layer for `negbinom` and `poisson`. `-r` is passed to `FindMarkers` as `min.pct` and `-f` as `logfc.threshold`. Comparisons with fewer than 3 cells per condition within a cell group are skipped. If the `data` layer is missing or not normalized, `NormalizeData` is run first.
+- **`pseudobulk`:** Sums raw integer UMI counts from `--counts_layer` (default `counts`) by biological sample (`--sample_col`) within each cell group (`-g`) using `Seurat::AggregateExpression`, then runs `FindMarkers(test.use = "DESeq2")` with samples as the replicates. P-values come from the DESeq2 Wald test, `padj` is Seurat's Bonferroni-adjusted `p_val_adj` (adjusted over all genes in the object), and `log2FoldChange` is Seurat's `avg_log2FC`. It requires an unnormalized integer count layer, at least `--min_cells_per_sample` cells per sample/cell-type (default `10`; smaller samples are excluded before aggregation), and at least `--min_replicates` biological samples per condition (default `2`). The cell expression fraction filter (`-r`) and `-m` are not applied in `pseudobulk` mode; genes are filtered on `-v` and `-f` only.
+
+Seurat v5 objects with split layers (e.g. after `IntegrateLayers`) are handled automatically: layers are joined before DEG analysis.
 
 ### **Using Docker**
 The following examples show how to run the Docker container for processing **h5ad** and **Seurat** files.
@@ -93,7 +98,7 @@ CONTAINER_ID=$(docker run -d \
 )
 ```
 
-#### **Example: Running the Pipeline for a rds File (R)**
+#### **Example: Running the Pipeline for a rds File in Single-cell Mode (R)**
 ```bash
 CONTAINER_ID=$(docker run -d \
   -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
@@ -103,13 +108,37 @@ CONTAINER_ID=$(docker run -d \
   -c group \
   -g celltype \
   -o /data/TestOutput_seurat.h5ad \
+  --deg_mode single_cell \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
   -x all \
-  -m wilcox
+  -m wilcox \
+  -s
 )
+```
 
+#### **Example: Running the Pipeline for a rds File in Pseudobulk Mode (R)**
+```bash
+CONTAINER_ID=$(docker run -d \
+  -v .../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  rcbioinfo/divenn2_degpreprocessing:latest seurat \
+  -w /data \
+  -i /data/TestInput.rds \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_seurat_pseudobulk.h5ad \
+  --deg_mode pseudobulk \
+  --sample_col sample \
+  --counts_layer counts \
+  --min_cells_per_sample 10 \
+  --min_replicates 2 \
+  -f 0 \
+  -v 0.05 \
+  -x all \
+  -s \
+  --write_stats_csv
+)
 ```
 ### **Using Singularity on HPC Server**
 Make sure to load Singularity on your HPC system (e.g., via module load singularity), then run:
@@ -133,7 +162,7 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -t benjamini-hochberg
 ```
 
-#### **Example: Running the Pipeline for a rds File (R)**
+#### **Example: Running the Pipeline for a rds File in Single-cell Mode (R)**
 ```bash
 singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   divenn2_degpreprocessing.sif seurat \
@@ -142,11 +171,34 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
   -c group \
   -g celltype \
   -o /data/TestOutput_seurat.h5ad \
+  --deg_mode single_cell \
   -f 0.2 \
   -r 0.1 \
   -v 0.05 \
   -x all \
-  -m wilcox
+  -m wilcox \
+  -s
+```
+
+#### **Example: Running the Pipeline for a rds File in Pseudobulk Mode (R)**
+```bash
+singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
+  divenn2_degpreprocessing.sif seurat \
+  -w /data \
+  -i /data/TestInput.rds \
+  -c group \
+  -g celltype \
+  -o /data/TestOutput_seurat_pseudobulk.h5ad \
+  --deg_mode pseudobulk \
+  --sample_col sample \
+  --counts_layer counts \
+  --min_cells_per_sample 10 \
+  --min_replicates 2 \
+  -f 0 \
+  -v 0.05 \
+  -x all \
+  -s \
+  --write_stats_csv
 ```
 
 ### **Parameter Descriptions**
@@ -157,30 +209,31 @@ singularity run -B ../DiVenn2/scRNAseq_preprocessing/TestData:/data \
 | `-i, --input` | Both | Input file path inside the container. Use `.h5ad` for `h5ad` mode or `.rds` for `seurat` mode. |
 | `-c, --condition` | Both | Metadata column containing the sample condition, such as disease/control. |
 | `-g, --group` | Both | Metadata column containing the cell type, cluster, or other grouping variable. |
-| `-o, --output` | Both | Output `.h5ad` file path. A companion DEG CSV is also written by default. |
+| `-o, --output` | Both | Output `.h5ad` file path. A companion DEG CSV is also written by default (Seurat workflow: only when `-s` is passed). |
 | `-f, --logfc_thd` | Both | Absolute log fold-change threshold. Defaults: `.h5ad` workflow `1`; Seurat workflow `0.1`. |
-| `-r, --minpct_thd` | Both | Minimum fraction of cells expressing a gene (`single_cell` mode only in `.h5ad`; ignored in `pseudobulk`). Defaults: `.h5ad` workflow `0.25`; Seurat workflow `0.01`. |
-| `-v, --padj_thd` | Both | Adjusted p-value threshold. Default: `0.05`. |
+| `-r, --minpct_thd` | Both | Minimum fraction of cells expressing a gene (`single_cell` mode only in both workflows; ignored in `pseudobulk`). In the Seurat workflow, a gene passes if it is detected in at least this fraction of cells in either condition (`FindMarkers` `min.pct`). Defaults: `.h5ad` workflow `0.25`; Seurat workflow `0.01`. |
+| `-v, --padj_thd` | Both | Adjusted p-value threshold. Default: `0.05`. The Seurat workflow applies it to the Bonferroni-adjusted `p_val_adj` from `FindMarkers` in both modes. |
 | `-x, --comparisons` | Both | Condition comparisons as `A:B,A:C`, where `A` is Condition_1 and `B` is Condition_2. Use `all` for all directed pairwise comparisons. |
-| `-m, --method` | Both | Differential expression test (`single_cell` mode only in `.h5ad`; `pseudobulk` uses `PyDESeq2`). See method options below. |
+| `-m, --method` | Both | Differential expression test (`single_cell` mode only; `.h5ad` `pseudobulk` uses `PyDESeq2`, Seurat `pseudobulk` uses DESeq2 through `FindMarkers`). See method options below. |
 | `-l, --gene_list_file` | Both | Optional text file with one gene per line for post-DEG filtering. |
 | `-d, --gene_filter_mode` | Both | Optional gene-list filtering mode: `remove` excludes listed genes; `keep` keeps only listed genes. |
 | `-a, --gene_filter_ignore_case` | Both | Ignore case when applying the gene-list filter. |
 | `-p, --maxpct_thd` | `.h5ad` only | Maximum out-group expression fraction used by Scanpy filtering. Default: `0.5`. |
 | `-t, --correction_method` | `.h5ad` only | Scanpy p-value correction method: `benjamini-hochberg` or `bonferroni`. Default: `benjamini-hochberg`. |
-| `-s, --write_csv` | Both | CSV behavior differs by script. In the `.h5ad` workflow, passing `-s` disables CSV writing. In the Seurat workflow, the CSV is written by default. |
-| `--deg_mode` | `.h5ad` only | DEG analysis mode: `single_cell` (Scanpy) or `pseudobulk` (PyDESeq2). Default: `single_cell`. |
-| `--sample_col` | `.h5ad` only | Metadata column containing unique biological sample/replicate IDs. **Required** when `--deg_mode pseudobulk`. |
-| `--counts_layer` | `.h5ad` only | Source of raw integer UMI counts for `pseudobulk` mode (`counts` layer name, `X`, or `raw`). Default: `counts`. |
-| `--min_cells_per_sample` | `.h5ad` only | Minimum number of cells required per sample within a cell group in `pseudobulk` mode; smaller groups are excluded before aggregation. Default: `3`. |
-| `--min_replicates` | `.h5ad` only | Minimum number of biological replicate samples required per condition in `pseudobulk` mode. Default: `2`. |
+| `-s, --write_csv` | Both | CSV behavior differs by script. In the `.h5ad` workflow, passing `-s` disables CSV writing. In the Seurat workflow, pass `-s` to write the CSV; it is not written by default. |
+| `--deg_mode` | Both | DEG analysis mode: `single_cell` (Scanpy / Seurat `FindMarkers`) or `pseudobulk` (`PyDESeq2` / Seurat `AggregateExpression` + `FindMarkers(test.use = "DESeq2")`). Default: `single_cell`. |
+| `--sample_col` | Both | Metadata column containing unique biological sample/replicate IDs. **Required** when `--deg_mode pseudobulk`. |
+| `--counts_layer` | Both | Source of raw integer UMI counts for `pseudobulk` mode. `.h5ad`: `counts` layer name, `X`, or `raw`. Seurat: a layer of the `--assay` assay. Default: `counts`. |
+| `--min_cells_per_sample` | Both | Minimum number of cells required per sample within a cell group in `pseudobulk` mode; smaller groups are excluded before aggregation. Defaults: `.h5ad` workflow `3`; Seurat workflow `10`. |
+| `--min_replicates` | Both | Minimum number of biological replicate samples required per condition in `pseudobulk` mode. Default: `2`. |
+| `--assay` | Seurat only | Seurat assay to use. Default: `RNA`. |
 | `--n_cpus` | `.h5ad` only | Number of CPU workers used by `PyDESeq2` in `pseudobulk` mode. Default: `1`. |
-| `--write_stats_csv` | `.h5ad` only | Optional flag to write an additional `<output_basename>_deg_statistics.csv` table with full statistical metrics (`log2FoldChange`, `pvalue`, `padj`, `baseMean`, etc.). |
+| `--write_stats_csv` | Both | Optional flag to write an additional `<output_basename>_deg_statistics.csv` table with full statistical metrics. `.h5ad` workflow: `log2FoldChange`, `pvalue`, `padj`, `baseMean`, etc. Seurat workflow: `log2FoldChange`, `pvalue`, `padj`, plus `pct.1` and `pct.2` in `single_cell` mode. |
 
 Method options:
 
 - `.h5ad` / Scanpy: `wilcoxon`, `t-test`, `t-test_overestim_var`, `logreg`.
-- Seurat: `wilcox`, `wilcox_limma`, `bimod`, `roc`, `t`, `negbinom`, `poisson`, `LR`, `MAST`.
+- Seurat (`single_cell` mode): `wilcox`, `wilcox_limma`, `bimod`, `roc`, `t`, `negbinom`, `poisson`, `LR`, `MAST`.
 
 ---
 
@@ -198,13 +251,15 @@ The catalog of available DEG result keys is stored in:
 adata.uns["divenn_rank_genes_groups_catalog"]
 ```
 
-By default, the workflow also writes a companion CSV named from the output file:
+The DEG analysis mode is stored in `adata.uns["divenn_deg_mode"]` (`single_cell` or `pseudobulk`).
+
+By default, the workflow also writes a companion CSV named from the output file (Seurat workflow: only when `-s` is passed):
 
 ```text
 <output_basename>_divenn2_deg.csv
 ```
 
-In the `.h5ad` workflow, passing `--write_stats_csv` also writes a full statistics table named:
+In both workflows, passing `--write_stats_csv` also writes a full statistics table named:
 
 ```text
 <output_basename>_deg_statistics.csv
@@ -233,3 +288,4 @@ where
 - The container runs in **detached mode (`-d`)**, so you may use the following command to monitor progress:
   ```bash
   docker logs -f $CONTAINER_ID
+  ```
