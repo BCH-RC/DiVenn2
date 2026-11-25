@@ -51,7 +51,7 @@ ENV PATH="/venv/bin:$PATH"
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install scanpy pandas numpy argparse anndata 
+    pip install scanpy pandas numpy argparse anndata 'pydeseq2>=0.5,<0.6'
 
 # Set RETICULATE_PYTHON to use in R script as venv
 ENV RETICULATE_PYTHON=/venv/bin/python
